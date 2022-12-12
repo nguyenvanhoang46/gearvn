@@ -1,24 +1,38 @@
-import logo from './logo.svg';
 import './App.css';
+import Banner from './components/Banner';
+import Category from './components/catergory';
+import Content from './components/Content';
+import Demo from './components/Demo';
+import Footer from './components/Footer';
+import Header from './components/Header';
+import SliderProduct from './components/Slider';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <>
+      <header className="bg-[#f1f0f1]">
+        <div className="pt-2 pb-2 border-b-[1px] border-[red] border-[#d4d4d4]">
+            <Header />
+        </div>
+        <div className='container mx-auto'>
+          <Category />
+        </div>
+        <div className='container mx-auto'>
+          <SliderProduct />
+          <div className="mb-7">
+            <Banner />
+          </div>
+        </div>
       </header>
-    </div>
+      <div className='container mx-auto'>
+        <Content />
+      </div>
+      <div className='container mx-auto'>
+        {/* <Footer /> */}
+      </div>
+      {/* <Demo /> */}
+    </>
   );
 }
 
