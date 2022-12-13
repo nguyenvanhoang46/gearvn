@@ -13,10 +13,10 @@ const HeaderRight = () => {
   return (
     <>
         <div className="flex gap-4 ml-10 uppercase">
-            <Link to='/login'>
+            <Link to='/register'>
               <Button label="Đăng ký" icon={ <FaPenSquare  style={StyleIcon}/> }/>  
             </Link>        
-            <Link to=''>
+            <Link to='/login'>
               <Button label="Đăng nhập" icon={ <MdAccountCircle  style={StyleIcon}/> }/>           
             </Link>
             <Link to=''>
