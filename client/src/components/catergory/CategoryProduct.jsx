@@ -39,7 +39,7 @@ const CategoryProduct = ({}) => {
                             <span><BsLaptop className='text-[20px]' /></span>
                             <span>Laptop</span>
                         </a>
-                       <div className="">
+                       <div className="hidden">
                         <SubCategory className="" />
                        </div>
                     </li>

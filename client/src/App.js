@@ -28,7 +28,7 @@ function App() {
         <Content />
       </div>
       <div className='container mx-auto'>
-        {/* <Footer /> */}
+        <Footer />
       </div>
       {/* <Demo /> */}
     </>
