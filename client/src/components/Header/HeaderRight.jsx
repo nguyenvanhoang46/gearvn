@@ -19,8 +19,9 @@ const HeaderRight = () => {
             <Link to='/login'>
               <Button label="Đăng nhập" icon={ <MdAccountCircle  style={StyleIcon}/> }/>           
             </Link>
-            <Link to=''>
-              <Button label="Khuyết mãi" icon={ <HiOutlineLogout  style={StyleIcon}/> } />           
+            <Link className='flex gap-2' to=''>
+              <img className='max-w-[24px] max-h-[25px] ' src="//theme.hstatic.net/1000026716/1000440777/14/ak4.png?v=30809" />
+              <Button label="Khuyết mãi" />           
             </Link>
             <Link to=''>
               <Button label="Giỏ hàng " icon={ <BsFillCartFill style={StyleIcon} />}/>           

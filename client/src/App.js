@@ -11,10 +11,9 @@ function App() {
   return (
     <>
       <header className="bg-[#f1f0f1]">
-        <div className="pt-2 pb-2 border-b-[1px] border-[red] border-[#d4d4d4]">
-            <Header />
-        </div>
-        <div className='container mx-auto'>
+      <div className=' bg-[url("https://theme.hstatic.net/1000026716/1000440777/14/bn-top2.jpg?v=30809")] bg-[#1c6c04] h-[50px] bg-no-repeat bg-center w-full  '></div>
+        <Header />
+        <div className=''>
           <Category />
         </div>
         <div className='container mx-auto'>
@@ -27,10 +26,9 @@ function App() {
       <div className='container mx-auto'>
         <Content />
       </div>
-      <div className='container mx-auto'>
+      <div className='container mx-auto mt-20'>
         <Footer />
       </div>
-      {/* <Demo /> */}
     </>
   );
 }

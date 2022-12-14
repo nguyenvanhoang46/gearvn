@@ -32,12 +32,12 @@ const CategoryProduct = ({}) => {
     };
     return (
         <>
-            <div className="bg-[#fff] w-[185px] h-[540px] rounded-sm ">
+            <div className="bg-[#fff] w-[200px] h-[540px] rounded-sm ">
                 <ul className='relative '>
                     <li className='hovermenu hover:bg-[#ea1c04] hover:before:absolute hover:before:right-[-15px] hover:before:border-l-[#ea1c04]  hover:before:z-50  hover:before:border-y-[17px]  hover:before:border-y-[transparent]  hover:before:border-l-[15px] '>
                         <a  className='text-[#505050] text-[13px] flex items-center py-[4px] pr-[4px] pl-[10px] h-[34px] font-medium gap-4 hover:text-[#fff] ' href="client/src/components/catergory/CategoryProduct">
                             <span><BsLaptop className='text-[20px]' /></span>
-                            <span>Laptop</span>
+                            <span className='text-[14px] '>Laptop</span>
                         </a>
                        <div className="hidden">
                         <SubCategory className="" />
@@ -46,79 +46,79 @@ const CategoryProduct = ({}) => {
                     <li className='hover:bg-[#ea1c04]  '>
                         <a onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} className='text-[#505050] text-[13px] flex items-center py-[4px] pr-[4px] pl-[10px] h-[34px] font-medium gap-4 hover:text-[#fff] ' href="client/src/components/catergory/CategoryProduct">
                             <span><BsLaptop className='text-[20px]' /></span>
-                            <span>Laptop Gaming</span>
+                            <span className='text-[14px] '>Laptop Gaming</span>
                         </a>
                     </li>
                     <li className='hover:bg-[#ea1c04]  '>
                         <a onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} className='text-[#505050] text-[13px] flex items-center py-[4px] pr-[4px] pl-[10px] h-[34px] font-medium gap-4 hover:text-[#fff] ' href="client/src/components/catergory/CategoryProduct">
-                            <span><BsLaptop className='text-[20px]' /></span>
-                            <span>PC Special</span>
+                            <span><img className='max-w-[20px]' src="//theme.hstatic.net/1000026716/1000440777/14/xxx24.png?v=30809" /></span>
+                            <span className='text-[14px] '>PC Special</span>
                     </a>
                     </li>
                     <li className='hover:bg-[#ea1c04]  '>
                         <a onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} className='text-[#505050] text-[13px] flex items-center py-[4px] pr-[4px] pl-[10px] h-[34px] font-medium gap-4 hover:text-[#fff] ' href="client/src/components/catergory/CategoryProduct">
-                            <span><BsLaptop /></span>
-                            <span>PC GEARVN Inter</span>
+                        <span><img className='max-w-[20px]' src="//theme.hstatic.net/1000026716/1000440777/14/xxx24.png?v=30809" /></span>
+                            <span className='text-[14px] '>PC GEARVN Inter</span>
                     </a>
                     </li>
                     <li className='hover:bg-[#ea1c04]  '>
                         <a onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} className='text-[#505050] text-[13px] flex items-center py-[4px] pr-[4px] pl-[10px] h-[34px] font-medium gap-4 hover:text-[#fff] ' href="client/src/components/catergory/CategoryProduct">
-                            <span><BsLaptop /></span>
-                            <span>PC GEARVN AMD</span>
+                        <span><img className='max-w-[20px]' src="//theme.hstatic.net/1000026716/1000440777/14/xxx24.png?v=30809" /></span>
+                        <span>PC GEARVN AMD</span>
                         </a>
                     </li>
                     <li className='hover:bg-[#ea1c04]  '>
                         <a onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} className='text-[#505050] text-[13px] flex items-center py-[4px] pr-[4px] pl-[10px] h-[34px] font-medium gap-4 hover:text-[#fff] ' href="client/src/components/catergory/CategoryProduct">
                         <span><TfiApple className="text-[20px] " /></span>
-                            <span>Apple</span>
+                            <span className='text-[14px] '>Apple</span>
                     </a>
                     </li>
                     <li className='hover:bg-[#ea1c04]  '>
                         <a onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} className='text-[#505050] text-[13px] flex items-center py-[4px] pr-[4px] pl-[10px] h-[34px] font-medium gap-4 hover:text-[#fff] ' href="client/src/components/catergory/CategoryProduct">
-                        <span><BsLaptop /></span>
-                            <span>Linh kiện PC</span>
+                        <span><img className='max-w-[20px]' src="//theme.hstatic.net/1000026716/1000440777/14/xxx27.png?v=30809" /></span>
+                            <span className='text-[14px] '>Linh kiện PC</span>
                     </a>
                     </li>
                     <li className='hover:bg-[#ea1c04]  '>
                         <a onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} className='text-[#505050] text-[13px] flex items-center py-[4px] pr-[4px] pl-[10px] h-[34px] font-medium gap-4 hover:text-[#fff] ' href="client/src/components/catergory/CategoryProduct">
                         <span><SlScreenDesktop className='text-[20px] ' /></span>
-                            <span>Màn hình</span>
+                        <span className='text-[14px] '>Màn hình</span>
                     </a>
                     </li>
                     <li className='hover:bg-[#ea1c04]  '>
                         <a onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} className='text-[#505050] text-[13px] flex items-center py-[4px] pr-[4px] pl-[10px] h-[34px] font-medium gap-4 hover:text-[#fff] ' href="client/src/components/catergory/CategoryProduct">
-                        <span><GiKeyboard className='text-[20px] ' /></span>
-                            <span>Bàn phím</span>
+                        <span><img className='max-w-[20px]' src="//theme.hstatic.net/1000026716/1000440777/14/xxx210.png?v=30809" alt="" /></span>
+                        <span className='text-[14px] '>Bàn phím</span>
                     </a>
                     </li>
                     <li className='hover:bg-[#ea1c04]  '>
                         <a onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} className='text-[#505050] text-[13px] flex items-center py-[4px] pr-[4px] pl-[10px] h-[34px] font-medium gap-4 hover:text-[#fff] ' href="client/src/components/catergory/CategoryProduct">
-                        <span><GiMouse className='text-[20px] ' /></span>
-                        <span>Chuột + Lót chuột </span>
+                        <span><img className='max-w-[20px]' src="//theme.hstatic.net/1000026716/1000440777/14/xxx211.png?v=30809" alt="" /></span>
+                        <span className='text-[14px] '>Chuột + Lót chuột </span>
                         </a>
                     </li>
                     <li className='hover:bg-[#ea1c04]  '>
                         <a onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} className='text-[#505050] text-[13px] flex items-center py-[4px] pr-[4px] pl-[10px] h-[34px] font-medium gap-4 hover:text-[#fff] ' href="client/src/components/catergory/CategoryProduct">
                             <span><BiHeadphone className='text-[20px] ' /></span>
-                            <span>Tai nghe - Loa</span>
+                            <span className='text-[14px] '>Tai nghe - Loa</span>
                         </a>
                     </li>
                     <li className='hover:bg-[#ea1c04]  '>
                         <a onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} className='text-[#505050] text-[13px] flex items-center py-[4px] pr-[4px] pl-[10px] h-[34px] font-medium gap-4 hover:text-[#fff] ' href="client/src/components/catergory/CategoryProduct">
-                        <span><BsLaptop className='hover:text-[#333] text-[20px]' /></span>
-                        <span>Thiết bị văn phòng</span>
+                        <span><img className='max-w-[20px]' src="//theme.hstatic.net/1000026716/1000440777/14/xxx24.png?v=30809" /></span>
+                        <span className='text-[14px] '>Thiết bị văn phòng</span>
                     </a>
                     </li>
                     <li className='hover:bg-[#ea1c04]  '>
                         <a onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} className='text-[#505050] text-[13px] flex items-center py-[4px] pr-[4px] pl-[10px] h-[34px] font-medium gap-4 hover:text-[#fff] ' href="client/src/components/catergory/CategoryProduct">
-                            <span><BsLaptop /></span>
-                            <span>Phần mềm & Mạng</span>
+                        <span><img className='max-w-[20px]' src="//theme.hstatic.net/1000026716/1000440777/14/xxx214.png?v=30809" /></span>
+                            <span className='text-[14px] '>Phần mềm & Mạng</span>
                         </a>
                     </li>
                     <li className='hover:bg-[#ea1c04]  '>
                         <a onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} className='text-[#505050] text-[13px] flex items-center py-[4px] pr-[4px] pl-[10px] h-[34px] font-medium gap-4 hover:text-[#fff] ' href="client/src/components/catergory/CategoryProduct">
-                            <span><BsLaptop /></span>
-                            <span>Phụ kiện</span>
+                        <span><img className='max-w-[20px]' src="//theme.hstatic.net/1000026716/1000440777/14/xxx215.png?v=30809" /></span>
+                            <span className='text-[14px] '>Phụ kiện</span>
                         </a>
                     </li>
 

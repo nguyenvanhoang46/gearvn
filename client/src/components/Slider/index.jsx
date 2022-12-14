@@ -109,10 +109,10 @@ const SliderProduct = () => {
                 </div>
                 <div className="col-span-4">
                   <div className="">
-                    <a href="client/src/components/Slider/index">
+                    <a href="">
                       <img src="//theme.hstatic.net/1000026716/1000440777/14/solid1.jpg?v=30376" />
                     </a>
-                    <a href="client/src/components/Slider/index">
+                    <a href="">
                       <img src="//theme.hstatic.net/1000026716/1000440777/14/solid2.jpg?v=30376" />
                     </a>
                   </div>
@@ -120,14 +120,14 @@ const SliderProduct = () => {
             </div>
             <div className="">
               <div className="flex">
-                <a href="client/src/components/Slider/index">
+                <a href="">
                   <img src="//theme.hstatic.net/1000026716/1000440777/14/solid4.jpg?v=30376" />
                </a>
-               <a href="client/src/components/Slider/index">
+               <a href="">
                   <img src="//theme.hstatic.net/1000026716/1000440777/14/solid5.jpg?v=30376" />
                </a>
-                <a href="client/src/components/Slider/index">
-                 <img src="//theme.hstatic.net/1000026716/1000440777/14/solid4.jpg?v=30376" />
+                <a href="">
+                  <iframe className='rounded-[10px]' width="360" height="180" src="https://www.youtube.com/embed/9d7dF_aE5Ds?start=1?autoplay=1&amp;mute=1" title="YouTube video player" frameborder="0" ></iframe>
                 </a>
                 </div>
               </div>

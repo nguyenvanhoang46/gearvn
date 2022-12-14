@@ -6,7 +6,7 @@ import {MdLocalShipping} from 'react-icons/md';
 const Category = () => {
   return (
     <>
-        <div className='grid grid-cols-12 py-[9px] items-center'>
+        <div className='container mx-auto grid grid-cols-12 py-[9px] items-center'>
             <div className="col-span-2">
                 <FixedNav />
             </div>
