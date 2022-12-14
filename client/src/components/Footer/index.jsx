@@ -21,20 +21,20 @@ const Footer = () => {
 						</table>
           </div>
           <div className="text-[#0655a6] text-[16px] font-bold ">
-            <a href="">Chính sách bảo hành</a>
+            <a href="client/src/components/Footer/index">Chính sách bảo hành</a>
             <br />
-            <a href="">Chính sách thanh toán</a>
+            <a href="client/src/components/Footer/index">Chính sách thanh toán</a>
             <br />
-            <a href="">Chính sách giao hàng</a>
+            <a href="client/src/components/Footer/index">Chính sách giao hàng</a>
             <br />
-            <a href="">Chính sách bảo mật</a>
+            <a href="client/src/components/Footer/index">Chính sách bảo mật</a>
           </div>
           <div className="">
           <img className='max-w-[300px]' src="https://theme.hstatic.net/1000026716/1000440777/14/20150827110756-dathongbao.png" />
           </div>
         </div>
         <div className="col-span-5">
-          <a href='' className='uppercase text-[16px] text-[#428bca] '><b>HỆ THỐNG CỬA HÀNG:</b></a>
+          <a href='client/src/components/Footer/index' className='uppercase text-[16px] text-[#428bca] '><b>HỆ THỐNG CỬA HÀNG:</b></a>
           <ul className='text-[16px] '>
             <h4 className=''><b>SHOWROOM HCM</b> <span>(Làm việc từ 8h00 - 21h00)</span></h4>
             <li>- Địa chỉ 1: 78-80-82 Hoàng Hoa Thám, Phường 12, Quận Tân Bình.</li>
@@ -47,7 +47,7 @@ const Footer = () => {
             <li>- Địa chỉ 3: 1081 - 1083 Trần Hưng Đạo, Phường 5, Quận 5.</li>
             <li>- Địa chỉ 4: 415 An Dương Vương, Phường 10, Quận 6.</li>
           </ul>
-          <a href='' className='uppercase text-[16px] text-[#428bca] '><b>TRUNG TÂM BẢO HÀNH:</b></a>
+          <a href='client/src/components/Footer/index' className='uppercase text-[16px] text-[#428bca] '><b>TRUNG TÂM BẢO HÀNH:</b></a>
           <p>- Địa chỉ : 436A/71 đường 3/2, Phường 12, Quận 10, Hồ Chí Minh.</p>
           <ul className='text-[14px] '>
             <li>- Công ty TNHH Thương Mại Gearvn</li>

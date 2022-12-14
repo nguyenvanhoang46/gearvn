@@ -12,16 +12,16 @@ const Category = () => {
             </div>
             <div className="col-span-10">
                 <div className="grid grid-cols-4 gap-2">
-                    <a href="">
+                    <a href="client/src/components/catergory/index">
                         <CategoryIcon icon={<GiReceiveMoney className='text-[20px] ' />} label=" Hướng dẫn thanh toán " />
                     </a>
-                    <a href="">
-                        <CategoryIcon icon={<GiReceiveMoney className='text-[20px] ' />}  label=" Hướng dẫn trả góp " />    
-                    </a>           
-                    <a href="">
+                    <a href="client/src/components/catergory/index">
+                        <CategoryIcon icon={<GiReceiveMoney className='text-[20px] ' />}  label=" Hướng dẫn trả góp " />
+                    </a>
+                    <a href="client/src/components/catergory/index">
                         <CategoryIcon icon={<GiAutoRepair className='text-[20px] ' />} label=" Chính sách bảo hành  " />
                     </a>
-                    <a href="">
+                    <a href="client/src/components/catergory/index">
                         <CategoryIcon icon={<MdLocalShipping className='text-[20px] ' />} label=" Chính sách vận chuyển " />
                     </a>
                 </div>
