@@ -1,6 +1,6 @@
 import React from 'react'
 import Slider from "react-slick";
-import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import CategoryProduct from '../catergory/CategoryProduct';
 import "swiper/css";
@@ -109,10 +109,10 @@ const SliderProduct = () => {
                 </div>
                 <div className="col-span-4">
                   <div className="">
-                    <a href="">
+                    <a href="client/src/components/Slider/index">
                       <img src="//theme.hstatic.net/1000026716/1000440777/14/solid1.jpg?v=30376" />
                     </a>
-                    <a href="">
+                    <a href="client/src/components/Slider/index">
                       <img src="//theme.hstatic.net/1000026716/1000440777/14/solid2.jpg?v=30376" />
                     </a>
                   </div>
@@ -120,13 +120,13 @@ const SliderProduct = () => {
             </div>
             <div className="">
               <div className="flex">
-                <a href="">
+                <a href="client/src/components/Slider/index">
                   <img src="//theme.hstatic.net/1000026716/1000440777/14/solid4.jpg?v=30376" />
                </a>
-               <a href="">
+               <a href="client/src/components/Slider/index">
                   <img src="//theme.hstatic.net/1000026716/1000440777/14/solid5.jpg?v=30376" />
                </a>
-                <a href="">
+                <a href="client/src/components/Slider/index">
                  <img src="//theme.hstatic.net/1000026716/1000440777/14/solid4.jpg?v=30376" />
                 </a>
                 </div>
