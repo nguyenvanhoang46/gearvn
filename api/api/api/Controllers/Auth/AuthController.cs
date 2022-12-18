@@ -12,7 +12,7 @@ using CoreApiResponse;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace api.Controllers.Home;
+namespace api.Controllers.Auth;
 
 [ApiController]
 [Route("/api/[controller]")]
@@ -65,7 +65,7 @@ public class AuthController : BaseController
   [Authorize]
   public async Task<IActionResult> GetMe()
   {
-    ClaimsPrincipal currentUser = this.User;
+    ClaimsPrincipal currentUser = User;
     var user = await _unitOfWork.UserRepository.GetMe(currentUser);
     if (user == null)
       return CustomResult(ResponseType.GetMessageFormCode(HttpStatusCode.NotFound), HttpStatusCode.NotFound);

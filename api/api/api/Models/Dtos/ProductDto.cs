@@ -14,6 +14,10 @@ public class ProductDto
 
   public long SalePrice { get; set; } = 0;
 
+  public string Description { get; set; } = String.Empty;
+
+  public string Content { get; set; } = String.Empty;
+
   public Category Category { get; set; } = null!;
 
   public ICollection<ImageDto> Images { get; set; } = null!;

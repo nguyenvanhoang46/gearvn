@@ -41,7 +41,7 @@ public class BaseRepo<T> : IRepo<T> where T : BaseEntity
     return await query.ToListAsync();
   }
 
-  public async Task<IEnumerable<T>> Paginate(PaginationFilter? paginationFilter = null,
+  public IEnumerable<T> Paginate(out int totalRecords, PaginationFilter? paginationFilter = null,
     Expression<Func<T, bool>>? predicate = null, string? relations = "", string? orderByQueryString = "")
   {
     IQueryable<T> query = _dbSet;
@@ -50,7 +50,10 @@ public class BaseRepo<T> : IRepo<T> where T : BaseEntity
     if (predicate != null)
     {
       query = query.Where(predicate);
+      totalRecords = query.Count();
     }
+
+    totalRecords = query.Count();
 
     query = GetSorting(query, orderByQueryString);
 
@@ -61,7 +64,7 @@ public class BaseRepo<T> : IRepo<T> where T : BaseEntity
     }
 
 
-    return await query.ToListAsync();
+    return query.ToList();
   }
 
   public async Task<T?> FindById(string id, string? relations = "")
