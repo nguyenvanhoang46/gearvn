@@ -11,7 +11,7 @@ public interface IRepo<TEntity> where TEntity : BaseEntity
   Task<IEnumerable<TEntity>> Find(Expression<Func<TEntity, bool>> predicate,
     string? relations = "");
 
-  Task<IEnumerable<TEntity>> Paginate(PaginationFilter? paginationFilter = null,
+  IEnumerable<TEntity> Paginate(out int totalRecords, PaginationFilter? paginationFilter = null,
     Expression<Func<TEntity, bool>>? predicate = null, string? relations = "", string? orderByQueryString = "");
 
   Task<TEntity?> FindById(string id, string? relations = "");

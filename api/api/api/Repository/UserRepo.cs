@@ -100,9 +100,9 @@ public class UserRepo : IUserRepo
     return await _userManager.GetRolesAsync(user) as List<string>;
   }
 
-  public Task Count()
+  public int Count()
   {
-    throw new NotImplementedException();
+    return _userManager.Users.Count();
   }
 
   public async Task<bool> UpdateAsync(User user)

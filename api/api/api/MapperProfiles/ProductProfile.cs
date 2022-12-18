@@ -20,6 +20,8 @@ public class ProductProfile : Profile
       .ForMember(d => d.Quantity, o => o.MapFrom(s => s.Quantity))
       .ForMember(d => d.Price, o => o.MapFrom(s => s.Price))
       .ForMember(d => d.Name, o => o.MapFrom(s => s.Name))
-      .ForMember(d => d.Id, o => o.MapFrom(s => s.Id));
+      .ForMember(d => d.Id, o => o.MapFrom(s => s.Id))
+      .ForMember(d => d.Description, o => o.MapFrom(s => s.Description))
+      .ForMember(d => d.Content, o => o.MapFrom(s => s.Content));
   }
 }

@@ -1,6 +1,4 @@
-using System.Configuration;
 using System.Net;
-using System.Security.Claims;
 using System.Text;
 using api.Context;
 using api.Models;
@@ -38,6 +36,8 @@ builder.Services.AddIdentity<User, Role>(options => { options.User.RequireUnique
 builder.Services.AddSingleton<IJwtService, JwtService>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IUserRepo, UserRepo>();
+builder.Services.AddScoped<IProductRepo, ProductRepo>();
+builder.Services.AddScoped<ICategoryRepo, CategoryRepo>();
 builder.Services.AddSingleton<IMetaService>(o =>
 {
   var accessor = o.GetRequiredService<IHttpContextAccessor>();
