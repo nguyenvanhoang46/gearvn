@@ -121,6 +121,13 @@ app.Use(async (context, next) =>
   }
 });
 
+app.UseCors(
+  options => options
+    .AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader()
+);
+
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
