@@ -13,49 +13,29 @@ import Login from "../Login";
 
 
 const Register = () => {
-  const [userName, setUserName] = useState("");
+  const [username, setUserName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-
   const [password, setPassword] = useState("");
-  const [validPwd, setValidPwd] = useState(false);
-  const [pwdFocus, setPwdFocus] = useState(false);
+  const [errros, setErrros] = useState([]);
 
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const [validMatch, setValidMatch] = useState(false);
-
-  const [errMsg, seterrMsg] = useState('')
-  const [success, setSuccess] = useState('')
-
   const navigate = useNavigate();
 
-
-
-  useEffect(() => {
-    setValidMatch(password === confirmPassword);
-  }, [password, confirmPassword]);
-
   const handleRegisrer = async (e) => {
-
-    e.preventDefault();
-    try {
-      const data = await postRegisterApi({ userName, firstName, lastName, email, phoneNumber, password, confirmPassword });
-      console.log(data);
+      e.preventDefault();
+      const data = await postRegisterApi({ username, firstName, lastName, email, phoneNumber, password, confirmPassword });
+      // console.log(data);
+      console.log(data.statusCode === 400)
       if (data.statusCode === 400) {
-        console.warn(data.errros);
+        console.log(data.errors);
+        setErrros(e => [...e,...data.errors])
       } else {
         navigate("/login");
       }
-      localStorage.setItem("token", data.accessToken)
-      localStorage.setItem("refreshToken", data.refreshToken)
-
-    } catch (error) {
-      console.log(error.response);
-    }
-
   }
 
 
@@ -73,13 +53,14 @@ const Register = () => {
               <span className='py-[10px] px-[15px] text-[14px]  text-[#555] bg-[#eee] border-[#ccc] rounded border-[1px] rounded-tr-[0px] rounded-br-[0px] border-r-0 border-t[0px] '>
                 <FaUser />
               </span>
-              <input value={userName} onChange={(e) => setUserName(e.target.value)} type="text" className='w-[230px] py-[17px] px-[12px] text-[14px]  text-[#555] border-[#ccc] rounded-tl-[0px] rounded-bl-[0px] focus:outline rounded border-[1px] h-[34px] focus:shadow focus:outline-[#66afe9]  ' placeholder='UserName' />
+              <input value={username} onChange={(e) => setUserName(e.target.value)} type="text" className='w-[230px] py-[17px] px-[12px] text-[14px]  text-[#555] border-[#ccc] rounded-tl-[0px] rounded-bl-[0px] focus:outline rounded border-[1px] h-[34px] focus:shadow focus:outline-[#66afe9]  ' placeholder='UserName' />
             </div>
             <div className="flex mt-5">
               <span className='py-[10px] px-[15px] text-[14px]  text-[#555] bg-[#eee] border-[#ccc] rounded border-[1px] rounded-tr-[0px] rounded-br-[0px] border-r-0 border-t[0px] '>
                 <FaUser />
               </span>
               <input value={firstName} onChange={(e) => setFirstName(e.target.value)} type="text" className='w-[230px] py-[17px] px-[12px] text-[14px]  text-[#555] border-[#ccc] rounded-tl-[0px] rounded-bl-[0px] focus:outline rounded border-[1px] h-[34px] focus:shadow focus:outline-[#66afe9]  ' placeholder='First Name' />
+            
             </div>
             <div className="flex mt-5">
               <span className='py-[10px] px-[15px] text-[14px]  text-[#555] bg-[#eee] border-[#ccc] rounded border-[1px] rounded-tr-[0px] rounded-br-[0px] border-r-0 border-t[0px] '>
@@ -112,12 +93,19 @@ const Register = () => {
               </span>
               <input value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} type="password" className='w-[230px] py-[17px] px-[15px] text-[14px]  text-[#555] border-[#ccc] rounded-tl-[0px] rounded-bl-[0px] focus:outline rounded border-[1px] h-[34px] focus:shadow focus:outline-[#66afe9]  ' placeholder='Confirm Password' />
             </div>
+            <div>{errros.map((item,index) => {
+                return(
+                  <p key={index}>{item.message}</p>
+                );
+              })}</div>
             <div className="flex gap-8 justify-center mt-8">
               <button type="submit" className='hover:bg-[black] bg-[#F0F0F0] uppercase hover:text-[white] cursor-pointer py-[7px] px-[14px] text-[14px] font-normal border-[1px] rounded-[4px] ' value="Đăng ký"> Đăng ký	</button>
               <div className="hover:bg-[black]  hover:text-[white] py-[7px] px-[14px] rounded-[5px] bg-[#ccc] ">
                 <Link to='/' className="">Quay về đi</Link>
               </div>
+              
             </div>
+
           </form>
         </div>
         <div className="mt-10">
