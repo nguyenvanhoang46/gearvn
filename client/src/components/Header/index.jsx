@@ -13,7 +13,7 @@ const Header = () => {
           <div className='container mx-auto'>
                   <div className="grid grid-cols-12 gap-4 ">
                   <div className="col-span-2">
-                    <Link to='/gearvn'>
+                    <Link to='/'>
                         <Logo />               
                     </Link>
                   </div>

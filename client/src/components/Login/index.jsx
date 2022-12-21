@@ -2,11 +2,14 @@ import { useState } from 'react'
 import { MdEmail } from 'react-icons/md'
 import { RiLockPasswordFill } from 'react-icons/ri'
 import { useDispatch } from 'react-redux'
+import { AiFillEyeInvisible, AiFillEye } from 'react-icons/ai'
 import { Link, useNavigate } from 'react-router-dom'
 import { postLoginApi } from '../../app/services/authService'
 import Category from '../catergory'
 import Footer from '../Footer'
 import Header from '../Header'
+import { SubmitHandler, useForm } from 'react-hook-form'
+
 
 const Login = () => {
 
@@ -14,6 +17,14 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const [error, seterror] = useState("");
+
+  const [passwordEye, setPasswordEye] = useState(false);
+
+  const handlePasswordClick = () => {
+    setPasswordEye(!passwordEye)
+  }
+
+  
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -23,7 +34,7 @@ const Login = () => {
       localStorage.setItem("token", accessToken)
       localStorage.setItem("refreshToken", refreshToken)
       navigate("/");
-    } catch(e) {
+    } catch (e) {
       seterror("Email or password invalid")
       console.log(seterror);
     }
@@ -45,11 +56,16 @@ const Login = () => {
               </span>
               <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className='w-[270px] py-[17px] px-[15px] text-[14px]  text-[#555] border-[#ccc] rounded-tl-[0px] rounded-bl-[0px] focus:outline rounded border-[1px] h-[34px] focus:shadow focus:outline-[#66afe9]  ' placeholder='Email' />
             </div>
-            <div className="flex  mt-5">
+            <div className="flex mt-5 relative ">
               <span className='py-[10px] px-[15px] text-[14px]  text-[#555] bg-[#eee] border-[#ccc] rounded border-[1px] rounded-tr-[0px] rounded-br-[0px] border-r-0 border-t[0px] '>
                 <RiLockPasswordFill />
               </span>
-              <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className='w-[270px] py-[17px] px-[15px] text-[14px]  text-[#555] border-[#ccc] rounded-tl-[0px] rounded-bl-[0px] focus:outline rounded border-[1px] h-[34px] focus:shadow focus:outline-[#66afe9]  ' placeholder='Password' />
+              <input type={(passwordEye === false) ? 'password' : 'text'} value={password} onChange={(e) => setPassword(e.target.value)} className='w-[270px] py-[17px] px-[15px] text-[14px]  text-[#555] border-[#ccc] rounded-tl-[0px] rounded-bl-[0px] focus:outline rounded border-[1px] h-[34px] focus:shadow focus:outline-[#66afe9]  ' placeholder='Password' />
+              <div className="text-[20px] absolute top-2 right-2">
+                {
+                  (passwordEye === false) ? <AiFillEyeInvisible onClick={handlePasswordClick} /> : <AiFillEye onClick={handlePasswordClick} />
+                }
+              </div>
             </div>
             <div className="mt-7">
               <button type="submit" className='hover:bg-[black] bg-[#F0F0F0] uppercase hover:text-[white] cursor-pointer py-[7px] px-[14px] text-[14px] font-normal border-[1px] rounded-[4px] ' value="Đăng nhập" > Đăng nhập 		</button>

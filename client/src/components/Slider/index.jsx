@@ -48,89 +48,72 @@ const SliderProduct = () => {
           <CategoryProduct />
         </div>
         <div className="col-span-10">
-            <div className="grid grid-cols-12">
-                <div className="col-span-8">
-                  <div className="">
-                    {/* <Slider {...settings}>
-                      <div>
-                        <img class="w-100" src="//theme.hstatic.net/1000026716/1000440777/14/slideshow_8.jpg?v=30376" alt="..." />
-                      </div>
-                      <div>
-                        <img class="w-100" src="//theme.hstatic.net/1000026716/1000440777/14/slideshow_12.jpg?v=30376" alt="..." />
-                      </div>
-                      <div>
-                        <img class="w-100" src="//theme.hstatic.net/1000026716/1000440777/14/slideshow_14.jpg?v=30376" alt="..." />
-                      </div>
-                      <div>
-                        <img class="w-100" src="//theme.hstatic.net/1000026716/1000440777/14/slideshow_15.jpg?v=30376" alt="..." />
-                      </div>
-                      <div>
-                        <img class="w-100" src="//theme.hstatic.net/1000026716/1000440777/14/slideshow_2.jpg?v=30376" alt="..." />
-                      </div>
-                    </Slider> */}
-                         <Swiper
-                            slidesPerView={1}
-                            spaceBetween={10}
-                            navigation={true}
-                            modules={[Navigation]}
-                            breakpoints={{
-                              640: {
-                                slidesPerView: 1,
-                                spaceBetween: 20,
-                              },
-                              768: {
-                                slidesPerView: 1,
-                                spaceBetween: 40,
-                              },
-                              1024: {
-                                slidesPerView: 1,
-                                spaceBetween: 50,
-                              },
-                            }}
-                            className="mySwiper"
-                          >
-                            <SwiperSlide>
-                              <img class="w-100" src="//theme.hstatic.net/1000026716/1000440777/14/slideshow_8.jpg?v=30376" alt="..." />
-                            </SwiperSlide>
-                            <SwiperSlide>
-                              <img class="w-100" src="//theme.hstatic.net/1000026716/1000440777/14/slideshow_12.jpg?v=30376" alt="..." />
-                            </SwiperSlide>
-                            <SwiperSlide>
-                              <img class="w-100" src="//theme.hstatic.net/1000026716/1000440777/14/slideshow_14.jpg?v=30376" alt="..." />
-                            </SwiperSlide>
-                            <SwiperSlide>
-                              <img class="w-100" src="//theme.hstatic.net/1000026716/1000440777/14/slideshow_15.jpg?v=30376" alt="..." />
-                            </SwiperSlide>
-                            <SwiperSlide>
-                              <img class="w-100" src="//theme.hstatic.net/1000026716/1000440777/14/slideshow_2.jpg?v=30376" alt="..." />
-                            </SwiperSlide>
-                          </Swiper>
-                  </div>
-                </div>
-                <div className="col-span-4">
-                  <div className="">
-                    <a href="">
-                      <img src="//theme.hstatic.net/1000026716/1000440777/14/solid1.jpg?v=30376" />
-                    </a>
-                    <a href="">
-                      <img src="//theme.hstatic.net/1000026716/1000440777/14/solid2.jpg?v=30376" />
-                    </a>
-                  </div>
-                </div>
-            </div>
-            <div className="">
-              <div className="flex">
-                <a href="">
-                  <img src="//theme.hstatic.net/1000026716/1000440777/14/solid4.jpg?v=30376" />
-               </a>
-               <a href="">
-                  <img src="//theme.hstatic.net/1000026716/1000440777/14/solid5.jpg?v=30376" />
-               </a>
-                <a href="">
-                  <iframe className='rounded-[10px]' width="360" height="180" src="https://www.youtube.com/embed/9d7dF_aE5Ds?start=1?autoplay=1&amp;mute=1" title="YouTube video player" frameborder="0" ></iframe>
-                </a>
-                </div>
+          <div className="grid grid-cols-12">
+            <div className="col-span-8">
+              <div className="">
+                <Swiper
+                  slidesPerView={1}
+                  spaceBetween={10}
+                  navigation={true}
+                  modules={[Navigation]}
+                  breakpoints={{
+                    640: {
+                      slidesPerView: 1,
+                      spaceBetween: 20,
+                    },
+                    768: {
+                      slidesPerView: 1,
+                      spaceBetween: 40,
+                    },
+                    1024: {
+                      slidesPerView: 1,
+                      spaceBetween: 50,
+                    },
+                  }}
+                  className="mySwiper"
+                >
+                  <SwiperSlide>
+                    <img className="w-100" src="//theme.hstatic.net/1000026716/1000440777/14/slideshow_8.jpg?v=30376" alt="..." />
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <img className="w-100" src="//theme.hstatic.net/1000026716/1000440777/14/slideshow_12.jpg?v=30376" alt="..." />
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <img className="w-100" src="//theme.hstatic.net/1000026716/1000440777/14/slideshow_14.jpg?v=30376" alt="..." />
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <img className="w-100" src="//theme.hstatic.net/1000026716/1000440777/14/slideshow_15.jpg?v=30376" alt="..." />
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <img className="w-100" src="//theme.hstatic.net/1000026716/1000440777/14/slideshow_2.jpg?v=30376" alt="..." />
+                  </SwiperSlide>
+                </Swiper>
               </div>
+            </div>
+            <div className="col-span-4">
+              <div className="">
+                <a href="">
+                  <img src="//theme.hstatic.net/1000026716/1000440777/14/solid1.jpg?v=30376" />
+                </a>
+                <a href="">
+                  <img src="//theme.hstatic.net/1000026716/1000440777/14/solid2.jpg?v=30376" />
+                </a>
+              </div>
+            </div>
+          </div>
+          <div className="">
+            <div className="flex">
+              <a href="">
+                <img src="//theme.hstatic.net/1000026716/1000440777/14/solid4.jpg?v=30376" />
+              </a>
+              <a href="">
+                <img src="//theme.hstatic.net/1000026716/1000440777/14/solid5.jpg?v=30376" />
+              </a>
+              <a href="">
+                <iframe className='rounded-[10px]' width="360" height="180" src="https://www.youtube.com/embed/9d7dF_aE5Ds?start=1?autoplay=1&amp;mute=1" title="YouTube video player" ></iframe>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </div>

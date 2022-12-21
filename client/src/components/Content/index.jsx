@@ -31,8 +31,8 @@ const Content = () => {
             <br />
             <TitleFeatured  label="LAPTOP GAMING BÁN CHẠY" />
             <div className="grid grid-cols-5 gap-3">
-                {products.map((item) => {
-                return ProductItem(item);
+                {products.map((item, index) => {
+                return <ProductItem key={index}/>;
               })}
             </div>
         </div>
