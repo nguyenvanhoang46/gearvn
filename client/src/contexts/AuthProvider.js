@@ -8,7 +8,8 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         (async () => {
             const data = await getMeApi();
-            setAuth(data)
+            setAuth(data);
+            console.log(data);
         })()
     }, []);
 

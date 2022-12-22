@@ -30,12 +30,11 @@ const Login = () => {
   const [errorsState, setErrorsState] = useState([])
 
   const handleLogin = async (data) => {
-    data.preventDefault();
     const response = await postLoginApi(data);
     localStorage.setItem("token", response.accessToken)
     localStorage.setItem("refreshToken", response.refreshToken)
     navigate("/");
-
+    window.location.reload(false)
   }
   return (
     <>

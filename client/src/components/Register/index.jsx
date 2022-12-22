@@ -34,7 +34,7 @@ const Register = () => {
   });
 
   const handleRegisrer = async (data) => {
-    data.preventDefault();
+  
     // console.log(data);
     const response = await postRegisterApi(data);
     if (response.statusCode !== 400) {

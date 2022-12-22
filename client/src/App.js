@@ -1,7 +1,6 @@
 import { useContext } from 'react';
 import { Provider } from 'react-redux';
 import { Link } from 'react-router-dom';
-import './App.css';
 import store from './app/store';
 import Banner from './components/Banner';
 import Category from './components/catergory';
@@ -24,7 +23,7 @@ function App() {
             <img className='w-[150px] ' src="//theme.hstatic.net/1000026716/1000440777/14/stk-bn-left.png?v=31049" />
           </div>
           <div className='absolute right-[-140px] '>
-            <img className='w-[150px]    ' src="//theme.hstatic.net/1000026716/1000440777/14/stk-bn-right.png?v=31049" />
+            <img className='w-[150px] ' src="//theme.hstatic.net/1000026716/1000440777/14/stk-bn-right.png?v=31049" />
           </div>
         </div>
       </div>
