@@ -1,12 +1,15 @@
 using System.Net;
 using System.Text;
 using api.Context;
+using api.Libs;
+using api.Libs.Interface;
 using api.Models;
 using api.Models.Dtos.Response;
 using api.Repository;
 using api.Repository.IRepo;
 using api.Services;
 using api.Services.IServices;
+using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -22,7 +25,11 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSignalR();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddHttpContextAccessor();
-builder.Services.AddMvc(options => { options.Filters.Add(typeof(CustomException)); });
+builder.Services.AddMvc(options =>
+{
+  options.Filters.Add(typeof(CustomException));
+  options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+});
 builder.Services.Configure<ApiBehaviorOptions>(options => { options.SuppressModelStateInvalidFilter = true; });
 var connectionString = builder.Configuration.GetConnectionString("Default");
 builder.Services.AddDbContext<AppDbContext>(options =>
@@ -34,10 +41,13 @@ builder.Services.AddIdentity<User, Role>(options => { options.User.RequireUnique
   .AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
 
 builder.Services.AddSingleton<IJwtService, JwtService>();
+builder.Services.AddSingleton<IUploadFile, UploadFile>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IUserRepo, UserRepo>();
 builder.Services.AddScoped<IProductRepo, ProductRepo>();
 builder.Services.AddScoped<ICategoryRepo, CategoryRepo>();
+builder.Services.AddScoped<IImageRepo, ImageRepo>();
+builder.Services.AddScoped<IRoleRepo, RoleRepo>();
 builder.Services.AddSingleton<IMetaService>(o =>
 {
   var accessor = o.GetRequiredService<IHttpContextAccessor>();
@@ -97,6 +107,7 @@ builder.Services.AddSwaggerGen(opt =>
 });
 
 builder.Services.AddFluentValidationAutoValidation();
+builder.Services.AddValidatorsFromAssemblies(new[] { typeof(Program).Assembly });
 
 var app = builder.Build();
 
@@ -129,10 +140,10 @@ app.UseCors(
 );
 
 app.UseHttpsRedirection();
-
 app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+app.UseStaticFiles();
 
 app.Run();

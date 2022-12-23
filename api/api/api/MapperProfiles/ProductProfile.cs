@@ -1,5 +1,6 @@
 using api.Models;
 using api.Models.Dtos;
+using api.Models.Dtos.Request;
 using AutoMapper;
 
 namespace api.MapperProfiles;
@@ -23,5 +24,18 @@ public class ProductProfile : Profile
       .ForMember(d => d.Id, o => o.MapFrom(s => s.Id))
       .ForMember(d => d.Description, o => o.MapFrom(s => s.Description))
       .ForMember(d => d.Content, o => o.MapFrom(s => s.Content));
+
+    CreateMap<Product, UpdateProductDto>()
+      .ForMember(d => d.Id, o => o.MapFrom(s => s.Id))
+      .ForMember(d => d.CategoryId,
+        o => o.MapFrom(s => s.Category!.Id))
+      .ForMember(d => d.SalePrice,
+        o => o.MapFrom(s => s.SalePrice))
+      .ForMember(d => d.Quantity, o => o.MapFrom(s => s.Quantity))
+      .ForMember(d => d.Price, o => o.MapFrom(s => s.Price))
+      .ForMember(d => d.Name, o => o.MapFrom(s => s.Name))
+      .ForMember(d => d.Description, o => o.MapFrom(s => s.Description))
+      .ForMember(d => d.Content, o => o.MapFrom(s => s.Content))
+      .ReverseMap();
   }
 }

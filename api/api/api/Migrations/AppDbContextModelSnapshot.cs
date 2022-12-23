@@ -89,10 +89,18 @@ namespace api.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("tinyint(1)");
 
+                    b.Property<int>("OrderType")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("varchar(255)");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Order");
                 });
@@ -108,10 +116,24 @@ namespace api.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("tinyint(1)");
 
+                    b.Property<string>("OrderId")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("ProductId")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.HasIndex("ProductId");
 
                     b.ToTable("OrderDetail");
                 });
@@ -237,6 +259,65 @@ namespace api.Migrations
                         .HasDatabaseName("UserNameIndex");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "2dfb43f4-24d5-44a7-af3c-78196e881f23",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "db5940d6-8f3a-4c16-859b-c1674c250b43",
+                            Email = "admin@gmail.com",
+                            EmailConfirmed = false,
+                            FirstName = "Admin",
+                            LastName = "Admin",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@GMAIL.COM",
+                            NormalizedUserName = "ADMIN",
+                            PasswordHash = "AAuIVXm1hor21nLBhSwPe59KTGKy2+Yvw6rJSey4WiFHXM6pa0VvOV7RtQ5qG59sRQ==",
+                            PhoneNumberConfirmed = false,
+                            RefreshTokenExpiryTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            SecurityStamp = "9daff9b9-539c-405f-b088-01b64df2e4f3",
+                            TwoFactorEnabled = false,
+                            UserName = "Admin"
+                        },
+                        new
+                        {
+                            Id = "75fa9827-0f5f-41db-a825-64d68d242d7e",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "6d57dfa7-3c73-4ad0-9d41-2a8375297e53",
+                            Email = "user@gmail.com",
+                            EmailConfirmed = false,
+                            FirstName = "User",
+                            LastName = "User",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "USER@GMAIL.COM",
+                            NormalizedUserName = "USER",
+                            PasswordHash = "AAuIVXm1hor21nLBhSwPe59KTGKy2+Yvw6rJSey4WiFHXM6pa0VvOV7RtQ5qG59sRQ==",
+                            PhoneNumberConfirmed = false,
+                            RefreshTokenExpiryTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            SecurityStamp = "e77d1059-1e31-49c2-8d5a-99e872d885cb",
+                            TwoFactorEnabled = false,
+                            UserName = "User"
+                        },
+                        new
+                        {
+                            Id = "df31566d-5ccb-45dc-b1be-864d72133ca4",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "05e01b8b-1d80-4dce-a187-3fcd26b6d2c0",
+                            Email = "guest@gmail.com",
+                            EmailConfirmed = false,
+                            FirstName = "Guest",
+                            LastName = "Guest",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "GUEST@GMAIL.COM",
+                            NormalizedUserName = "GUEST",
+                            PasswordHash = "AAuIVXm1hor21nLBhSwPe59KTGKy2+Yvw6rJSey4WiFHXM6pa0VvOV7RtQ5qG59sRQ==",
+                            PhoneNumberConfirmed = false,
+                            RefreshTokenExpiryTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            SecurityStamp = "a779e124-42b5-4408-a2b0-0beecc8e67cd",
+                            TwoFactorEnabled = false,
+                            UserName = "Guest"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -352,6 +433,23 @@ namespace api.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "2dfb43f4-24d5-44a7-af3c-78196e881f23",
+                            RoleId = "cc3b4c20-7ab3-4daa-b777-0018ee8c615c"
+                        },
+                        new
+                        {
+                            UserId = "75fa9827-0f5f-41db-a825-64d68d242d7e",
+                            RoleId = "dddd1a59-3b57-45f6-96b5-91b3e269e87c"
+                        },
+                        new
+                        {
+                            UserId = "df31566d-5ccb-45dc-b1be-864d72133ca4",
+                            RoleId = "b600478d-f98b-4a27-aa95-14563920d28f"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -381,6 +479,32 @@ namespace api.Migrations
                         .HasColumnType("tinyint(1)");
 
                     b.HasDiscriminator().HasValue("Role");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "cc3b4c20-7ab3-4daa-b777-0018ee8c615c",
+                            ConcurrencyStamp = "5019caf6-5799-43db-9c80-c4d50c82fedf",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN",
+                            IsDelete = false
+                        },
+                        new
+                        {
+                            Id = "dddd1a59-3b57-45f6-96b5-91b3e269e87c",
+                            ConcurrencyStamp = "36b1043f-94e8-4f6b-833a-a8ce7a8a1252",
+                            Name = "User",
+                            NormalizedName = "USER",
+                            IsDelete = false
+                        },
+                        new
+                        {
+                            Id = "b600478d-f98b-4a27-aa95-14563920d28f",
+                            ConcurrencyStamp = "90cee156-83c4-4b3f-a6fc-eafd53d58866",
+                            Name = "Guest",
+                            NormalizedName = "GUEST",
+                            IsDelete = false
+                        });
                 });
 
             modelBuilder.Entity("api.Models.Morph.Image", b =>
@@ -390,10 +514,36 @@ namespace api.Migrations
                         .HasForeignKey("ProductId");
                 });
 
+            modelBuilder.Entity("api.Models.Order", b =>
+                {
+                    b.HasOne("api.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("api.Models.OrderDetail", b =>
+                {
+                    b.HasOne("api.Models.Order", "Order")
+                        .WithMany("OrderDetails")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("api.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId");
+
+                    b.Navigation("Order");
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("api.Models.Product", b =>
                 {
                     b.HasOne("api.Models.Category", "Category")
-                        .WithMany()
+                        .WithMany("Products")
                         .HasForeignKey("CategoryId");
 
                     b.Navigation("Category");
@@ -448,6 +598,16 @@ namespace api.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("api.Models.Category", b =>
+                {
+                    b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("api.Models.Order", b =>
+                {
+                    b.Navigation("OrderDetails");
                 });
 
             modelBuilder.Entity("api.Models.Product", b =>

@@ -4,7 +4,7 @@ namespace api.Models;
 
 public class Product : BaseEntity
 {
-  public string Name { get; set; }
+  public string Name { get; set; } = string.Empty;
 
   public long Price { get; set; } = 0;
 
@@ -18,5 +18,5 @@ public class Product : BaseEntity
 
   public Category? Category { get; set; } = null;
 
-  public ICollection<Image>? Images { get; set; } = null;
+  public ICollection<Image>? Images { get; set; } = new List<Image>();
 }

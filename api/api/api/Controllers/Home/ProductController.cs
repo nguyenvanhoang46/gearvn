@@ -4,7 +4,6 @@ using api.Filters;
 using api.Libs;
 using api.Models;
 using api.Models.Dtos;
-using api.Models.Dtos.Request;
 using api.Services;
 using api.Services.IServices;
 using AutoMapper;
@@ -28,7 +27,7 @@ public class ProductController : BaseController
     _metaService = metaService;
   }
 
-  [HttpGet("GetProducts")]
+  [HttpGet(Routes.API_PRODUCT_GET_PRODUCTS)]
   public async Task<IActionResult> GetProducts([FromQuery] PaginationFilter paginationFilter,
     [FromQuery] SortingFilter sortingFilter, [FromQuery] SearchFilter searchFilter)
   {
@@ -60,9 +59,10 @@ public class ProductController : BaseController
     }
   }
 
-  [HttpGet("GetProductsByCategory")]
+  [ValidateStatusCodes]
+  [HttpGet(Routes.API_PRODUCT_GET_PRODUCTS_BY_CATEGORY)]
   public async Task<IActionResult> GetProductsByCategory([FromQuery] PaginationFilter paginationFilter,
-    [FromQuery] SortingFilter sortingFilter, [FromQuery] GetProductByCategoryDto getProductByCategoryDto)
+    [FromQuery] SortingFilter sortingFilter, [FromRoute] string categoryId)
   {
     try
     {
@@ -72,7 +72,7 @@ public class ProductController : BaseController
         paginationFilter: pagination,
         orderByQueryString: sortingFilter.OrderBy,
         relations: "Category",
-        predicate: x => x.Category!.Id == getProductByCategoryDto.CategoryId);
+        predicate: x => x.Category!.Id == categoryId);
 
       if (products.ToList().Count <= 0)
         return CustomResult(ResponseType.GetMessageFormCode(HttpStatusCode.NotFound), HttpStatusCode.NotFound);
@@ -93,7 +93,8 @@ public class ProductController : BaseController
     }
   }
 
-  [HttpGet("GetProductById/{id}")]
+  [ValidateStatusCodes]
+  [HttpGet(Routes.API_PRODUCT_GET_PRODUCT_BY_ID)]
   public async Task<IActionResult> GetProductDetails([FromRoute] string id)
   {
     try
@@ -104,7 +105,7 @@ public class ProductController : BaseController
 
       ProductDto productDto = _mapper.Map<Product, ProductDto>(product);
 
-      return CustomResult(ResponseType.GetMessageFormCode(HttpStatusCode.OK), productDto, HttpStatusCode.OK);
+      return CustomResult(ResponseType.GetMessageFormCode(HttpStatusCode.OK), productDto);
     }
     catch (Exception e)
     {

@@ -3,7 +3,6 @@ using api.Repository;
 using api.Repository.IRepo;
 using api.Services.IServices;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 
 namespace api.Context;
 
@@ -11,8 +10,11 @@ public class UnitOfWork : IUnitOfWork
 {
   private readonly AppDbContext _context;
   private IUserRepo _userRepository;
+  private IRoleRepo _roleRepository;
+  private IImageRepo _imageRepository;
   private IProductRepo _productRepository;
   private ICategoryRepo _categoryRepository;
+  private readonly RoleManager<Role> _roleManager;
   private readonly UserManager<User> _userManager;
   private readonly SignInManager<User> _signInManager;
   private readonly IJwtService _jwtService;
@@ -23,17 +25,23 @@ public class UnitOfWork : IUnitOfWork
     UserManager<User> userManager,
     IProductRepo productRepository,
     IUserRepo userRepository,
+    IRoleRepo roleRepository,
+    IImageRepo imageRepository,
     SignInManager<User> signInManager,
     IJwtService jwtService,
     IConfiguration configuration,
-    ICategoryRepo categoryRepository
+    ICategoryRepo categoryRepository,
+    RoleManager<Role> roleManager
   )
   {
     _context = context;
     _userManager = userManager;
     _productRepository = productRepository;
     _userRepository = userRepository;
+    _roleRepository = roleRepository;
+    _imageRepository = imageRepository;
     _categoryRepository = categoryRepository;
+    _roleManager = roleManager;
     _signInManager = signInManager;
     _jwtService = jwtService;
     _configuration = configuration;
@@ -50,6 +58,10 @@ public class UnitOfWork : IUnitOfWork
   public ICategoryRepo CategoryRepository =>
     _categoryRepository = _categoryRepository ??
                           new CategoryRepo(_context);
+
+  public IRoleRepo RoleRepository => _roleRepository = _roleRepository ?? new RoleRepo(_roleManager);
+
+  public IImageRepo ImageRepository => _imageRepository = _imageRepository ?? new ImageRepo(_context);
 
   public void Save() => _context.SaveChanges();
 
