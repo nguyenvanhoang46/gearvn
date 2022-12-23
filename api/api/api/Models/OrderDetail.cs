@@ -2,7 +2,9 @@ namespace api.Models;
 
 public class OrderDetail : BaseEntity
 {
-  public Order Order;
-  public Product Product;
-  public int Quantity;
+  public Order Order { get; set; }
+
+  public Product Product { get; set; }
+
+  public int Quantity { get; set; }
 }

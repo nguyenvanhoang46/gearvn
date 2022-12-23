@@ -1,8 +1,8 @@
                                                                                                                                                              using api.Filters;
-using api.Models.Dtos;
-using api.Services.IServices;
+                                                                                                                                                             using api.Models.Dtos;
+                                                                                                                                                             using api.Services.IServices;
 
-namespace api.Services;
+                                                                                                                                                             namespace api.Services;
 
 public class PaginationService
 {

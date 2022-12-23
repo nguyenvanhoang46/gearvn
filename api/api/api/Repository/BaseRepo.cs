@@ -63,7 +63,6 @@ public class BaseRepo<T> : IRepo<T> where T : BaseEntity
         .Take(paginationFilter.PageSize);
     }
 
-
     return query.ToList();
   }
 
@@ -116,15 +115,10 @@ public class BaseRepo<T> : IRepo<T> where T : BaseEntity
     _dbSet.RemoveRange(entities);
   }
 
-  public void SoftDelete(string id)
+  public void SoftDelete(T entity)
   {
-    var entity = _dbSet.Find(id);
-
-    if (entity != null)
-    {
-      entity.IsDeleted = true;
-      this.Update(entity);
-    }
+    entity.IsDeleted = true;
+    this.Update(entity);
   }
 
   public void UpdateRange(List<T> entities)

@@ -5,7 +5,7 @@ using api.Libs;
 using api.Models;
 using api.Models.Dtos;
 using api.Models.Dtos.Request;
-using api.Services;
+using api.Models.Dtos.Response;
 using api.Services.IServices;
 using AutoMapper;
 using CoreApiResponse;
@@ -20,19 +20,22 @@ public class AuthController : BaseController
 {
   private readonly IUnitOfWork _unitOfWork;
   private readonly IMapper _mapper;
+  private readonly IConfiguration _configuration;
   private readonly IJwtService _jwtService;
 
   public AuthController(IUnitOfWork unitOfWork,
     IMapper mapper,
     IMetaService metaService,
+    IConfiguration configuration,
     IJwtService jwtService)
   {
     _unitOfWork = unitOfWork;
     _mapper = mapper;
+    _configuration = configuration;
     _jwtService = jwtService;
   }
 
-  [HttpPost("Login")]
+  [HttpPost(Routes.API_AUTH_LOGIN)]
   public async Task<IActionResult> Login([FromBody] LoginDto loginDto)
   {
     var result = await _unitOfWork.UserRepository.LoginAsync(loginDto);
@@ -43,7 +46,7 @@ public class AuthController : BaseController
     return CustomResult(ResponseType.GetMessageFormCode(HttpStatusCode.OK), result);
   }
 
-  [HttpPost("Register")]
+  [HttpPost(Routes.API_AUTH_REGISTER)]
   public async Task<IActionResult> Register([FromBody] RegisterDto registerDto)
   {
     var result = await _unitOfWork.UserRepository.RegisterAsync(registerDto);
@@ -61,7 +64,7 @@ public class AuthController : BaseController
     return CustomResult(ResponseType.GetMessageFormCode(HttpStatusCode.BadRequest), errors, HttpStatusCode.BadRequest);
   }
 
-  [HttpGet("Me")]
+  [HttpGet(Routes.API_AUTH_ME)]
   [Authorize]
   public async Task<IActionResult> GetMe()
   {
@@ -71,5 +74,45 @@ public class AuthController : BaseController
       return CustomResult(ResponseType.GetMessageFormCode(HttpStatusCode.NotFound), HttpStatusCode.NotFound);
     UserDto userDto = _mapper.Map<User, UserDto>(user);
     return CustomResult(ResponseType.GetMessageFormCode(HttpStatusCode.OK), userDto);
+  }
+
+  [HttpPost(Routes.API_AUTH_REFRESH_TOKEN)]
+  public async Task<IActionResult> RefreshToken([FromBody] RefreshTokenDto refreshTokenDto)
+  {
+    try
+    {
+      var principal = _jwtService.GetPrincipalFromExpiredToken(refreshTokenDto.Token);
+      if (principal == null)
+      {
+        return CustomResult("Invalid access token", HttpStatusCode.BadRequest);
+      }
+
+      var user = await _unitOfWork.UserRepository.FindByEmail(principal.FindFirstValue(ClaimTypes.Email));
+
+      if (user == null || user.RefreshToken != refreshTokenDto.RefreshToken ||
+          user.RefreshTokenExpiryTime < DateTime.Now)
+      {
+        return CustomResult("Invalid access token or refresh token", HttpStatusCode.BadRequest);
+      }
+
+      var roles = await _unitOfWork.UserRepository.GetRoleByUser(user);
+      var newAccessToken = _jwtService.GenerateToken(user, roles);
+      var newRefreshToken = _jwtService.GenerateRefreshToken();
+      _ = int.TryParse(_configuration["JWT:TokenExpiresMinutes"], out int tokenExpiresTime);
+
+      user.RefreshToken = newRefreshToken;
+      await _unitOfWork.UserRepository.UpdateAsync(user);
+      return CustomResult(new TokenDto()
+      {
+        AccessToken = newAccessToken,
+        RefreshToken = newRefreshToken,
+        TokenExpires = DateTime.Now.AddMinutes(tokenExpiresTime),
+      });
+    }
+    catch (Exception e)
+    {
+      return CustomResult(ResponseType.GetMessageFormCode(HttpStatusCode.BadRequest), e.Message,
+        HttpStatusCode.BadRequest);
+    }
   }
 }

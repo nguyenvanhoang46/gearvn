@@ -23,5 +23,5 @@ public interface IRepo<TEntity> where TEntity : BaseEntity
   void Delete(TEntity entity);
   void Delete(string id);
   void DeleteRange(List<TEntity> entities);
-  void SoftDelete(string id);
+  void SoftDelete(TEntity entity);
 }

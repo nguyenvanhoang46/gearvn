@@ -11,6 +11,10 @@ public interface IUnitOfWork
 
   ICategoryRepo CategoryRepository { get; }
 
+  IRoleRepo RoleRepository { get; }
+
+  IImageRepo ImageRepository { get; }
+
   void Save();
   void Rollback();
   Task SaveAsync();
