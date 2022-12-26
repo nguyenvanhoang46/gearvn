@@ -41,7 +41,8 @@ public class ProductController : BaseController
           x.Name.Contains(searchFilter.Search ?? "") || x.Description.Contains(searchFilter.Search ?? ""));
 
       if (products.ToList().Count <= 0)
-        return CustomResult(ResponseType.GetMessageFormCode(HttpStatusCode.NotFound), HttpStatusCode.NotFound);
+        return CustomResult(ResponseType.GetMessageFormCode(HttpStatusCode.NotFound), products.ToList(),
+          HttpStatusCode.NotFound);
 
       List<ProductDto> productDto = _mapper.Map<List<Product>, List<ProductDto>>(products.ToList());
 

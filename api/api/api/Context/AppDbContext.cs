@@ -44,7 +44,7 @@ public class AppDbContext : IdentityDbContext<User>
       NormalizedUserName = "ADMIN",
       NormalizedEmail = "ADMIN@GMAIL.COM",
       Email = "admin@gmail.com",
-      PasswordHash = "AAuIVXm1hor21nLBhSwPe59KTGKy2+Yvw6rJSey4WiFHXM6pa0VvOV7RtQ5qG59sRQ=="
+      PasswordHash = "AAuIVXm1hor21nLBhSwPe59KTGKy2+Yvw6rJSey4WiFHXM6pa0VvOV7RtQ5qG59sRQ==" // password
     };
 
     User user = new User()
