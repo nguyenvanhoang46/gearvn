@@ -122,107 +122,33 @@ public class AppDbContext : IdentityDbContext<User>
 
   private void SeedCategory(ModelBuilder modelBuilder)
   {
-    modelBuilder.Entity<Category>().HasData(
-      new Category
-      {
-        Id = "7a58916c-30d1-4bf3-8b62-e6e7fd8f9",
-        Name = Name.FullName()
-      }, new Category
-      {
-        Id = "7a58916c-30d1-4bf3-8b62-e10e11fd12f13",
-        Name = Name.FullName()
-      }, new Category
-      {
-        Id = "7a58916c-30d1-4bf3-8b62-e14e15fd16f17",
-        Name = Name.FullName()
-      }, new Category
-      {
-        Id = "7a58916c-30d1-4bf3-8b62-e18e19fd20f21",
-        Name = Name.FullName()
-      }, new Category
-      {
-        Id = "7a58916c-30d1-4bf3-8b62-e22e23fd24f25",
-        Name = Name.FullName()
-      }, new Category
-      {
-        Id = "7a58916c-30d1-4bf3-8b62-e26e27fd28f29",
-        Name = Name.FullName()
-      }, new Category
-      {
-        Id = "7a58916c-30d1-4bf3-8b62-e30e31fd32f33",
-        Name = Name.FullName()
-      }, new Category
-      {
-        Id = "7a58916c-30d1-4bf3-8b62-e34e35fd36f37",
-        Name = Name.FullName()
-      }, new Category
-      {
-        Id = "7a58916c-30d1-4bf3-8b62-e38e39fd40f41",
-        Name = Name.FullName()
-      }
-    );
+    for (int i = 10 - 1; i >= 0; i--)
+    {
+      string UUID = Guid.NewGuid().ToString();
+      modelBuilder.Entity<Category>().HasData(
+        new Category
+        {
+          Id = UUID,
+          Name = Name.FullName()
+        });
+    }
   }
 
   private void SeedProduct(ModelBuilder modelBuilder)
   {
-    modelBuilder.Entity<Product>().HasData(
-      new Product
-      {
-        Id = "24e66d58-e4ef-4b08-83be-fb211bb212d213d",
-        Name = Name.FullName(),
-        Price = RandomNumber.Next(100000, 1000000),
-        Content = Lorem.Paragraph(),
-        Description = Lorem.Sentence()
-      }, new Product
-      {
-        Id = "24e66d58-e4ef-4b08-83be-fb214bb215d216d",
-        Name = Name.FullName(),
-        Price = RandomNumber.Next(100000, 1000000),
-        Content = Lorem.Paragraph(),
-        Description = Lorem.Sentence()
-      }, new Product
-      {
-        Id = "24e66d58-e4ef-4b08-83be-fb217bb218d219d",
-        Name = Name.FullName(),
-        Price = RandomNumber.Next(100000, 1000000),
-        Content = Lorem.Paragraph(),
-        Description = Lorem.Sentence()
-      }, new Product
-      {
-        Id = "24e66d58-e4ef-4b08-83be-fb220bb221d222d",
-        Name = Name.FullName(),
-        Price = RandomNumber.Next(100000, 1000000),
-        Content = Lorem.Paragraph(),
-        Description = Lorem.Sentence()
-      }, new Product
-      {
-        Id = "24e66d58-e4ef-4b08-83be-fb223bb224d225d",
-        Name = Name.FullName(),
-        Price = RandomNumber.Next(100000, 1000000),
-        Content = Lorem.Paragraph(),
-        Description = Lorem.Sentence()
-      }, new Product
-      {
-        Id = "24e66d58-e4ef-4b08-83be-fb226bb227d228d",
-        Name = Name.FullName(),
-        Price = RandomNumber.Next(100000, 1000000),
-        Content = Lorem.Paragraph(),
-        Description = Lorem.Sentence()
-      }, new Product
-      {
-        Id = "24e66d58-e4ef-4b08-83be-fb229bb230d231d",
-        Name = Name.FullName(),
-        Price = RandomNumber.Next(100000, 1000000),
-        Content = Lorem.Paragraph(),
-        Description = Lorem.Sentence()
-      }, new Product
-      {
-        Id = "24e66d58-e4ef-4b08-83be-fb232bb233d234d",
-        Name = Name.FullName(),
-        Price = RandomNumber.Next(100000, 1000000),
-        Content = Lorem.Paragraph(),
-        Description = Lorem.Sentence()
-      }
-    );
+    for (int i = 10 - 1; i >= 0; i--)
+    {
+      string UUID = Guid.NewGuid().ToString();
+      modelBuilder.Entity<Product>().HasData(
+        new Product
+        {
+          Id = UUID,
+          Name = Name.FullName(),
+          Price = RandomNumber.Next(100000, 1000000),
+          Content = Lorem.Paragraph(),
+          Description = Lorem.Sentence()
+        }
+      );
+    }
   }
 }
