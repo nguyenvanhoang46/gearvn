@@ -36,6 +36,7 @@ public class AuthController : BaseController
   }
 
   [HttpPost(Routes.API_AUTH_LOGIN)]
+  [IgnoreAntiforgeryToken]
   public async Task<IActionResult> Login([FromBody] LoginDto loginDto)
   {
     var result = await _unitOfWork.UserRepository.LoginAsync(loginDto);
@@ -47,6 +48,7 @@ public class AuthController : BaseController
   }
 
   [HttpPost(Routes.API_AUTH_REGISTER)]
+  [IgnoreAntiforgeryToken]
   public async Task<IActionResult> Register([FromBody] RegisterDto registerDto)
   {
     var result = await _unitOfWork.UserRepository.RegisterAsync(registerDto);
@@ -65,6 +67,7 @@ public class AuthController : BaseController
   }
 
   [HttpGet(Routes.API_AUTH_ME)]
+  [IgnoreAntiforgeryToken]
   [Authorize]
   public async Task<IActionResult> GetMe()
   {
@@ -77,6 +80,7 @@ public class AuthController : BaseController
   }
 
   [HttpPost(Routes.API_AUTH_REFRESH_TOKEN)]
+  [IgnoreAntiforgeryToken]
   public async Task<IActionResult> RefreshToken([FromBody] RefreshTokenDto refreshTokenDto)
   {
     try

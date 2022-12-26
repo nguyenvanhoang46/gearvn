@@ -46,6 +46,7 @@ public class UserController : BaseController
   }
 
   [HttpPost("CreateUser")]
+  [IgnoreAntiforgeryToken]
   public async Task<IActionResult> CreateUser([FromBody] CreateUserDto createUserDto)
   {
     try

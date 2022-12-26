@@ -25,7 +25,8 @@ public class OrderController : BaseController
     _mapper = mapper;
   }
 
-[HttpPost("CreateOrder")]
+  [HttpPost("CreateOrder")]
+  [IgnoreAntiforgeryToken]
   public async Task<IActionResult> CreateOrder([FromBody] CreateOrderDto createOrderDto)
   {
     try
@@ -44,7 +45,8 @@ public class OrderController : BaseController
     }
   }
 
-[HttpPost("UpdateOrder")]
+  [HttpPost("UpdateOrder")]
+  [IgnoreAntiforgeryToken]
   public async Task<IActionResult> UpdateOrder([FromBody] UpdateOrderDto updateOrderDto)
   {
     try
