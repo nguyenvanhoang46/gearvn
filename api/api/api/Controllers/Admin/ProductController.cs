@@ -107,7 +107,6 @@ public class ProductController : BaseController
           ? await _unitOfWork.CategoryRepository.FindById(productDto.CategoryId!)
           : null,
         SalePrice = productDto.SalePrice ?? 0,
-        // Images = _mapper.Map<List<ImageDto>, List<Image>>(images),
         Content = productDto.Content,
       };
 

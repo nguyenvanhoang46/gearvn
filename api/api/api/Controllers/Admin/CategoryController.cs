@@ -48,7 +48,8 @@ public class CategoryController : BaseController
           x.Name.Contains(searchFilter.Search ?? "") || x.Name.Contains(searchFilter.Search ?? ""));
 
       if (categories.ToList().Count <= 0)
-        return CustomResult(ResponseType.GetMessageFormCode(HttpStatusCode.NotFound), HttpStatusCode.NotFound);
+        return CustomResult(ResponseType.GetMessageFormCode(HttpStatusCode.NotFound), categories.ToList(),
+          HttpStatusCode.NotFound);
 
       List<CategoryDto> categoryDto = _mapper.Map<List<Category>, List<CategoryDto>>(categories.ToList());
 
@@ -66,7 +67,8 @@ public class CategoryController : BaseController
     }
   }
 
-  [HttpGet(Routes.API_ADMIN_CATEGORY_CREATE_CATEGORY)]
+  [HttpPost(Routes.API_ADMIN_CATEGORY_CREATE_CATEGORY)]
+  [IgnoreAntiforgeryToken]
   [Authorize(Roles = "Admin")]
   public async Task<IActionResult> GetCategoryById([FromRoute] string Id)
   {
@@ -75,7 +77,8 @@ public class CategoryController : BaseController
       Category? category = await _unitOfWork.CategoryRepository.FindById(Id);
 
       if (category == null)
-        return CustomResult(ResponseType.GetMessageFormCode(HttpStatusCode.NotFound), HttpStatusCode.NotFound);
+        return CustomResult(ResponseType.GetMessageFormCode(HttpStatusCode.NotFound), category,
+          HttpStatusCode.NotFound);
 
       return CustomResult(ResponseType.GetMessageFormCode(HttpStatusCode.OK),
         _mapper.Map<Category, CategoryDto>(category));
@@ -87,8 +90,7 @@ public class CategoryController : BaseController
     }
   }
 
-  [HttpPost(Routes.API_ADMIN_GET_CATEGORY_BY_ID)]
-  [IgnoreAntiforgeryToken]
+  [HttpGet(Routes.API_ADMIN_GET_CATEGORY_BY_ID)]
   [Authorize(Roles = "Admin")]
   public async Task<IActionResult> CreateCategory([FromBody] CreateCategoryDto categoryDto)
   {
@@ -120,7 +122,8 @@ public class CategoryController : BaseController
       Category? category = await _unitOfWork.CategoryRepository.FindById(id);
 
       if (category == null)
-        return CustomResult(ResponseType.GetMessageFormCode(HttpStatusCode.NotFound), HttpStatusCode.NotFound);
+        return CustomResult(ResponseType.GetMessageFormCode(HttpStatusCode.NotFound),
+          HttpStatusCode.NotFound);
 
       _unitOfWork.CategoryRepository.Update(_mapper.Map<UpdateCategoryDto, Category>(categoryDto));
 
