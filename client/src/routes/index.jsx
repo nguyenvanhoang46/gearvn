@@ -2,6 +2,8 @@ import {
     createBrowserRouter,
     RouterProvider,
 } from "react-router-dom";
+import Navbar from "../admin/Navbar";
+import TableProduct from "../admin/TableProduct";
 import App from "../App";
 import Login from "../components/Login";
 import ProductDetail from "../components/ProductDetail";
@@ -27,6 +29,14 @@ const router = createBrowserRouter([
     {
         path: "productdetail",
         element: <ProductDetail />,
+    },
+    {
+        path: "navbar",
+        element: <Navbar />,
+    },
+    {
+        path: "tableproduct",
+        element: <TableProduct />,
     },
 ]);
 

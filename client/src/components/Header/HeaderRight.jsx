@@ -36,7 +36,7 @@ const HeaderRight = () => {
             </Link>
           </>
         }
-        <Link className='flex gap-2' to=''>
+        <Link className='flex gap-2' to='/navbar'>
           <img className='max-w-[24px] max-h-[25px] ' src="//theme.hstatic.net/1000026716/1000440777/14/ak4.png?v=30809" />
           <Button label="Khuyết mãi" />
         </Link>
