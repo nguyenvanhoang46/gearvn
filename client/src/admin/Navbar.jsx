@@ -23,10 +23,26 @@ const Navbar = () => {
                                     </div>
                                 </Link>
                             </li>
+                            <li className='mt-10'>
+                                <Link to='/tableuser'>
+                                    <div className='text-white bg-[#42a5f5] font-bold text-[15px] capitalize rounded-lg gap-4 items-center w-full flex py-3 px-4 shadow-blue-500/20 '>
+                                        <SiInstructables className='text-[20px]' />
+                                        <p>User</p>
+                                    </div>
+                                </Link>
+                            </li>
+                            <li className='mt-10'>
+                                <Link to='/category'>
+                                    <div className='text-white bg-[#42a5f5] font-bold text-[15px] capitalize rounded-lg gap-4 items-center w-full flex py-3 px-4 shadow-blue-500/20 '>
+                                        <SiInstructables className='text-[20px]' />
+                                        <p>Category</p>
+                                    </div>
+                                </Link>
+                            </li>
                         </ul>
                     </div>
                     <div className="mx-3.5 mt-4 mb-2">
-                        <p class="block antialiased font-sans text-sm leading-normal text-white font-black uppercase opacity-75">auth pages</p>
+                        <p className="block antialiased font-sans text-sm leading-normal text-white font-black uppercase opacity-75">auth pages</p>
                     </div>
                     <ul className='py-3 px-4'>
                         <li>

@@ -13,6 +13,7 @@ const Content = () => {
           const data = await fetch(`https://dummyjson.com/products`);
           const json = await data.json();
           setProducts(json.products);
+          console.log("asdas");
         };
         fetchData();
       }, []);

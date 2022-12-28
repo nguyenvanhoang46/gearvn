@@ -4,6 +4,7 @@ import {
 } from "react-router-dom";
 import Navbar from "../admin/Navbar";
 import TableProduct from "../admin/TableProduct";
+import TablesUser from "../admin/TablesUser";
 import App from "../App";
 import Login from "../components/Login";
 import ProductDetail from "../components/ProductDetail";
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
     {
         path: "tableproduct",
         element: <TableProduct />,
+    },
+    {
+        path: "tableuser",
+        element: <TablesUser />,
     },
 ]);
 
