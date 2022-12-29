@@ -2,9 +2,12 @@ import {
     createBrowserRouter,
     RouterProvider,
 } from "react-router-dom";
+import AdminLogin from "../admin/Login";
 import Navbar from "../admin/Navbar";
-import TableProduct from "../admin/TableProduct";
-import TablesUser from "../admin/TablesUser";
+import TableProduct from "../admin/Product/TableProduct";
+import AdminSignUp from "../admin/SignUp";
+import CreateUser from "../admin/User/CreateUser";
+import TablesUser from "../admin/User/TablesUser";
 import App from "../App";
 import Login from "../components/Login";
 import ProductDetail from "../components/ProductDetail";
@@ -43,6 +46,19 @@ const router = createBrowserRouter([
         path: "tableuser",
         element: <TablesUser />,
     },
+    {
+        path: "adduser",
+        element: <CreateUser />,
+    },
+    {
+        path: "adminlogin",
+        element: <AdminLogin />,
+    },
+    {
+        path: "adminsignup",
+        element: <AdminSignUp />,
+    },
+  
 ]);
 
 export default router;
