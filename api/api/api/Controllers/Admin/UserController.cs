@@ -3,8 +3,12 @@ using api.Context;
 using api.Filters;
 using api.Libs;
 using api.Libs.Interface;
+using api.Models;
+using api.Models.Dtos;
 using api.Models.Dtos.Request;
+using api.Services;
 using api.Services.IServices;
+using AutoMapper;
 using CoreApiResponse;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,16 +21,19 @@ public class UserController : BaseController
   private readonly IUnitOfWork _unitOfWork;
   private readonly IMetaService _metaService;
   private readonly IUploadFile _uploadFile;
+  private readonly IMapper _mapper;
 
   public UserController(
     IUnitOfWork unitOfWork,
     IMetaService metaService,
-    IUploadFile uploadFile
+    IUploadFile uploadFile,
+    IMapper mapper
   )
   {
     _unitOfWork = unitOfWork;
     _metaService = metaService;
     _uploadFile = uploadFile;
+    _mapper = mapper;
   }
 
 
@@ -36,7 +43,25 @@ public class UserController : BaseController
   {
     try
     {
-      return Ok();
+      PaginationFilter pagination = new PaginationFilter(paginationFilter.PageNumber, paginationFilter.PageSize);
+      List<User> users = _unitOfWork.UserRepository.Paginate(out var total,
+        paginationFilter: pagination,
+        orderByQueryString: sortingFilter.OrderBy,
+        predicate: x =>
+          x.FirstName.Contains(searchFilter.Search ?? "") || x.LastName.Contains(searchFilter.Search ?? "")).ToList();
+
+      if (users.ToList().Count <= 0)
+        return CustomResult(ResponseType.GetMessageFormCode(HttpStatusCode.NotFound), users.ToList(),
+          HttpStatusCode.NotFound);
+
+      List<UserDto> productDto = _mapper.Map<List<User>, List<UserDto>>(users.ToList());
+
+      string route = Request.Path.Value ?? throw new ArgumentNullException("Request.Path.Value");
+
+      var response = PaginationService.CreatePagedResponse(productDto, pagination,
+        total, _metaService, route!);
+
+      return CustomResult(ResponseType.GetMessageFormCode(HttpStatusCode.OK), response);
     }
     catch (Exception e)
     {

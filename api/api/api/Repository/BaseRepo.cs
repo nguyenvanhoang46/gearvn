@@ -12,18 +12,18 @@ namespace api.Repository;
 
 public class BaseRepo<T> : IRepo<T> where T : BaseEntity
 {
-  private readonly AppDbContext _context;
-  private readonly DbSet<T> _dbSet;
+  public readonly AppDbContext Context;
+  public readonly DbSet<T> DbSet;
 
   public BaseRepo(AppDbContext context)
   {
-    _context = context;
-    _dbSet = _context.Set<T>();
+    Context = context;
+    DbSet = Context.Set<T>();
   }
 
   public async Task<IEnumerable<T>> FindAll(string? relations = "")
   {
-    IQueryable<T> query = _dbSet;
+    IQueryable<T> query = DbSet;
 
     query = GetRelations(query, relations);
 
@@ -32,7 +32,7 @@ public class BaseRepo<T> : IRepo<T> where T : BaseEntity
 
   public async Task<IEnumerable<T>> Find(Expression<Func<T, bool>> predicate, string? relations = "")
   {
-    IQueryable<T> query = _dbSet;
+    IQueryable<T> query = DbSet;
 
     query = GetRelations(query, relations);
 
@@ -44,7 +44,7 @@ public class BaseRepo<T> : IRepo<T> where T : BaseEntity
   public IEnumerable<T> Paginate(out int totalRecords, PaginationFilter? paginationFilter = null,
     Expression<Func<T, bool>>? predicate = null, string? relations = "", string? orderByQueryString = "")
   {
-    IQueryable<T> query = _dbSet;
+    IQueryable<T> query = DbSet;
     query = GetRelations(query, relations);
 
     if (predicate != null)
@@ -68,7 +68,7 @@ public class BaseRepo<T> : IRepo<T> where T : BaseEntity
 
   public async Task<T?> FindById(string id, string? relations = "")
   {
-    IQueryable<T> query = _dbSet;
+    IQueryable<T> query = DbSet;
 
     query = GetRelations(query, relations);
 
@@ -77,32 +77,32 @@ public class BaseRepo<T> : IRepo<T> where T : BaseEntity
 
   public async Task<int> CountAsync()
   {
-    return await _dbSet.CountAsync();
+    return await DbSet.CountAsync();
   }
 
   public int Count()
   {
-    return _dbSet.Count();
+    return DbSet.Count();
   }
 
   public async Task Add(T entity)
   {
-    await _dbSet.AddAsync(entity);
+    await DbSet.AddAsync(entity);
   }
 
   public void Update(T entity)
   {
-    _dbSet.Update(entity);
+    DbSet.Update(entity);
   }
 
   public void Delete(T entity)
   {
-    _dbSet.Remove(entity);
+    DbSet.Remove(entity);
   }
 
   public void Delete(string id)
   {
-    var entity = _dbSet.Find(id);
+    var entity = DbSet.Find(id);
 
     if (entity != null)
     {
@@ -112,7 +112,7 @@ public class BaseRepo<T> : IRepo<T> where T : BaseEntity
 
   public void DeleteRange(List<T> entities)
   {
-    _dbSet.RemoveRange(entities);
+    DbSet.RemoveRange(entities);
   }
 
   public void SoftDelete(T entity)
@@ -123,7 +123,7 @@ public class BaseRepo<T> : IRepo<T> where T : BaseEntity
 
   public void UpdateRange(List<T> entities)
   {
-    _dbSet.UpdateRange(entities);
+    DbSet.UpdateRange(entities);
   }
 
   private IQueryable<T> GetRelations(IQueryable<T> query, string? relations = "")

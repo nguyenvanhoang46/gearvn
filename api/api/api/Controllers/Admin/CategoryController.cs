@@ -41,11 +41,11 @@ public class CategoryController : BaseController
     try
     {
       PaginationFilter pagination = new PaginationFilter(paginationFilter.PageNumber, paginationFilter.PageSize);
-      IEnumerable<Category> categories = _unitOfWork.CategoryRepository.Paginate(out var total,
+      List<Category> categories = _unitOfWork.CategoryRepository.Paginate(out var total,
         paginationFilter: pagination,
         orderByQueryString: sortingFilter.OrderBy,
         predicate: x =>
-          x.Name.Contains(searchFilter.Search ?? "") || x.Name.Contains(searchFilter.Search ?? ""));
+          x.Name.Contains(searchFilter.Search ?? "") || x.Name.Contains(searchFilter.Search ?? "")).ToList();
 
       if (categories.ToList().Count <= 0)
         return CustomResult(ResponseType.GetMessageFormCode(HttpStatusCode.NotFound), categories.ToList(),

@@ -15,6 +15,10 @@ public interface IUnitOfWork
 
   IImageRepo ImageRepository { get; }
 
+  IOrderRepo OrderRepository { get; }
+
+  IOrderDetailRepo OrderDetailRepository { get; }
+
   void Save();
   void Rollback();
   Task SaveAsync();

@@ -45,7 +45,7 @@ public class CategoryController : BaseController
           x.Name.Contains(searchFilter.Search ?? ""));
 
       if (categories.ToList().Count <= 0)
-        return CustomResult(ResponseType.GetMessageFormCode(HttpStatusCode.NotFound), categories.ToList(),
+        return CustomResult(ResponseType.GetMessageFormCode(HttpStatusCode.NotFound), new { },
           HttpStatusCode.NotFound);
 
       List<CategoryDto> productDto = _mapper.Map<List<Category>, List<CategoryDto>>(categories.ToList());
