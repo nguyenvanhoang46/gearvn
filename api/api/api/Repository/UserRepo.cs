@@ -79,7 +79,9 @@ public class UserRepo : IUserRepo
     User? user = _userManager.FindByIdAsync(id).Result;
     if (user == null) return false;
     var result = await _userManager.DeleteAsync(user);
-    return result.Succeeded;
+    if (result.Succeeded)
+      return true;
+    throw new AggregateException(result.Errors.Select(e => new Exception(e.Description)));
   }
 
   public async Task<bool> CreateUser(CreateUserDto dto)
@@ -104,7 +106,7 @@ public class UserRepo : IUserRepo
       return true;
     }
 
-    return false;
+    throw new AggregateException(result.Errors.Select(e => new Exception(e.Description)));
   }
 
   public async Task<TokenDto?> LoginAsync(LoginDto model)
