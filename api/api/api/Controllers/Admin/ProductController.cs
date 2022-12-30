@@ -45,11 +45,11 @@ public class ProductController : BaseController
     try
     {
       PaginationFilter pagination = new PaginationFilter(paginationFilter.PageNumber, paginationFilter.PageSize);
-      IEnumerable<Product> products = _unitOfWork.ProductRepository.Paginate(out var total,
+      List<Product> products = _unitOfWork.ProductRepository.Paginate(out var total,
         paginationFilter: pagination,
         orderByQueryString: sortingFilter.OrderBy,
         predicate: x =>
-          x.Name.Contains(searchFilter.Search ?? "") || x.Description.Contains(searchFilter.Search ?? ""));
+          x.Name.Contains(searchFilter.Search ?? "") || x.Description.Contains(searchFilter.Search ?? "")).ToList();
 
       if (products.ToList().Count <= 0)
         return CustomResult(ResponseType.GetMessageFormCode(HttpStatusCode.NotFound), HttpStatusCode.NotFound);

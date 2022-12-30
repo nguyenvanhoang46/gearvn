@@ -4,8 +4,6 @@ public class OrderDto
 {
   public string Id { get; set; } = Guid.NewGuid().ToString();
 
-  public string OrderNumber { get; set; } = string.Empty;
-
   public DateTime OrderDate { get; set; } = DateTime.Now;
 
   public UserDto User { get; set; } = new UserDto();

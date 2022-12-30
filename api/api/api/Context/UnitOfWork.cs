@@ -3,6 +3,7 @@ using api.Repository;
 using api.Repository.IRepo;
 using api.Services.IServices;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace api.Context;
 
@@ -14,6 +15,9 @@ public class UnitOfWork : IUnitOfWork
   private IImageRepo _imageRepository;
   private IProductRepo _productRepository;
   private ICategoryRepo _categoryRepository;
+  private IOrderRepo _orderRepository;
+  private IOrderDetailRepo _orderDetailRepository;
+  private readonly DbSet<User> _dbSetUser;
   private readonly RoleManager<Role> _roleManager;
   private readonly UserManager<User> _userManager;
   private readonly SignInManager<User> _signInManager;
@@ -31,8 +35,10 @@ public class UnitOfWork : IUnitOfWork
     IJwtService jwtService,
     IConfiguration configuration,
     ICategoryRepo categoryRepository,
-    RoleManager<Role> roleManager
-  )
+    RoleManager<Role> roleManager,
+    IOrderRepo orderRepository,
+    IOrderDetailRepo orderDetailRepository,
+    DbSet<User> dbSetUser)
   {
     _context = context;
     _userManager = userManager;
@@ -42,6 +48,9 @@ public class UnitOfWork : IUnitOfWork
     _imageRepository = imageRepository;
     _categoryRepository = categoryRepository;
     _roleManager = roleManager;
+    _orderRepository = orderRepository;
+    _orderDetailRepository = orderDetailRepository;
+    _dbSetUser = dbSetUser;
     _signInManager = signInManager;
     _jwtService = jwtService;
     _configuration = configuration;
@@ -49,7 +58,7 @@ public class UnitOfWork : IUnitOfWork
 
   public IUserRepo UserRepository =>
     _userRepository = _userRepository ??
-                      new UserRepo(_context, _userManager, _signInManager, _jwtService, _configuration);
+                      new UserRepo(_context, _userManager, _signInManager, _jwtService, _configuration, _dbSetUser);
 
   public IProductRepo ProductRepository =>
     _productRepository = _productRepository ??
@@ -62,6 +71,11 @@ public class UnitOfWork : IUnitOfWork
   public IRoleRepo RoleRepository => _roleRepository = _roleRepository ?? new RoleRepo(_roleManager);
 
   public IImageRepo ImageRepository => _imageRepository = _imageRepository ?? new ImageRepo(_context);
+
+  public IOrderRepo OrderRepository => _orderRepository = _orderRepository ?? new OrderRepo(_context);
+
+  public IOrderDetailRepo OrderDetailRepository =>
+    _orderDetailRepository = _orderDetailRepository ?? new OrderDetailRepo(_context);
 
   public void Save() => _context.SaveChanges();
 

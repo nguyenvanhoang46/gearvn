@@ -1,5 +1,9 @@
+using System.Linq.Expressions;
+using System.Reflection;
 using System.Security.Claims;
+using System.Text;
 using api.Context;
+using api.Filters;
 using api.Models;
 using api.Models.Dtos.Request;
 using api.Models.Dtos.Response;
@@ -8,6 +12,7 @@ using api.Services.IServices;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Extensions;
+using System.Linq.Dynamic.Core;
 
 namespace api.Repository;
 
@@ -18,14 +23,18 @@ public class UserRepo : IUserRepo
   private readonly SignInManager<User> _signInManager;
   private readonly IJwtService _jwtUtils;
   private readonly IConfiguration _configuration;
+  private readonly DbSet<User> _dbSet;
 
   public UserRepo(
     AppDbContext context,
     UserManager<User> userManager,
     SignInManager<User> signInManager,
     IJwtService jwtUtils,
-    IConfiguration configuration)
+    IConfiguration configuration,
+    DbSet<User> dbSet
+  )
   {
+    _dbSet = dbSet;
     _context = context;
     _userManager = userManager;
     _signInManager = signInManager;
@@ -84,9 +93,87 @@ public class UserRepo : IUserRepo
     throw new AggregateException(result.Errors.Select(e => new Exception(e.Description)));
   }
 
+  public IEnumerable<User> Paginate(out int totalRecords, PaginationFilter? paginationFilter = null,
+    Expression<Func<User, bool>>? predicate = null, string? relations = "", string? orderByQueryString = "")
+  {
+    IQueryable<User> query = _dbSet;
+    query = GetRelations(query, relations);
+
+    if (predicate != null)
+    {
+      query = query.Where(predicate);
+      totalRecords = query.Count();
+    }
+
+    totalRecords = query.Count();
+
+    query = GetSorting(query, orderByQueryString);
+
+    if (paginationFilter != null)
+    {
+      query = query.Skip((paginationFilter.PageNumber - 1) * paginationFilter.PageSize)
+        .Take(paginationFilter.PageSize);
+    }
+
+    return query.ToList();
+  }
+
+  private IQueryable<User> GetRelations(IQueryable<User> query, string? relations = "")
+  {
+    if (string.IsNullOrEmpty(relations)) return query;
+
+    IQueryable<User> newQuery = query;
+
+    foreach (var prop in relations.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+    {
+      newQuery = newQuery.Include(prop);
+    }
+
+    return newQuery;
+  }
+
+  private IQueryable<User> GetSorting(IQueryable<User> query, string? orderByQueryString = "")
+  {
+    if (string.IsNullOrEmpty(orderByQueryString)) return query;
+
+    IQueryable<User> newQuery = query;
+
+    var orderParams = orderByQueryString.Trim().Split(',');
+    var propertyInfos = typeof(User).GetProperties(BindingFlags.Public | BindingFlags.Instance);
+    var orderQueryBuilder = new StringBuilder();
+
+    foreach (var param in orderParams)
+    {
+      if (string.IsNullOrWhiteSpace(param)) continue;
+      var propertyFromQueryName = param.StartsWith('-') ? param.Split("-")[1] : param;
+      var objectProperty = propertyInfos.FirstOrDefault(pi =>
+        pi.Name.Equals(propertyFromQueryName, StringComparison.InvariantCultureIgnoreCase));
+
+      if (objectProperty == null) continue;
+
+      var direction = param.StartsWith("-") ? "descending" : "ascending";
+      orderQueryBuilder.Append($"{objectProperty.Name} {direction}, ");
+    }
+
+    var orderQuery = orderQueryBuilder.ToString().TrimEnd(',', ' ');
+
+    Console.WriteLine(orderQuery);
+
+    if (string.IsNullOrWhiteSpace(orderQuery))
+    {
+      return newQuery;
+    }
+
+    newQuery = newQuery.OrderBy(orderQuery);
+
+    return newQuery;
+  }
+
   public async Task<bool> CreateUser(CreateUserDto dto)
   {
-    IdentityRole? role = await _context.Roles.FirstOrDefaultAsync(r => r.Name == dto.Role.GetDisplayName());
+    IdentityRole? role =
+      await EntityFrameworkQueryableExtensions.FirstOrDefaultAsync(_context.Roles,
+        r => r.Name == dto.Role.GetDisplayName());
 
     User user = new User
     {
@@ -138,7 +225,7 @@ public class UserRepo : IUserRepo
   {
     try
     {
-      var users = await _userManager.Users.ToListAsync();
+      var users = await EntityFrameworkQueryableExtensions.ToListAsync(_userManager.Users);
       foreach (var user in users)
       {
         user.RefreshToken = null;
@@ -183,7 +270,7 @@ public class UserRepo : IUserRepo
 
   public async Task<List<User>> FindAll()
   {
-    return await _userManager.Users.ToListAsync();
+    return await EntityFrameworkQueryableExtensions.ToListAsync(_userManager.Users);
   }
 
   public async Task<User?> GetMe(ClaimsPrincipal user)
@@ -193,7 +280,7 @@ public class UserRepo : IUserRepo
     return getUser;
   }
 
-  public async Task<User> FindById(string id)
+  public async Task<User?> FindById(string id)
   {
     return await _userManager.FindByIdAsync(id);
   }

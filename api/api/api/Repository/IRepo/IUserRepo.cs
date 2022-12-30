@@ -1,4 +1,6 @@
+using System.Linq.Expressions;
 using System.Security.Claims;
+using api.Filters;
 using api.Models;
 using api.Models.Dtos.Request;
 using api.Models.Dtos.Response;
@@ -16,9 +18,12 @@ public interface IUserRepo
   public Task<User?> GetMe(ClaimsPrincipal user);
   public Task<bool> UpdateAsync(User user);
   public Task<List<string>?> GetRoleByUser(User user);
-  public Task<User> FindById(string id);
+  public Task<User?> FindById(string id);
 
   public Task<bool> CreateUser(CreateUserDto dto);
   public Task<bool> UpdateUser(UpdateUserDto dto, string id);
   public Task<bool> DeleteUser(string id);
+
+  IEnumerable<User> Paginate(out int totalRecords, PaginationFilter? paginationFilter = null,
+    Expression<Func<User, bool>>? predicate = null, string? relations = "", string? orderByQueryString = "");
 }
