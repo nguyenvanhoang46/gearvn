@@ -20,9 +20,9 @@ public static class Routes
   public const string API_ADMIN_UPDATE_PRODUCT = "UpdateProduct/{id}";
   public const string API_ADMIN_DELETE_PRODUCT = "DeleteProduct/{id}";
 
-  public const string API_ADMIN_CATEGORY_GET_CATEGORIES = "GetProducts";
-  public const string API_ADMIN_CATEGORY_CREATE_CATEGORY = "SaveProduct";
-  public const string API_ADMIN_GET_CATEGORY_BY_ID = "GetProduct/{id}";
-  public const string API_ADMIN_UPDATE_CATEGORY = "UpdateProduct/{id}";
-  public const string API_ADMIN_DELETE_CATEGORY = "DeleteProduct/{id}";
+  public const string API_ADMIN_CATEGORY_GET_CATEGORIES = "GetCategories";
+  public const string API_ADMIN_CATEGORY_CREATE_CATEGORY = "SaveCategory";
+  public const string API_ADMIN_GET_CATEGORY_BY_ID = "GetCategory/{id}";
+  public const string API_ADMIN_UPDATE_CATEGORY = "UpdateCategory/{id}";
+  public const string API_ADMIN_DELETE_CATEGORY = "DeleteCategory/{id}";
 }
