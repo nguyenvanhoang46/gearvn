@@ -30,12 +30,11 @@ public class UserRepo : IUserRepo
     UserManager<User> userManager,
     SignInManager<User> signInManager,
     IJwtService jwtUtils,
-    IConfiguration configuration,
-    DbSet<User> dbSet
+    IConfiguration configuration
   )
   {
-    _dbSet = dbSet;
     _context = context;
+    _dbSet = _context.Set<User>();
     _userManager = userManager;
     _signInManager = signInManager;
     _configuration = configuration;
