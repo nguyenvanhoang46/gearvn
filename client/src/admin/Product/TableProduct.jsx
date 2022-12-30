@@ -1,5 +1,4 @@
 import React from 'react'
-import { getTableProductApi } from '../../app/services/productService';
 import Navbar from '../Navbar'
 import NavbarTop from '../NavbarTop'
 import { useState, useEffect } from 'react'

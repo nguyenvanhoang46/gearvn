@@ -13,7 +13,6 @@ import { AuthContext } from './contexts/AuthProvider';
 
 function App() {
   const { auth } = useContext(AuthContext);
-  console.log(auth);
 
   return (
     <>

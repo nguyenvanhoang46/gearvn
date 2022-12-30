@@ -9,7 +9,6 @@ const AuthProvider = ({ children }) => {
         (async () => {
             const data = await getMeApi();
             setAuth(data);
-            console.log(data);
         })()
     }, []);
 

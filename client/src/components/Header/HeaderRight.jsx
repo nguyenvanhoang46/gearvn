@@ -13,7 +13,15 @@ const StyleIcon = {
 }
 const HeaderRight = () => {
   const { auth } = useContext(AuthContext);
-  console.log(auth);
+  let navigate = useNavigate();
+  
+  const logout = () => {
+    localStorage.removeItem("token", true)
+    localStorage.removeItem("refreshToken", true)
+    navigate("/login");
+    window.location.reload(false)
+  }
+
   return (
     <>
       <div className="flex gap-4 ml-10 uppercase">
@@ -31,9 +39,9 @@ const HeaderRight = () => {
             <Link >
               <div className="flex gap-2 items-center text-[11px] mt-1 font-bold">{auth.fullName}</div>
             </Link>
-            <Link to=''>
+            <button onClick={logout}>
               <Button label="Đăng Xuất" icon={<BsBoxArrowInLeft style={StyleIcon} />} />
-            </Link>
+            </button>
           </>
         }
         <Link className='flex gap-2' to='/navbar'>

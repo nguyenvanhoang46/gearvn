@@ -1,9 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { FaHome } from 'react-icons/fa';
 import { SiInstructables } from 'react-icons/si';
 
 const Navbar = () => {
+
+    const [active, setActive] = useState(null);
+
+
+    const handleClick = () => {
+
+    }
     return (
         <>
             <div className="">
@@ -16,27 +23,27 @@ const Navbar = () => {
                     <div className="">
                         <ul className='py-3 px-4'>
                             <li>
-                                <Link to='/tableproduct'>
-                                    <div className='text-white bg-[#42a5f5] font-bold text-[15px] capitalize rounded-lg gap-4 items-center w-full flex py-3 px-4 shadow-blue-500/20 '>
+                                <Link className='active' onClick={() => setActive()} to='/tableproduct'>
+                                    <button className='middle none font-sans font-bold center transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 rounded-lg bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/40 active:opacity-[0.85] w-full flex items-center gap-4 px-4 capitalize'>
                                         <SiInstructables className='text-[20px]' />
-                                        <p>Product</p>
-                                    </div>
+                                        <p className='block antialiased font-sans text-base leading-relaxed text-inherit font-medium capitalize'>Product</p>
+                                    </button>
                                 </Link>
                             </li>
                             <li className='mt-10'>
-                                <Link to='/tableuser'>
-                                    <div className='text-white bg-[#42a5f5] font-bold text-[15px] capitalize rounded-lg gap-4 items-center w-full flex py-3 px-4 shadow-blue-500/20 '>
+                                <Link className='active' to='/tableuser'>
+                                    <button className='middle none font-sans font-bold center transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 rounded-lg bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/40 active:opacity-[0.85] w-full flex items-center gap-4 px-4 capitalize'>
                                         <SiInstructables className='text-[20px]' />
-                                        <p>User</p>
-                                    </div>
+                                        <p className='block antialiased font-sans text-base leading-relaxed text-inherit font-medium capitalize'>User</p>
+                                    </button>
                                 </Link>
                             </li>
                             <li className='mt-10'>
-                                <Link to='/category'>
-                                    <div className='text-white bg-[#42a5f5] font-bold text-[15px] capitalize rounded-lg gap-4 items-center w-full flex py-3 px-4 shadow-blue-500/20 '>
+                                <Link className='active' to='/category'>
+                                    <button className='middle none font-sans font-bold center transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 rounded-lg bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/40 active:opacity-[0.85] w-full flex items-center gap-4 px-4 capitalize'>
                                         <SiInstructables className='text-[20px]' />
-                                        <p>Category</p>
-                                    </div>
+                                        <p className='block antialiased font-sans text-base leading-relaxed text-inherit font-medium capitalize'>Category</p>
+                                    </button>
                                 </Link>
                             </li>
                         </ul>
