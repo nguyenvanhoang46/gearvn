@@ -7,6 +7,5 @@ export const getMeApi = () => request.get("/Auth/Me").then(({data}) => data.data
 
 export const postRegisterApi = (data) => request.post("/Auth/Register", data).then(({data}) => data);
 
-
-
+export const createAdminUser = (data) => request.post("/Admin/User/CreateUser", data).then(({data}) => data.data);
 
