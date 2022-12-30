@@ -17,7 +17,6 @@ public class UnitOfWork : IUnitOfWork
   private ICategoryRepo _categoryRepository;
   private IOrderRepo _orderRepository;
   private IOrderDetailRepo _orderDetailRepository;
-  private readonly DbSet<User> _dbSetUser;
   private readonly RoleManager<Role> _roleManager;
   private readonly UserManager<User> _userManager;
   private readonly SignInManager<User> _signInManager;
@@ -37,8 +36,7 @@ public class UnitOfWork : IUnitOfWork
     ICategoryRepo categoryRepository,
     RoleManager<Role> roleManager,
     IOrderRepo orderRepository,
-    IOrderDetailRepo orderDetailRepository,
-    DbSet<User> dbSetUser)
+    IOrderDetailRepo orderDetailRepository)
   {
     _context = context;
     _userManager = userManager;
@@ -50,7 +48,6 @@ public class UnitOfWork : IUnitOfWork
     _roleManager = roleManager;
     _orderRepository = orderRepository;
     _orderDetailRepository = orderDetailRepository;
-    _dbSetUser = dbSetUser;
     _signInManager = signInManager;
     _jwtService = jwtService;
     _configuration = configuration;
@@ -58,7 +55,7 @@ public class UnitOfWork : IUnitOfWork
 
   public IUserRepo UserRepository =>
     _userRepository = _userRepository ??
-                      new UserRepo(_context, _userManager, _signInManager, _jwtService, _configuration, _dbSetUser);
+                      new UserRepo(_context, _userManager, _signInManager, _jwtService, _configuration);
 
   public IProductRepo ProductRepository =>
     _productRepository = _productRepository ??
