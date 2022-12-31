@@ -16,6 +16,6 @@ public class UserProfile : Profile
       .ForMember(d => d.Phone,
         o => o.MapFrom(s => s.PhoneNumber))
       .ForMember(d => d.Id
-        , o => o.MapFrom(s => s.Id));
+        , o => o.MapFrom(s => s.Id)).ReverseMap();
   }
 }

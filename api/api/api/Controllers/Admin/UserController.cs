@@ -1,3 +1,4 @@
+using System.Dynamic;
 using System.Net;
 using api.Context;
 using api.Filters;
@@ -54,11 +55,30 @@ public class UserController : BaseController
         return CustomResult(ResponseType.GetMessageFormCode(HttpStatusCode.NotFound), users.ToList(),
           HttpStatusCode.NotFound);
 
-      List<UserDto> productDto = _mapper.Map<List<User>, List<UserDto>>(users.ToList());
+      List<UserDto> usersDto = _mapper.Map<List<User>, List<UserDto>>(users.ToList());
+
+      var list = new List<object>();
+
+      list = usersDto.ToList()
+        .ConvertAll<object>(user =>
+        {
+          List<string>? roles = _unitOfWork.UserRepository.GetRoleByUser(_mapper.Map<User>(user)).Result;
+
+          if (roles?.Count < 0)
+            roles[0] = "";
+
+          return new
+          {
+            fullName = user.FullName,
+            email = user.Email,
+            phoneNumber = user.Phone,
+            roles,
+          };
+        });
 
       string route = Request.Path.Value ?? throw new ArgumentNullException("Request.Path.Value");
 
-      var response = PaginationService.CreatePagedResponse(productDto, pagination,
+      var response = PaginationService.CreatePagedResponse(list, pagination,
         total, _metaService, route!);
 
       return CustomResult(ResponseType.GetMessageFormCode(HttpStatusCode.OK), response);

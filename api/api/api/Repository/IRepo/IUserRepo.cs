@@ -1,5 +1,6 @@
 using System.Linq.Expressions;
 using System.Security.Claims;
+using System.Text;
 using api.Filters;
 using api.Models;
 using api.Models.Dtos.Request;
@@ -23,6 +24,8 @@ public interface IUserRepo
   public Task<bool> CreateUser(CreateUserDto dto);
   public Task<bool> UpdateUser(UpdateUserDto dto, string id);
   public Task<bool> DeleteUser(string id);
+
+  public Task<string> GetRoleByUserId(string id);
 
   IEnumerable<User> Paginate(out int totalRecords, PaginationFilter? paginationFilter = null,
     Expression<Func<User, bool>>? predicate = null, string? relations = "", string? orderByQueryString = "");

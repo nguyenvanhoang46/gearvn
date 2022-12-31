@@ -92,6 +92,13 @@ public class UserRepo : IUserRepo
     throw new AggregateException(result.Errors.Select(e => new Exception(e.Description)));
   }
 
+  public async Task<string> GetRoleByUserId(string id)
+  {
+    User user = _userManager.FindByIdAsync(id).Result;
+    IList<string> roles = await _userManager.GetRolesAsync(user);
+    return roles[0];
+  }
+
   public IEnumerable<User> Paginate(out int totalRecords, PaginationFilter? paginationFilter = null,
     Expression<Func<User, bool>>? predicate = null, string? relations = "", string? orderByQueryString = "")
   {
