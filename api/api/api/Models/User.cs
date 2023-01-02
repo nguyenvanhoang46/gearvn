@@ -10,5 +10,7 @@ public class User : IdentityUser
 
   public string? RefreshToken { get; set; }
 
+  public bool IsDeleted { get; set; } = false;
+
   public DateTime RefreshTokenExpiryTime { get; set; }
 }

@@ -26,6 +26,14 @@ public class AppDbContext : IdentityDbContext<User>
   protected override void OnModelCreating(ModelBuilder builder)
   {
     base.OnModelCreating(builder);
+
+    builder.Entity<Product>().HasQueryFilter(p => !p.IsDeleted);
+    builder.Entity<Category>().HasQueryFilter(p => !p.IsDeleted);
+    builder.Entity<Order>().HasQueryFilter(p => !p.IsDeleted);
+    builder.Entity<OrderDetail>().HasQueryFilter(p => !p.IsDeleted);
+    builder.Entity<Image>().HasQueryFilter(p => !p.IsDeleted);
+    builder.Entity<User>().HasQueryFilter(p => !p.IsDeleted);
+
     SeedUser(builder);
     SeedRoles(builder);
     SeedUserRoles(builder);

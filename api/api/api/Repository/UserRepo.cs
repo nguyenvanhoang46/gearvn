@@ -84,12 +84,10 @@ public class UserRepo : IUserRepo
 
   public async Task<bool> DeleteUser(string id)
   {
-    User? user = _userManager.FindByIdAsync(id).Result;
-    if (user == null) return false;
-    var result = await _userManager.DeleteAsync(user);
-    if (result.Succeeded)
-      return true;
-    throw new AggregateException(result.Errors.Select(e => new Exception(e.Description)));
+    var user = await _userManager.FindByIdAsync(id);
+    user.IsDeleted = true;
+    var result = await _userManager.UpdateAsync(user);
+    return result.Succeeded;
   }
 
   public async Task<string> GetRoleByUserId(string id)
