@@ -1,9 +1,32 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Navbar from '../Navbar'
 import NavbarTop from '../NavbarTop'
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
+import { createUserApi } from '../../app/services/adminService';
 
 const CreateUser = () => {
+
+
+  const [username, setUserName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [role, setRole] = useState(1);
+  const navigate = useNavigate();
+
+  const handleCreateUser = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await createUserApi({username,firstName,lastName,phoneNumber,email,password,role});
+      navigate('/tableuser');
+    } catch (error) {
+      console.log(error.message);
+    }
+    
+  }
+
   return (
     <>
       <div className="bg-[#eceff1] min-h-[1070px]">
@@ -17,49 +40,51 @@ const CreateUser = () => {
               <div className="relative flex justify-between bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-blue-500/40 shadow-lg -mt-6  p-6">
                 <h6 className='block antialiased tracking-normal font-sans text-base font-semibold leading-relaxed text-white'>Add User</h6>
               </div>
-              <div className=" p-6 overflow-x-scroll px-0 pt-0 pb-2">
-                <form action="" method="post">
-                  <div className=''>
-                    <div className="">
-                      <label htmlFor="">UserName</label>
+              <div className="p-6 overflow-x-scroll px-0 pt-0 pb-2">
+                <form onSubmit={handleCreateUser}>
+                  <div className="ml-10">
+                    <div className="gap-6 mt-5 items-center">
+                      <div className="flex gap-6 mt-4 items-center">
+                        <label className='font-medium text-[14px] w-[10%] '>FirstName</label>
+                        <div className='w-[60%]'>
+                          <input value={username} onChange={(e) => setUserName(e.target.value)} className='w-full text-[#495057] bg-[#fff] py-[0.375rem] focus:bg-[#fff] px-[0.75rem]  focus:ring-offset-1 focus:ring-1 focus:outline   focus:outline-[#1b00ff] rounded-[.25rem] border-[1px] border-gray-200 ' type="text" placeholder="FirstName" />
+                        </div>
+                      </div>
                     </div>
-                    <input type="text" placeholder='UserName' />
-                  </div>
-                  <div className=''>
-                    <div className="">
-                      <label htmlFor="">FirstName</label>
+                    <div className="flex gap-6 mt-7 items-center">
+                      <label className='font-medium text-[14px] w-[10%] '>FirstName</label>
+                      <div className='w-[60%]'>
+                        <input value={firstName} onChange={(e) => setFirstName(e.target.value)} className='w-full text-[#495057] bg-[#fff] py-[0.375rem] focus:bg-[#fff] px-[0.75rem]  focus:ring-offset-1 focus:ring-1 focus:outline   focus:outline-[#1b00ff] rounded-[.25rem] border-[1px] border-gray-200 ' type="text" placeholder="FirstName" />
+                      </div>
                     </div>
-                    <input type="text" placeholder='UserName' />
-                  </div>
-                  <div className=''>
-                    <div className="">
-                      <label htmlFor="">UserName</label>
+                    <div className="flex gap-6 mt-7 items-center">
+                      <label className='font-medium text-[14px] w-[10%] '>LastName</label>
+                      <div className='w-[60%]'>
+                        <input value={lastName} onChange={(e) => setLastName(e.target.value)} className='w-full text-[#495057] bg-[#fff] py-[0.375rem] focus:bg-[#fff] px-[0.75rem]  focus:ring-offset-1 focus:ring-1 focus:outline   focus:outline-[#1b00ff] rounded-[.25rem] border-[1px] border-gray-200 ' type="text" placeholder="LastName" />
+                      </div>
                     </div>
-                    <input type="text" placeholder='UserName' />
-                  </div>
-                  <div className=''>
-                    <div className="">
-                      <label htmlFor="">LastName</label>
+                    <div className="flex gap-6 mt-7 items-center">
+                      <label className='font-medium text-[14px] w-[10%] '>Phone</label>
+                      <div className='w-[60%]'>
+                        <input value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} className='w-full text-[#495057] bg-[#fff] py-[0.375rem] focus:bg-[#fff] px-[0.75rem]  focus:ring-offset-1 focus:ring-1 focus:outline   focus:outline-[#1b00ff] rounded-[.25rem] border-[1px] border-gray-200 ' type="text" placeholder="Phone" />
+                      </div>
                     </div>
-                    <input type="text" placeholder='UserName' />
-                  </div>
-                  <div className=''>
-                    <div className="">
-                      <label htmlFor="">Phone</label>
+                    <div className="flex gap-6 mt-7 items-center">
+                      <label className='font-medium text-[14px] w-[10%] '>Email</label>
+                      <div className='w-[60%]'>
+                        <input value={email} onChange={(e) => setEmail(e.target.value)} className='w-full text-[#495057] bg-[#fff] py-[0.375rem] focus:bg-[#fff] px-[0.75rem]  focus:ring-offset-1 focus:ring-1 focus:outline   focus:outline-[#1b00ff] rounded-[.25rem] border-[1px] border-gray-200 ' type="email" placeholder="Email" />
+                      </div>
                     </div>
-                    <input type="text" placeholder='UserName' />
-                  </div>
-                  <div className=''>
-                    <div className="">
-                      <label htmlFor="">Email</label>
+                    <div className="flex gap-6 mt-7 items-center">
+                      <label className='font-medium text-[14px] w-[10%] '>Password</label>
+                      <div className='w-[60%]'>
+                        <input value={password} onChange={(e) => setPassword(e.target.value)} className='w-full text-[#495057] bg-[#fff] py-[0.375rem] focus:bg-[#fff] px-[0.75rem]  focus:ring-offset-1 focus:ring-1 focus:outline   focus:outline-[#1b00ff] rounded-[.25rem] border-[1px] border-gray-200 ' type="password" placeholder="Password" />
+                      </div>
                     </div>
-                    <input type="text" placeholder='UserName' />
-                  </div>
-                  <div className=''>
-                    <div className="">
-                      <label htmlFor="">Role</label>
+                    <div className="pl-[180px] pb-6 pt-20 flex gap-4">
+                      <button type="submit" className="middle none font-sans font-bold center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/40 active:opacity-[0.85] block ">Add User</button>
+                      <Link to='/tableuser' type="submit" className="middle none font-sans font-bold center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-gradient-to-tr bg-[#EB5160] to-blue-400 text-white shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/40 active:opacity-[0.85] block ">Cancel</Link>
                     </div>
-                    <input type="text" placeholder='UserName' />
                   </div>
                 </form>
               </div>

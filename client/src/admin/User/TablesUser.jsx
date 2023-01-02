@@ -3,9 +3,7 @@ import Navbar from '../Navbar'
 import NavbarTop from '../NavbarTop'
 import { Link } from "react-router-dom";
 import { useState, useEffect } from 'react';
-import { getTableUserApi } from '../../app/services/adminService';
-
-
+import { deleteUserApi, getTableUserApi } from '../../app/services/adminService';
 
 const TablesUser = () => {
 
@@ -23,6 +21,20 @@ const TablesUser = () => {
         }
         getAllUser();
     }, []);
+
+
+    const handleDelete = async (id) => {
+        console.log("click delete",id);
+       try {
+        const response = await deleteUserApi(id);
+        setDataUser(
+            dataUser.filter((post) => {
+                return post.id !== id;
+            }));
+       } catch (error) {
+        console.log(error.message);
+       }
+    }
 
     return (
         <>
@@ -62,23 +74,23 @@ const TablesUser = () => {
                                     <tbody>
                                         {dataUser.map((item, index) => {
                                             return (
-                                                <tr>
+                                                <tr key={index}>
                                                     <td className='py-3 px-5'>{item.fullName}</td>
-                                                    <td className='py-3 px-5 '>{item.phone}</td>
                                                     <td className='py-3 px-5 '>{item.email}</td>
-                                                    <td className='py-3 px-5 '>Role</td>
+                                                    <td className='py-3 px-5 '>{item.phoneNumber}</td>
+                                                    <td className='py-3 px-5 '>{item.roles}</td>
                                                     <td className='py-3 px-5 flex gap-3'>
                                                         <button>Sửa</button>
-                                                        <button>Xóa</button>
+                                                        <button onClick={() => handleDelete(item.id)}>Xóa</button>
                                                     </td>
                                                 </tr>
                                             );
                                         })}
-
                                     </tbody>
                                 </table>
                             </div>
                         </div>
+                        <h2 className='ml-4'>Số lượng {dataUser.length}</h2>
                     </div>
                 </div>
             </div>

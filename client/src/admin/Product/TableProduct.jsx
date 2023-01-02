@@ -2,9 +2,24 @@ import React from 'react'
 import Navbar from '../Navbar'
 import NavbarTop from '../NavbarTop'
 import { useState, useEffect } from 'react'
+import { deleteProductApi, getTableProductApi } from '../../app/services/adminService'
 
 const TableProduct = () => {
-    const [adminProduct, setAdminProduct] = useState([]);
+    const [dataProduct, setDataProduct] = useState([]);
+
+    useEffect(() => {
+        const getAllProduct = async () => {
+            const data = await getTableProductApi();
+            setDataProduct(data.data);
+            // console.log(data);
+        }
+        getAllProduct();
+    }, []);
+
+    const handleDelete = async (id) => {
+        console.log(id);
+        const response = await deleteProductApi(id);
+    }
 
     return (
         <>
@@ -50,19 +65,26 @@ const TableProduct = () => {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr className=''>
-                                            <td className='py-3 px-5 w-[10%] '>
-                                                <img className='h-[100px] max-h-[100px]' src="//product.hstatic.net/1000026716/product/54mv_92471e86b1c8419d98674dd9e90c7d78_large.png" alt="" />
-                                            </td>
-                                            <td className='py-3 px-5 '>g</td>
-                                            <td className='py-3 px-5 '>g</td>
-                                            <td className='py-3 px-5 '>g</td>
-                                            <td className='py-3 px-5 '>g</td>
-                                            <td className='py-3 px-5 '>g</td>
-                                            <td className='py-3 px-5 '>g</td>
-                                            <td className='py-3 px-5 '>g</td>
+                                        {dataProduct.map((item, index) => {
+                                            return (
+                                                <tr className=''>
+                                                    <td className='py-3 px-5 w-[10%] '>
+                                                        <img className='h-[100px] max-h-[100px]' src={item.images} alt="" />
+                                                    </td>
+                                                    <td className='py-3 px-5 '>{item.name}</td>
+                                                    <td className='py-3 px-5 '>{item.price}</td>
+                                                    <td className='py-3 px-5 '>{item.quantity}</td>
+                                                    <td className='py-3 px-5 '>{item.salePrice}</td>
+                                                    <td className='py-3 px-5 '>g</td>
+                                                    <td className='py-3 px-5 '>g</td>
+                                                    <td className='py-3 px-5 '>
+                                                        <button>Sửa</button>
+                                                        <button onClick={() => handleDelete(item.id)} >Xóa</button>
+                                                    </td>
 
-                                        </tr>
+                                                </tr>
+                                            );
+                                        })}
                                     </tbody>
                                 </table>
                             </div>
