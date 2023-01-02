@@ -11,5 +11,5 @@ public enum UserRole
 
 public class Role : IdentityRole
 {
-  public bool IsDelete { get; set; }
+  public bool IsDeleted { get; set; }
 }

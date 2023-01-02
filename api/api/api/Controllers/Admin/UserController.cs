@@ -69,6 +69,7 @@ public class UserController : BaseController
 
           return new
           {
+            id = user.Id,
             fullName = user.FullName,
             email = user.Email,
             phoneNumber = user.Phone,
@@ -112,6 +113,7 @@ public class UserController : BaseController
   }
 
   [HttpPut("UpdateUser/{id}")]
+  [IgnoreAntiforgeryToken]
   public async Task<IActionResult> UpdateUser([FromBody] UpdateUserDto updateUserDto, [FromRoute] string id)
   {
     try
@@ -133,6 +135,7 @@ public class UserController : BaseController
 
 
   [HttpDelete("DeleteUser/{id}")]
+  [IgnoreAntiforgeryToken]
   public async Task<IActionResult> DeleteUser([FromRoute] string id)
   {
     try
