@@ -1,12 +1,14 @@
 import {
     createBrowserRouter,
     RouterProvider,
+    useParams,
 } from "react-router-dom";
 import AdminLogin from "../admin/Login";
 import Navbar from "../admin/Navbar";
 import TableProduct from "../admin/Product/TableProduct";
 import AdminSignUp from "../admin/SignUp";
 import CreateUser from "../admin/User/CreateUser";
+import EditUser from "../admin/User/EditUser";
 import TablesUser from "../admin/User/TablesUser";
 import App from "../App";
 import Login from "../components/Login";
@@ -14,6 +16,7 @@ import ProductDetail from "../components/ProductDetail";
 import Register from "../components/Register";
 
 const router = createBrowserRouter([
+
     {
         path: "/",
         element: <App />,
@@ -58,6 +61,11 @@ const router = createBrowserRouter([
         path: "adminsignup",
         element: <AdminSignUp />,
     },
+    {
+        path: "edituser/:id",
+        element: <EditUser />,
+    },
+
   
 ]);
 

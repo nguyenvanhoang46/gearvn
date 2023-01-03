@@ -1,13 +1,16 @@
 import React from 'react'
 import Navbar from '../Navbar'
 import NavbarTop from '../NavbarTop'
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import { deleteUserApi, getTableUserApi } from '../../app/services/adminService';
 
 const TablesUser = () => {
 
     const [dataUser, setDataUser] = useState([]);
+
+    const { id } = useParams();
 
     useEffect(() => {
         const getAllUser = async () => {
@@ -19,22 +22,25 @@ const TablesUser = () => {
                 console.log(error.message);
             }
         }
+        
         getAllUser();
     }, []);
 
 
     const handleDelete = async (id) => {
-        console.log("click delete",id);
-       try {
-        const response = await deleteUserApi(id);
-        setDataUser(
-            dataUser.filter((post) => {
-                return post.id !== id;
-            }));
-       } catch (error) {
-        console.log(error.message);
-       }
+        console.log("click delete", id);
+        try {
+            const response = await deleteUserApi(id);
+            setDataUser(
+                dataUser.filter((post) => {
+                    return post.id !== id;
+                }));
+        } catch (error) {
+            console.log(error.message);
+        }
     }
+     
+    
 
     return (
         <>
@@ -80,7 +86,7 @@ const TablesUser = () => {
                                                     <td className='py-3 px-5 '>{item.phoneNumber}</td>
                                                     <td className='py-3 px-5 '>{item.roles}</td>
                                                     <td className='py-3 px-5 flex gap-3'>
-                                                        <button>Sửa</button>
+                                                        <Link to={`/edituser/${item.id}` }  >Sửa</Link>
                                                         <button onClick={() => handleDelete(item.id)}>Xóa</button>
                                                     </td>
                                                 </tr>
@@ -98,4 +104,4 @@ const TablesUser = () => {
     )
 }
 
-export default TablesUser
+export default TablesUser;
