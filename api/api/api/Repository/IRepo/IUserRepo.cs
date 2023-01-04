@@ -22,9 +22,9 @@ public interface IUserRepo
   public Task<User?> FindById(string id);
 
   public Task<bool> CreateUser(CreateUserDto dto);
-  public Task<bool> UpdateUser(UpdateUserDto dto, string id);
+  public Task<bool> UpdateUser(UpdateUserDto dto, string id, User currentUser);
   public Task<bool> DeleteUser(string id);
-
+  public Task<User> GetCurrentUser(HttpContext context);
   public Task<string> GetRoleByUserId(string id);
 
   IEnumerable<User> Paginate(out int totalRecords, PaginationFilter? paginationFilter = null,

@@ -17,6 +17,7 @@ namespace api.Controllers.Admin;
 
 [ApiController]
 [Route("api/Admin/[controller]")]
+[Authorize(Roles = "Admin")]
 public class ProductController : BaseController
 {
   private readonly IUnitOfWork _unitOfWork;
@@ -38,7 +39,6 @@ public class ProductController : BaseController
   }
 
   [HttpGet(Routes.API_ADMIN_PRODUCT_GET_PRODUCTS)]
-  [Authorize(Roles = "Admin")]
   public async Task<IActionResult> GetProducts([FromQuery] PaginationFilter paginationFilter,
     [FromQuery] SortingFilter sortingFilter, [FromQuery] SearchFilter searchFilter)
   {
@@ -71,7 +71,6 @@ public class ProductController : BaseController
   }
 
   [HttpGet(Routes.API_ADMIN_GET_PRODUCT_BY_ID)]
-  [Authorize(Roles = "Admin")]
   public async Task<IActionResult> GetProductById([FromRoute] string Id)
   {
     try
@@ -93,7 +92,6 @@ public class ProductController : BaseController
 
   [HttpPost(Routes.API_ADMIN_PRODUCT_CREATE_PRODUCT)]
   [IgnoreAntiforgeryToken]
-  [Authorize(Roles = "Admin")]
   public async Task<IActionResult> CreateProduct([FromBody] CreateProductDto productDto)
   {
     try
@@ -123,7 +121,6 @@ public class ProductController : BaseController
 
   [HttpPut(Routes.API_ADMIN_UPDATE_PRODUCT)]
   [IgnoreAntiforgeryToken]
-  [Authorize(Roles = "Admin")]
   public async Task<IActionResult> UpdateProduct([FromBody] UpdateProductDto productDto, [FromRoute] string id)
   {
     try
@@ -148,7 +145,6 @@ public class ProductController : BaseController
 
   [HttpDelete(Routes.API_ADMIN_DELETE_PRODUCT)]
   [IgnoreAntiforgeryToken]
-  [Authorize(Roles = "Admin")]
   public async Task<IActionResult> DeleteProduct([FromRoute] string id)
   {
     try
