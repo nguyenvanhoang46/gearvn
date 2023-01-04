@@ -4,17 +4,17 @@ namespace api.Models.Dtos.Request;
 
 public class UpdateUserDto
 {
-  [Required] public string Username { get; set; }
+  public string? Username { get; set; }
 
-  [Required] public string FirstName { get; set; }
+  public string? FirstName { get; set; }
 
-  [Required] public string LastName { get; set; }
+  public string? LastName { get; set; }
 
-  [Required] public string PhoneNumber { get; set; }
+  public string? PhoneNumber { get; set; }
 
-  [Required] [EmailAddress] public string Email { get; set; }
+  public string? Email { get; set; }
 
-  [Required] public string Password { get; set; }
+  public string? Password { get; set; }
 
-  [Required] public UserRole Role { get; set; }
+  public UserRole? Role { get; set; }
 }

@@ -1,3 +1,4 @@
+using System.Linq.Dynamic.Core;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Security.Claims;
@@ -12,7 +13,6 @@ using api.Services.IServices;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Extensions;
-using System.Linq.Dynamic.Core;
 
 namespace api.Repository;
 
@@ -68,15 +68,22 @@ public class UserRepo : IUserRepo
       user.LastName = dto.LastName ?? user.LastName;
       user.PhoneNumber = dto.PhoneNumber ?? user.PhoneNumber;
 
+      if (dto.Password != null)
+      {
+        var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+        await _userManager.ResetPasswordAsync(user, token, dto.Password);
+      }
+
+      if (dto.Role != null)
+      {
+        var roles = await _userManager.GetRolesAsync(user);
+        await _userManager.RemoveFromRolesAsync(user, roles);
+        await _userManager.AddToRoleAsync(user, dto.Role.GetDisplayName());
+      }
+
       var result = await _userManager.UpdateAsync(user);
 
       if (!result.Succeeded) return result.Succeeded;
-
-      await _userManager.RemoveFromRolesAsync(user, await _userManager.GetRolesAsync(user));
-
-      var resultRole = await _userManager.AddToRoleAsync(user, dto.Role.GetDisplayName());
-
-      return resultRole.Succeeded;
     }
 
     return false;
