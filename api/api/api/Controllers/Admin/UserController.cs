@@ -70,6 +70,8 @@ public class UserController : BaseController
           return new
           {
             id = user.Id,
+            firstName = user.FirstName,
+            lastName = user.LastName,
             fullName = user.FullName,
             email = user.Email,
             phoneNumber = user.Phone,
@@ -112,12 +114,14 @@ public class UserController : BaseController
       var response = new
       {
         id = userDto.Id,
+        firstName = userDto.FirstName,
+        lastName = userDto.LastName,
         fullName = userDto.FullName,
         email = userDto.Email,
         phoneNumber = userDto.Phone,
         roles,
       };
-      
+
       return CustomResult(ResponseType.GetMessageFormCode(HttpStatusCode.OK), response);
     }
     catch (Exception e)
