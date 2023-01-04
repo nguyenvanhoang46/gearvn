@@ -67,8 +67,7 @@ public class CategoryController : BaseController
     }
   }
 
-  [HttpPost(Routes.API_ADMIN_CATEGORY_CREATE_CATEGORY)]
-  [IgnoreAntiforgeryToken]
+  [HttpGet(Routes.API_ADMIN_GET_CATEGORY_BY_ID)]
   [Authorize(Roles = "Admin")]
   public async Task<IActionResult> GetCategoryById([FromRoute] string Id)
   {
@@ -90,7 +89,8 @@ public class CategoryController : BaseController
     }
   }
 
-  [HttpGet(Routes.API_ADMIN_GET_CATEGORY_BY_ID)]
+  [HttpPost(Routes.API_ADMIN_CATEGORY_CREATE_CATEGORY)]
+  [IgnoreAntiforgeryToken]
   [Authorize(Roles = "Admin")]
   public async Task<IActionResult> CreateCategory([FromBody] CreateCategoryDto categoryDto)
   {
