@@ -11,12 +11,15 @@ using api.Services;
 using api.Services.IServices;
 using AutoMapper;
 using CoreApiResponse;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers.Admin;
 
 [ApiController]
 [Route("api/Admin/[controller]")]
+[Authorize(Roles = "Admin")]
 public class UserController : BaseController
 {
   private readonly IUnitOfWork _unitOfWork;
@@ -158,7 +161,9 @@ public class UserController : BaseController
   {
     try
     {
-      bool result = await _unitOfWork.UserRepository.UpdateUser(updateUserDto, id);
+      User user = await _unitOfWork.UserRepository.GetCurrentUser(HttpContext);
+
+      bool result = await _unitOfWork.UserRepository.UpdateUser(updateUserDto, id, user);
 
       if (!result)
         return CustomResult(ResponseType.GetMessageFormCode(HttpStatusCode.BadRequest), "Update User Failed",

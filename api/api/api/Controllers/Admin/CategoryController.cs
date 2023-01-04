@@ -34,7 +34,6 @@ public class CategoryController : BaseController
   }
 
   [HttpGet(Routes.API_ADMIN_CATEGORY_GET_CATEGORIES)]
-  [Authorize(Roles = "Admin")]
   public async Task<IActionResult> GetCategories([FromQuery] PaginationFilter paginationFilter,
     [FromQuery] SortingFilter sortingFilter, [FromQuery] SearchFilter searchFilter)
   {
@@ -68,7 +67,6 @@ public class CategoryController : BaseController
   }
 
   [HttpGet(Routes.API_ADMIN_GET_CATEGORY_BY_ID)]
-  [Authorize(Roles = "Admin")]
   public async Task<IActionResult> GetCategoryById([FromRoute] string Id)
   {
     try
@@ -91,7 +89,6 @@ public class CategoryController : BaseController
 
   [HttpPost(Routes.API_ADMIN_CATEGORY_CREATE_CATEGORY)]
   [IgnoreAntiforgeryToken]
-  [Authorize(Roles = "Admin")]
   public async Task<IActionResult> CreateCategory([FromBody] CreateCategoryDto categoryDto)
   {
     try
@@ -114,7 +111,6 @@ public class CategoryController : BaseController
 
   [HttpPut(Routes.API_ADMIN_UPDATE_CATEGORY)]
   [IgnoreAntiforgeryToken]
-  [Authorize(Roles = "Admin")]
   public async Task<IActionResult> UpdateCategory([FromBody] UpdateCategoryDto categoryDto, [FromRoute] string id)
   {
     try
@@ -140,7 +136,6 @@ public class CategoryController : BaseController
 
   [HttpDelete(Routes.API_ADMIN_DELETE_CATEGORY)]
   [IgnoreAntiforgeryToken]
-  [Authorize(Roles = "Admin")]
   public async Task<IActionResult> DeleteCategory([FromRoute] string id)
   {
     try

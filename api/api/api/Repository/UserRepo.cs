@@ -55,13 +55,23 @@ public class UserRepo : IUserRepo
     return await _userManager.CreateAsync(user, model.Password);
   }
 
+  public async Task<User> GetCurrentUser(HttpContext context)
+  {
+    return await _userManager.GetUserAsync(context.User);
+  }
 
-  public async Task<bool> UpdateUser(UpdateUserDto dto, string id)
+  public async Task<bool> UpdateUser(UpdateUserDto dto, string id, User currentUser)
   {
     User? user = await _userManager.FindByIdAsync(id);
 
+
     if (user != null)
     {
+      if (user.Id == currentUser.Id)
+      {
+        throw new Exception("You can't update your own user here");
+      }
+
       user.UserName = dto.Username ?? user.UserName;
       user.Email = dto.Email ?? user.Email;
       user.FirstName = dto.FirstName ?? user.FirstName;
