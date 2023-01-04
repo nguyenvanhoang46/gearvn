@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Navbar from '../Navbar'
 import NavbarTop from '../NavbarTop'
-import { Link,useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { createUserApi } from '../../app/services/adminService';
 
 const CreateUser = () => {
@@ -19,12 +19,14 @@ const CreateUser = () => {
   const handleCreateUser = async (e) => {
     e.preventDefault();
     try {
-      const response = await createUserApi({username,firstName,lastName,phoneNumber,email,password,role});
+      const response = await createUserApi({ username, firstName, lastName, phoneNumber, email, password, role });
+      localStorage.setItem("token", response.accessToken)
+      localStorage.setItem("refreshToken", response.refreshToken)
       navigate('/tableuser');
     } catch (error) {
       console.log(error.message);
     }
-    
+
   }
 
   return (

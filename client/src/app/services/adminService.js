@@ -15,5 +15,6 @@ export const createUserApi = (data) => request.post("/Admin/User/CreateUser", da
 
 export const deleteUserApi = (id) => request.delete(`/Admin/User/DeleteUser/${id}`).then(({data}) => data.data); 
 
-export const editUserApi = (id) => request.put(`/Admin/User/UpdateUser/${id}`).then(({data}) => data);
+export const getUserApi = (id) => request.get(`/Admin/User/User/${id}`).then(({data}) => data.data);
 
+export const updateUserApi = (id, data) => request.put(`/Admin/User/UpdateUser/${id}`, data).then((data) => data);

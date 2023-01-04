@@ -1,8 +1,7 @@
 import React from 'react'
 import Navbar from '../Navbar'
 import NavbarTop from '../NavbarTop'
-import { Link, useParams } from "react-router-dom";
-import { withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import { deleteUserApi, getTableUserApi } from '../../app/services/adminService';
 
@@ -10,8 +9,8 @@ const TablesUser = () => {
 
     const [dataUser, setDataUser] = useState([]);
 
-    const { id } = useParams();
-
+    // const { id } = useParams();
+    // const navigate = useNavigate();
     useEffect(() => {
         const getAllUser = async () => {
             try {
@@ -22,7 +21,7 @@ const TablesUser = () => {
                 console.log(error.message);
             }
         }
-        
+
         getAllUser();
     }, []);
 
@@ -30,7 +29,7 @@ const TablesUser = () => {
     const handleDelete = async (id) => {
         console.log("click delete", id);
         try {
-            const response = await deleteUserApi(id);
+             await deleteUserApi(id);
             setDataUser(
                 dataUser.filter((post) => {
                     return post.id !== id;
@@ -39,9 +38,7 @@ const TablesUser = () => {
             console.log(error.message);
         }
     }
-     
     
-
     return (
         <>
             <div className="bg-[#eceff1] min-h-[1070px]">
@@ -82,11 +79,11 @@ const TablesUser = () => {
                                             return (
                                                 <tr key={index}>
                                                     <td className='py-3 px-5'>{item.fullName}</td>
-                                                    <td className='py-3 px-5 '>{item.email}</td>
                                                     <td className='py-3 px-5 '>{item.phoneNumber}</td>
+                                                    <td className='py-3 px-5 '>{item.email}</td>
                                                     <td className='py-3 px-5 '>{item.roles}</td>
                                                     <td className='py-3 px-5 flex gap-3'>
-                                                        <Link to={`/edituser/${item.id}` }  >Sửa</Link>
+                                                        <Link to={`/edituser/${item.id}`}  >Sửa</Link>
                                                         <button onClick={() => handleDelete(item.id)}>Xóa</button>
                                                     </td>
                                                 </tr>
