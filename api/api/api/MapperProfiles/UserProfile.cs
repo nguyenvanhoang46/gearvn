@@ -9,6 +9,8 @@ public class UserProfile : Profile
   public UserProfile()
   {
     CreateMap<User, UserDto>()
+      .ForMember(d => d.FirstName, o => o.MapFrom(s => s.FirstName))
+      .ForMember(d => d.LastName, o => o.MapFrom(s => s.LastName))
       .ForMember(d => d.FullName,
         o => o.MapFrom(s => $"{s.FirstName} {s.LastName}"))
       .ForMember(d => d.Email,
