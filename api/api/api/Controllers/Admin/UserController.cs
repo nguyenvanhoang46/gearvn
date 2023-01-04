@@ -91,6 +91,42 @@ public class UserController : BaseController
     }
   }
 
+  [HttpGet("User/{id}")]
+  public async Task<IActionResult> GetUserById([FromRoute] string id)
+  {
+    try
+    {
+      User? user = await _unitOfWork.UserRepository.FindById(id);
+
+      if (user == null)
+        return CustomResult(ResponseType.GetMessageFormCode(HttpStatusCode.NotFound), new { },
+          HttpStatusCode.NotFound);
+
+      UserDto userDto = _mapper.Map<User, UserDto>(user);
+
+      List<string>? roles = _unitOfWork.UserRepository.GetRoleByUser(user).Result;
+
+      if (roles?.Count < 0)
+        roles[0] = "";
+
+      var response = new
+      {
+        id = userDto.Id,
+        fullName = userDto.FullName,
+        email = userDto.Email,
+        phoneNumber = userDto.Phone,
+        roles,
+      };
+      
+      return CustomResult(ResponseType.GetMessageFormCode(HttpStatusCode.OK), response);
+    }
+    catch (Exception e)
+    {
+      return CustomResult(ResponseType.GetMessageFormCode(HttpStatusCode.InternalServerError), e.Message,
+        HttpStatusCode.InternalServerError);
+    }
+  }
+
   [HttpPost("CreateUser")]
   [IgnoreAntiforgeryToken]
   public async Task<IActionResult> CreateUser([FromBody] CreateUserDto createUserDto)
