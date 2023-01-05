@@ -20,8 +20,8 @@ const CreateUser = () => {
     e.preventDefault();
     try {
       const response = await createUserApi({ username, firstName, lastName, phoneNumber, email, password, role });
-      localStorage.setItem("token", response.accessToken)
-      localStorage.setItem("refreshToken", response.refreshToken)
+      // localStorage.setItem("token", response.accessToken)
+      // localStorage.setItem("refreshToken", response.refreshToken)
       navigate('/tableuser');
     } catch (error) {
       console.log(error.message);

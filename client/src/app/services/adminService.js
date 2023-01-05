@@ -18,3 +18,9 @@ export const deleteUserApi = (id) => request.delete(`/Admin/User/DeleteUser/${id
 export const getUserApi = (id) => request.get(`/Admin/User/User/${id}`).then(({data}) => data.data);
 
 export const updateUserApi = (id, data) => request.put(`/Admin/User/UpdateUser/${id}`, data).then((data) => data);
+
+// Category
+
+export const getTableCategoryApi = () => request.get("/Admin/Category/GetCategories").then(({data}) => data.data);
+
+export const deleteCategoryApi = (id) => request.delete(`/Admin/Category/DeleteCategory/${id}`).then(({data}) => data.data); 

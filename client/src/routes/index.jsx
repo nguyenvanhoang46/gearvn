@@ -6,6 +6,7 @@ import {
 import AdminLogin from "../admin/Login";
 import Navbar from "../admin/Navbar";
 import TableProduct from "../admin/Product/TableProduct";
+import TableCategory from "../admin/Category/TableCategory";
 import AdminSignUp from "../admin/SignUp";
 import CreateUser from "../admin/User/CreateUser";
 import EditUser from "../admin/User/EditUser";
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
     {
         path: "edituser/:id",
         element: <EditUser />,
+    },
+    {
+        path: "tablecategory",
+        element: <TableCategory />,
     },
 
   
