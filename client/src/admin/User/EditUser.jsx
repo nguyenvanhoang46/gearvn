@@ -83,7 +83,7 @@ const EditUser = () => {
                                             </div> */}
 										</div>
 										<div className="flex gap-6 mt-7 items-center">
-											<label className='font-medium text-[14px] w-[10%] '>FirstName</label>
+											<label className='font-medium text-[14px] w-[10%]'>FirstName</label>
 											<div className='w-[60%]'>
 												<input value={firstName} onChange={(e) => setFirstName(e.target.value)} className='w-full text-[#495057] bg-[#fff] py-[0.375rem] focus:bg-[#fff] px-[0.75rem]  focus:ring-offset-1 focus:ring-1 focus:outline   focus:outline-[#1b00ff] rounded-[.25rem] border-[1px] border-gray-200 ' type="text" placeholder="FirstName" />
 											</div>
