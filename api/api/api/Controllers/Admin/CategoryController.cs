@@ -121,7 +121,8 @@ public class CategoryController : BaseController
         return CustomResult(ResponseType.GetMessageFormCode(HttpStatusCode.NotFound),
           HttpStatusCode.NotFound);
 
-      _unitOfWork.CategoryRepository.Update(_mapper.Map<UpdateCategoryDto, Category>(categoryDto));
+      category.Name = categoryDto.Name;
+      _unitOfWork.CategoryRepository.Update(category);
 
       await _unitOfWork.SaveAsync();
 

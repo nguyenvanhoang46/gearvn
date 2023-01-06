@@ -29,7 +29,8 @@ const TablesUser = () => {
     const handleDelete = async (id) => {
         console.log("click delete", id);
         try {
-             await deleteUserApi(id);
+            const data = await deleteUserApi(id);
+            console.log(data);
             setDataUser(
                 dataUser.filter((post) => {
                     return post.id !== id;
@@ -38,7 +39,7 @@ const TablesUser = () => {
             console.log(error.message);
         }
     }
-    
+
     return (
         <>
             <div className="bg-[#eceff1] min-h-[1070px]">

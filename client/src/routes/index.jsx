@@ -15,6 +15,8 @@ import App from "../App";
 import Login from "../components/Login";
 import ProductDetail from "../components/ProductDetail";
 import Register from "../components/Register";
+import CreateCategory from "../admin/Category/CreateCategory";
+import EditCategory from "../admin/Category/EditCategory";
 
 const router = createBrowserRouter([
 
@@ -69,6 +71,14 @@ const router = createBrowserRouter([
     {
         path: "tablecategory",
         element: <TableCategory />,
+    },
+    {
+        path: "addcategory",
+        element: <CreateCategory />,
+    },
+    {
+        path: "editcategory/:id",
+        element: <EditCategory />,
     },
 
   

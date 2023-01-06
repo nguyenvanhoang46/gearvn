@@ -12,23 +12,23 @@ const TableCategory = () => {
   useEffect(() => {
     const getAllCategory = async () => {
       try {
-        const data = await getTableCategoryApi();
-        setDataCategory(data.data);
-        console.log(data);
+          const data = await getTableCategoryApi();
+          setDataCategory(data.data);
+          console.log(data);
       } catch (error) {
-        console.log(error.message);
+          console.log(error.message);
       }
     }
     getAllCategory();
   }, []);
 
   const handleDelete = async (id) => {
-    console.log("click", id);
     try {
-      await deleteCategoryApi(id);
+      const deleteCategory = await deleteCategoryApi(id);
+      console.log(deleteCategory);
       setDataCategory(
         dataCategory.filter((post) => {
-            return post.id != id;
+          return post.id != id;
         }));
     } catch (error) {
       console.log(error.message);
@@ -47,7 +47,7 @@ const TableCategory = () => {
             <div className="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md mt-12 mb-8  gap-12">
               <div className="relative flex justify-between bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-blue-500/40 shadow-lg -mt-6  p-6">
                 <h6 className='block antialiased tracking-normal font-sans text-base font-semibold leading-relaxed text-white'>User</h6>
-                <Link to='/adduser' className='block antialiased tracking-normal font-sans text-base font-semibold leading-relaxed text-white'>Add User</Link>
+                <Link to='/addcategory' className='block antialiased tracking-normal font-sans text-base font-semibold leading-relaxed text-white'>Add Category</Link>
               </div>
               <div className="p-6 overflow-x-scroll px-0 pt-0 pb-2">
                 <table className='w-full min-w-[640px] table-auto'>
@@ -67,9 +67,8 @@ const TableCategory = () => {
                         <tr key={index}>
                           <td className='py-3 px-5'>{item.name}</td>
                           <td className='py-3 px-5 flex gap-3'>
-                            <Link to={''}>Sửa</Link>
+                            <Link to={`/editcategory/${item.id}`}>Sửa</Link>
                             <button onClick={() => handleDelete(item.id)}>Xóa</button>
-                            {/* <button onClick={() => handleDelete(item.id)}>Xóa</button> */}
                           </td>
                         </tr>
                       );
