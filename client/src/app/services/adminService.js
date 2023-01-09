@@ -3,9 +3,13 @@ import request from "../../lib/request"
 
 // Product
 
-export const getTableProductApi = (data) => request.get("/Admin/Product/GetProducts").then(({ data }) => data.data);
+export const getTableProductApi = () => request.get("/Admin/Product/GetProducts").then(({ data }) => data.data);
+
+export const createProductApi = (data) => request.get("/Admin/Product/SaveProduct", data).then(({data}) => data.data);
 
 export const deleteProductApi = (id) => request.delete(`/Admin/Product/DeleteProudct/${id}`).then(({ data }) => data.data);
+
+export const getCategoryP = (categoryId) => request.get(`Admin/Product/GetProducts/${categoryId}`).then(({data}) => data);
 
 // User
 

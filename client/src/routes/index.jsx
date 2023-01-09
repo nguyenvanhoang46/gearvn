@@ -17,6 +17,8 @@ import ProductDetail from "../components/ProductDetail";
 import Register from "../components/Register";
 import CreateCategory from "../admin/Category/CreateCategory";
 import EditCategory from "../admin/Category/EditCategory";
+import CreateProduct from "../admin/Product/CreateProduct";
+import EditProduct from "../admin/Product/EditProduct";
 
 const router = createBrowserRouter([
 
@@ -45,9 +47,28 @@ const router = createBrowserRouter([
         element: <Navbar />,
     },
     {
+        path: "adminlogin",
+        element: <AdminLogin />,
+    },
+    {
+        path: "adminsignup",
+        element: <AdminSignUp />,
+    },
+    // Product 
+    {
         path: "tableproduct",
         element: <TableProduct />,
     },
+    {
+        path: "addproduct",
+        element: <CreateProduct />,
+    },
+    {
+        path: "editproduct",
+        element: <EditProduct />,
+    },
+
+    // User
     {
         path: "tableuser",
         element: <TablesUser />,
@@ -56,18 +77,12 @@ const router = createBrowserRouter([
         path: "adduser",
         element: <CreateUser />,
     },
-    {
-        path: "adminlogin",
-        element: <AdminLogin />,
-    },
-    {
-        path: "adminsignup",
-        element: <AdminSignUp />,
-    },
+
     {
         path: "edituser/:id",
         element: <EditUser />,
     },
+    // Category
     {
         path: "tablecategory",
         element: <TableCategory />,
@@ -81,7 +96,7 @@ const router = createBrowserRouter([
         element: <EditCategory />,
     },
 
-  
+
 ]);
 
 export default router;

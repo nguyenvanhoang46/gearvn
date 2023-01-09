@@ -1,5 +1,6 @@
 using System.Net;
 using System.Text;
+using System.Text.Json.Serialization;
 using api.Context;
 using api.Libs;
 using api.Libs.Interface;
@@ -20,21 +21,27 @@ using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().ConfigureApiBehaviorOptions(op =>
+{
+}).AddJsonOptions(op =>
+{
+    op.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+});
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSignalR();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddMvc(options =>
 {
-  options.Filters.Add(typeof(CustomException));
-  options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+    options.Filters.Add(typeof(CustomException));
+    options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
 });
 builder.Services.Configure<ApiBehaviorOptions>(options => { options.SuppressModelStateInvalidFilter = true; });
 var connectionString = builder.Configuration.GetConnectionString("Default");
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
-  options.UseMySql(connectionString!, ServerVersion.AutoDetect(connectionString));
+    options.UseMySql(connectionString!, ServerVersion.AutoDetect(connectionString));
 });
 
 builder.Services.AddIdentity<User, Role>(options => { options.User.RequireUniqueEmail = true; })
@@ -52,47 +59,47 @@ builder.Services.AddScoped<IOrderDetailRepo, OrderDetailRepo>();
 builder.Services.AddScoped<IRoleRepo, RoleRepo>();
 builder.Services.AddSingleton<IMetaService>(o =>
 {
-  var accessor = o.GetRequiredService<IHttpContextAccessor>();
-  var request = accessor.HttpContext?.Request;
-  var uri = string.Concat(request?.Scheme, "://", request?.Host.ToUriComponent());
-  Console.WriteLine($"Request Scheme : {request?.Scheme}");
-  Console.WriteLine($"Request Host: {request?.Host.ToUriComponent()}");
-  return new MetaService(uri);
+    var accessor = o.GetRequiredService<IHttpContextAccessor>();
+    var request = accessor.HttpContext?.Request;
+    var uri = string.Concat(request?.Scheme, "://", request?.Host.ToUriComponent());
+    Console.WriteLine($"Request Scheme : {request?.Scheme}");
+    Console.WriteLine($"Request Host: {request?.Host.ToUriComponent()}");
+    return new MetaService(uri);
 });
 
 
 builder.Services.AddAuthentication(options =>
 {
-  options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-  options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-  options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
 }).AddJwtBearer(options =>
 {
-  options.SaveToken = true;
-  options.RequireHttpsMetadata = false;
-  options.TokenValidationParameters = new TokenValidationParameters
-  {
-    ValidateIssuer = true,
-    ValidateAudience = true,
-    ValidAudience = builder.Configuration["JWT:ValidAudience"],
-    ValidIssuer = builder.Configuration["JWT:ValidIssuer"],
-    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Secret"]))
-  };
+    options.SaveToken = true;
+    options.RequireHttpsMetadata = false;
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidAudience = builder.Configuration["JWT:ValidAudience"],
+        ValidIssuer = builder.Configuration["JWT:ValidIssuer"],
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Secret"]))
+    };
 });
 
 builder.Services.AddSwaggerGen(opt =>
 {
-  opt.SwaggerDoc("v1", new OpenApiInfo { Title = "MyAPI", Version = "v1" });
-  opt.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-  {
-    In = ParameterLocation.Header,
-    Description = "Please enter token",
-    Name = "Authorization",
-    Type = SecuritySchemeType.Http,
-    BearerFormat = "JWT",
-    Scheme = "bearer"
-  });
-  opt.AddSecurityRequirement(new OpenApiSecurityRequirement
+    opt.SwaggerDoc("v1", new OpenApiInfo { Title = "MyAPI", Version = "v1" });
+    opt.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        In = ParameterLocation.Header,
+        Description = "Please enter token",
+        Name = "Authorization",
+        Type = SecuritySchemeType.Http,
+        BearerFormat = "JWT",
+        Scheme = "bearer"
+    });
+    opt.AddSecurityRequirement(new OpenApiSecurityRequirement
   {
     {
       new OpenApiSecurityScheme
@@ -115,23 +122,23 @@ var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
-  app.UseSwagger();
-  app.UseSwaggerUI();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 
 app.Use(async (context, next) =>
 {
-  await next();
+    await next();
 
-  if (context.Response.StatusCode == (int)HttpStatusCode.Unauthorized)
-  {
-    await context.Response.WriteAsJsonAsync(new UnAuthorizedDto());
-  }
+    if (context.Response.StatusCode == (int)HttpStatusCode.Unauthorized)
+    {
+        await context.Response.WriteAsJsonAsync(new UnAuthorizedDto());
+    }
 
-  if (context.Response.StatusCode == (int)HttpStatusCode.Forbidden)
-  {
-    await context.Response.WriteAsJsonAsync(new ForbiddenDto());
-  }
+    if (context.Response.StatusCode == (int)HttpStatusCode.Forbidden)
+    {
+        await context.Response.WriteAsJsonAsync(new ForbiddenDto());
+    }
 });
 
 app.UseCors(

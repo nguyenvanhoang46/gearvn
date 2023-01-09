@@ -1,24 +1,37 @@
 import React from 'react'
 import Navbar from '../Navbar'
 import NavbarTop from '../NavbarTop'
+import { Link } from "react-router-dom";
 import { useState, useEffect } from 'react'
-import { deleteProductApi, getTableProductApi } from '../../app/services/adminService'
+import { deleteProductApi, getTableCategoryApi, getTableProductApi } from '../../app/services/adminService'
 
 const TableProduct = () => {
     const [dataProduct, setDataProduct] = useState([]);
 
+    // console.log("da",dataProduct);
     useEffect(() => {
         const getAllProduct = async () => {
             const data = await getTableProductApi();
             setDataProduct(data.data);
-            // console.log(data);
+            console.log(data);
         }
+        // const getAllCategory = async () => {
+        //     const data = await getTableCategoryApi();
+        //     setDataProduct(data.data);
+        //     console.log(data);
+        // }
         getAllProduct();
+        // getAllCategory();
     }, []);
 
     const handleDelete = async (id) => {
         console.log(id);
         const response = await deleteProductApi(id);
+        setDataProduct(
+            dataProduct.filter((post) => {
+                return post.id != id;
+            })
+        )
     }
 
     return (
@@ -31,8 +44,9 @@ const TableProduct = () => {
                     <div className="col-span-10">
                         <div className="mt-5"><NavbarTop /></div>
                         <div className="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md mt-12 mb-8  gap-12">
-                            <div className="relative bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-blue-500/40 shadow-lg -mt-6  p-6">
+                            <div className="relative flex justify-between bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-blue-500/40 shadow-lg -mt-6  p-6">
                                 <h6 className='block antialiased tracking-normal font-sans text-base font-semibold leading-relaxed text-white'>Product</h6>
+                                <Link to='/addproduct' className='block antialiased tracking-normal font-sans text-base font-semibold leading-relaxed text-white'>Add Product</Link>
                             </div>
                             <div className="p-6 overflow-x-scroll px-0 pt-0 pb-2">
                                 <table className='w-full min-w-[640px] table-auto'>
@@ -51,10 +65,13 @@ const TableProduct = () => {
                                                 <p className="block antialiased font-sans text-[11px] font-bold uppercase text-blue-gray-400">Quantity</p>
                                             </th>
                                             <th className='border-b border-blue-gray-50 py-3 px-5 text-left'>
-                                                <p className="block antialiased font-sans text-[11px] font-bold uppercase text-blue-gray-400">Description</p>
+                                                <p className="block antialiased font-sans text-[11px] font-bold uppercase text-blue-gray-400">Sale</p>
                                             </th>
                                             <th className='border-b border-blue-gray-50 py-3 px-5 text-left'>
                                                 <p className="block antialiased font-sans text-[11px] font-bold uppercase text-blue-gray-400">Category</p>
+                                            </th>
+                                            <th className='border-b border-blue-gray-50 py-3 px-5 text-left'>
+                                                <p className="block antialiased font-sans text-[11px] font-bold uppercase text-blue-gray-400">Description</p>
                                             </th>
                                             <th className='border-b border-blue-gray-50 py-3 px-5 text-left'>
                                                 <p className="block antialiased font-sans text-[11px] font-bold uppercase text-blue-gray-400">Content</p>
@@ -71,13 +88,14 @@ const TableProduct = () => {
                                                     <td className='py-3 px-5 w-[10%] '>
                                                         <img className='h-[100px] max-h-[100px]' src={item.images} alt="" />
                                                     </td>
-                                                    <td className='py-3 px-5 '>{item.name}</td>
+                                                    <td className='py-3 px-5 w-[250px] '>{item.name}</td>
                                                     <td className='py-3 px-5 '>{item.price}</td>
                                                     <td className='py-3 px-5 '>{item.quantity}</td>
                                                     <td className='py-3 px-5 '>{item.salePrice}</td>
                                                     <td className='py-3 px-5 '>g</td>
-                                                    <td className='py-3 px-5 '>g</td>
-                                                    <td className='py-3 px-5 '>
+                                                    <td className='py-3 px-5 w-[300px] '>{item.content}</td>
+                                                    <td className='py-3 px-5 w-[200px] '>{item.description}</td>
+                                                    <td className='py-3 px-5 gap-3 flex '>
                                                         <button>Sửa</button>
                                                         <button onClick={() => handleDelete(item.id)} >Xóa</button>
                                                     </td>

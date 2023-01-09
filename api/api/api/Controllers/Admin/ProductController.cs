@@ -48,6 +48,7 @@ public class ProductController : BaseController
       List<Product> products = _unitOfWork.ProductRepository.Paginate(out var total,
         paginationFilter: pagination,
         orderByQueryString: sortingFilter.OrderBy,
+        relations: "Category",
         predicate: x =>
           x.Name.Contains(searchFilter.Search ?? "") || x.Description.Contains(searchFilter.Search ?? "")).ToList();
 
