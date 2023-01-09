@@ -10,13 +10,16 @@ import AuthProvider from './contexts/AuthProvider';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import router from './routes';
-
+import { Context } from './contexts/cart/Context';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
-    <AuthProvider>
-      <RouterProvider router={router} />
-    </AuthProvider>
+    <Context>
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
+    </Context>
+
   </Provider>
 );
 

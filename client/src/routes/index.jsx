@@ -19,6 +19,7 @@ import CreateCategory from "../admin/Category/CreateCategory";
 import EditCategory from "../admin/Category/EditCategory";
 import CreateProduct from "../admin/Product/CreateProduct";
 import EditProduct from "../admin/Product/EditProduct";
+import Cart from "../components/Cart";
 
 const router = createBrowserRouter([
 
@@ -94,6 +95,10 @@ const router = createBrowserRouter([
     {
         path: "editcategory/:id",
         element: <EditCategory />,
+    },
+    {
+        path: "cart",
+        element: <Cart />,
     },
 
 

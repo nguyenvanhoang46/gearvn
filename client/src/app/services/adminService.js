@@ -9,8 +9,9 @@ export const createProductApi = (data) => request.get("/Admin/Product/SaveProduc
 
 export const deleteProductApi = (id) => request.delete(`/Admin/Product/DeleteProudct/${id}`).then(({ data }) => data.data);
 
-export const getCategoryP = (categoryId) => request.get(`Admin/Product/GetProducts/${categoryId}`).then(({data}) => data);
+// export const getCategoryP = (categoryId) => request.get(`Admin/Product/GetProducts/${categoryId}`).then(({data}) => data);
 
+export const getProduct = () => request.get("/Product/GetProducts").then(({data}) => data.data)
 // User
 
 export const getTableUserApi = () => request.get("/Admin/User/User").then(({ data }) => data.data);

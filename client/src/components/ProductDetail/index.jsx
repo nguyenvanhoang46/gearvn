@@ -6,7 +6,7 @@ import Footer from '../Footer'
 const ProductDetail = () => {
     return (
         <>
-            <div className="">
+            <div className='bg-[#f1f0f1]'>
                 <Header />
                 <Category />
             </div>
@@ -56,7 +56,7 @@ const ProductDetail = () => {
                     </div>
                 </div>
             </div>
-            
+
         </>
     )
 }
