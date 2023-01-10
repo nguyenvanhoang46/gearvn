@@ -4,9 +4,6 @@ export const Cartcontext = createContext();
 
 export const Context = (props) => {
 
-
-
-
     const reducer = (state, action) => {
         switch (action.type) {
             case 'LOAD_CART':
