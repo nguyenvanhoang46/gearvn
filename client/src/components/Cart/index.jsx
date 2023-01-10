@@ -57,8 +57,6 @@ const Cart = () => {
                                                 onClick={() => {
                                                     if (item.quantity > 1) {
                                                         dispatch({ type: "DECREASE", payload: item });
-                                                    } else {
-                                                        dispatch({ type: "REMOVE", payload: item })
                                                     }
                                                 }}>
                                                 -
