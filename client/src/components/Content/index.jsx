@@ -42,7 +42,7 @@ const Content = () => {
                 {/* {data.map((product) => {
                 return <ProductItem product={product} key={product.id}/>;
               })} */}
-              <ProductItem />;
+              <ProductItem />
             </div>
         </div>
     </div>

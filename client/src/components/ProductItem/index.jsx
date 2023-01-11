@@ -30,7 +30,7 @@ const ProductItem = ({ product }) => {
       {data.map((item, index) => {
         item.quantity = 1;
         return (
-          <div className="group hover:border-[#F1DF8D] bg-[#FFF] border-[1px] shadow hover:shadow-none relative ">
+          <div key={item.id} className="group hover:border-[#F1DF8D] bg-[#FFF] border-[1px] shadow hover:shadow-none relative ">
             <div >
               <div className="h-[230px] w-full max-h-[363px] ">
                 <img className='w-full min-h-[211px] min-w-[196px] cursor-pointer' src="//product.hstatic.net/1000026716/product/hn093w_f885c53fcc5d4b82b3c55b52dd4ce038_large.png" alt="" />
@@ -43,9 +43,9 @@ const ProductItem = ({ product }) => {
             <div className="">
               <h2 className='text-sm m-[10px] '>{item.name}</h2>
               <div className="pl-[10px] pb-[5px]  ">
-                <del className='text-[#888]'>{item.salePrice}</del>
+                <del className='text-[#888]'>{(item.salePrice).toLocaleString('vi', {style: 'currency', currency: 'VND'})}</del>
                 <br />
-                <span className='text-[20px] text-[#ed0000] font-bold '>{item.price}</span>
+                <span className='text-[20px] text-[#ed0000] font-bold '>{(item.price).toLocaleString('vi', {style: 'currency', currency: 'VND'})}</span>
               </div>
             </div>
           </div>

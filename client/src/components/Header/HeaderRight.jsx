@@ -7,6 +7,7 @@ import { MdAccountCircle } from 'react-icons/md';
 import { FaPenSquare } from 'react-icons/fa';
 import Button from '../Button';
 import { AuthContext } from '../../contexts/AuthProvider';
+import { Cartcontext } from '../../contexts/cart/Context';
 
 const StyleIcon = {
   fontSize: "24px",
@@ -14,7 +15,11 @@ const StyleIcon = {
 const HeaderRight = () => {
   const { auth } = useContext(AuthContext);
   let navigate = useNavigate();
-  
+
+  const Globalstate = useContext(Cartcontext);
+  const state = Globalstate.state;
+  console.log(Globalstate);
+
   const logout = () => {
     localStorage.removeItem("token", true)
     localStorage.removeItem("refreshToken", true)
@@ -48,8 +53,11 @@ const HeaderRight = () => {
           <img className='max-w-[24px] max-h-[25px] ' src="//theme.hstatic.net/1000026716/1000440777/14/ak4.png?v=30809" />
           <Button label="Khuyết mãi" />
         </Link>
-        <Link to='/cart'>
+        <Link className='flex relative' to='/cart'>
           <Button label="Giỏ hàng " icon={<BsFillCartFill style={StyleIcon} />} />
+          <p className='absolute top-[-7px] right-[57px] text-[11px] text-white bg-[#ea1c00] font-normal rounded-[50%] text-center leading-[14px] min-w-[20px] border-[3px] border-[#ea1c00] '>
+            {state.length}
+          </p>
         </Link>
       </div>
 

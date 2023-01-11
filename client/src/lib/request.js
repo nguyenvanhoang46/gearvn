@@ -13,4 +13,4 @@ request.interceptors.request.use(async (config) => {
 }, (error) => Promise.reject(error))
 
 
-export default request;
+export default request; 
