@@ -6,8 +6,8 @@ export const getTableProductApi = () => request.get("/Admin/Product/GetProducts"
 
 export const createProductApi = (data) => request.post("/Admin/Product/SaveProduct", data).then(({data}) => data.data);
 
-export const deleteProductApi = (id) => request.delete(`/Admin/Product/DeleteProudct/${id}`).then(({ data }) => data.data);
-// export const deleteCategoryApi = (id) => request.delete(`/Admin/Category/DeleteCategory/${id}`).then(({ data }) => data.data);
+export const deleteProductApi = (id) => request.delete(`/Admin/Product/DeleteProduct/${id}`).then(({ data }) => data.data);
+// export const deleteCtegoryApi = (id) => request.delete(`/Admin/Category/DeleteCategory/${id}`).then(({ data }) => data.data);
 export const getProduct = () => request.get("/Product/GetProducts").then(({data}) => data.data);
 
 export const ImageProduct = (formData) => request.post('/Admin/Image/UploadImage', formData).then(({data}) => data.data);
