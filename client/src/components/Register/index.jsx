@@ -109,7 +109,7 @@ const Register = () => {
                   type={hiddenPassword ? "text" : "password"}
                   {...register("password")}
                   className='w-[250px] py-[17px] px-[15px] text-[14px]  text-[#555] border-[#ccc] rounded-tl-[0px] rounded-bl-[0px] focus:outline rounded border-[1px] h-[34px] focus:shadow focus:outline-[#66afe9]  ' placeholder='Password' />
-                <div className="text-[20px] absolute top-2 right-3">
+                <div className="text-[20px] absolute top-2 right-3 cursor-pointer">
                   {
                     !hiddenPassword ? <AiFillEyeInvisible onClick={() => setHiddenPassword(e => !e)} /> : < AiFillEye onClick={() => setHiddenPassword(e => !e)} />
                   }
@@ -123,7 +123,7 @@ const Register = () => {
                   <RiLockPasswordFill />
                 </span>
                 <input type={hiddenConfirmPassword ? "text" : "password"} {...register("confirmPassword")} className='w-[250px] py-[17px] px-[15px] text-[14px]  text-[#555] border-[#ccc] rounded-tl-[0px] rounded-bl-[0px] focus:outline rounded border-[1px] h-[34px] focus:shadow focus:outline-[#66afe9]  ' placeholder='Confirm Password' />
-                <div className="text-[20px] absolute top-2 right-3">
+                <div className="text-[20px] absolute top-2 right-3 cursor-pointer">
                   {
                     !hiddenConfirmPassword ? <AiFillEyeInvisible onClick={() => setHiddenConfirmPassword(e => !e)} /> : < AiFillEye onClick={() => setHiddenConfirmPassword(e => !e)} />
                   }

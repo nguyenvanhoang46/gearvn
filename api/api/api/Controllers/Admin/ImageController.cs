@@ -44,7 +44,7 @@ public class ImageController : BaseController
           if (product == null)
             return CustomResult(ResponseType.GetMessageFormCode(HttpStatusCode.NotFound), HttpStatusCode.NotFound);
 
-          List<ImageDto> productImage = await _uploadFile.Store(uploadImageDto.Image, "product");
+          List<ImageDto> productImage = await _uploadFile.Store(uploadImageDto.Image, "resources");
 
           product.Images = _mapper.Map<List<ImageDto>, List<Image>>(productImage);
 

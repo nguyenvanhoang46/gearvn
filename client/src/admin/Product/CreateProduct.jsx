@@ -2,13 +2,12 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import Navbar from '../Navbar'
 import NavbarTop from '../NavbarTop'
-import { Link, useParams } from "react-router-dom";
-import { createProductApi, getCategoryApi, getCategoryP, getTableCategoryApi, getTableProductApi } from '../../app/services/adminService';
+import { Link, useParams, useNavigate } from "react-router-dom";
+import { createProductApi, ImageProduct, getCategoryP, getTableCategoryApi, getTableProductApi } from '../../app/services/adminService';
 
 const CreateProduct = () => {
 
   const [data, setData] = useState([]);
-
   const [image, setImage] = useState("");
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
@@ -17,6 +16,7 @@ const CreateProduct = () => {
   const [salePrice, setSalePrice] = useState("");
   const [description, setDescription] = useState("");
   const [content, setContent] = useState("");
+  const navigate = useNavigate();
 
 
   useEffect(() => {
@@ -29,12 +29,24 @@ const CreateProduct = () => {
     getAllProduct();
   }, []);
 
-
-  const handleCreateProduct = async () => {
-    const data = await createProductApi({ name, price, quantity, category, salePrice, description, content });
-    console.log(data);
+  const handleCreateProduct = async (e) => {
+    e.preventDefault();
+    try {
+      const data = await createProductApi({name, price, quantity, category, salePrice, description, content, image });
+      const formData = new FormData();
+      formData.append('image', image);
+      formData.append('id', data.id);
+      await ImageProduct(formData);
+      console.log("dataproduct",data);
+      navigate('/tableproduct');
+    } catch (error) {
+      console.log(error.message);
+    }
   }
 
+  const handleImage = (e) => {
+    setImage(e.target.files[0]);
+  }
   return (
     <>
       <div className="bg-[#eceff1] min-h-[1070px]">
@@ -92,20 +104,21 @@ const CreateProduct = () => {
                     <div className="flex gap-6 mt-7 items-center">
                       <label className='font-medium text-[14px] w-[10%] '>Description</label>
                       <div className='w-[60%]'>
-                        <input value={description} onChange={(e) => setDescription(e.target.value)} className='w-full text-[#495057] bg-[#fff] py-[0.375rem] focus:bg-[#fff] px-[0.75rem]  focus:ring-offset-1 focus:ring-1 focus:outline   focus:outline-[#1b00ff] rounded-[.25rem] border-[1px] border-gray-200 ' type="password" placeholder="Description" />
+                        <input value={description} onChange={(e) => setDescription(e.target.value)} className='w-full text-[#495057] bg-[#fff] py-[0.375rem] focus:bg-[#fff] px-[0.75rem]  focus:ring-offset-1 focus:ring-1 focus:outline   focus:outline-[#1b00ff] rounded-[.25rem] border-[1px] border-gray-200 ' type="text" placeholder="Description" />
                       </div>
                     </div>
                     <div className="flex gap-6 mt-7 items-center">
                       <label className='font-medium text-[14px] w-[10%] '>Content</label>
                       <div className='w-[60%]'>
-                        <input value={content} onChange={(e) => setContent(e.target.value)} className='w-full text-[#495057] bg-[#fff] py-[0.375rem] focus:bg-[#fff] px-[0.75rem]  focus:ring-offset-1 focus:ring-1 focus:outline   focus:outline-[#1b00ff] rounded-[.25rem] border-[1px] border-gray-200 ' type="password" placeholder="Content" />
+                        <input value={content} onChange={(e) => setContent(e.target.value)} className='w-full text-[#495057] bg-[#fff] py-[0.375rem] focus:bg-[#fff] px-[0.75rem]  focus:ring-offset-1 focus:ring-1 focus:outline   focus:outline-[#1b00ff] rounded-[.25rem] border-[1px] border-gray-200 ' type="text" placeholder="Content" />
                       </div>
                     </div>
                     <div className="gap-6 mt-5 items-center">
                       <div className="flex gap-6 mt-4 items-center">
                         <label className='font-medium text-[14px] w-[10%] '>Chon File</label>
                         <div className='w-[60%]'>
-                          <input value={image} onChange={(e) => setImage(e.target.value)} className='w-full text-[#495057] bg-[#fff] py-[0.375rem] focus:bg-[#fff] px-[0.75rem]  focus:ring-offset-1 focus:ring-1 focus:outline   focus:outline-[#1b00ff] rounded-[.25rem] border-[1px] border-gray-200 ' type="text" placeholder="Image" />
+                          {/* <input value={image} onChange={(e) => setImage(e.target.value)} className='w-full text-[#495057] bg-[#fff] py-[0.375rem] focus:bg-[#fff] px-[0.75rem]  focus:ring-offset-1 focus:ring-1 focus:outline   focus:outline-[#1b00ff] rounded-[.25rem] border-[1px] border-gray-200 ' type="text" placeholder="Image" /> */}
+                          <input type="file" onChange={handleImage} className='w-full text-[#495057] bg-[#fff] py-[0.375rem] focus:bg-[#fff] px-[0.75rem]  focus:ring-offset-1 focus:ring-1 focus:outline   focus:outline-[#1b00ff] rounded-[.25rem] border-[1px] border-gray-200 ' placeholder="Image" />
                         </div>
                       </div>
                     </div>

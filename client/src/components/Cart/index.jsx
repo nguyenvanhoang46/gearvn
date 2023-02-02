@@ -12,7 +12,6 @@ const Cart = () => {
 
     const Globalstate = useContext(Cartcontext);
     const state = Globalstate.state;
-    
     const dispatch = Globalstate.dispatch;
     const total = state.reduce((total, item) => {
         return total + item.price * item.quantity;
@@ -24,7 +23,6 @@ const Cart = () => {
                 <Header />
                 <Category />
             </div>
-
             <div className="bg-[#F8F8FC] h-[830px]">
                 <div className="container mx-auto">
                     <div className="pt-8 flex">
@@ -79,7 +77,7 @@ const Cart = () => {
                                                         </div>
                                                     </div>
                                                     <div className="">
-                                                        <p>{(item.quantity * item.price).toLocaleString('vi', {style: 'currency', currency: 'VND'})}</p>
+                                                        <p>{(item.quantity * item.price).toLocaleString('vi', { style: 'currency', currency: 'VND' })}</p>
                                                     </div>
                                                     <div className="flex justify-center">
                                                         <div className='cursor-pointer hover:text-[red]' onClick={() => dispatch({ type: "REMOVE", payload: item })}> <MdOutlineClose /></div>
@@ -104,7 +102,7 @@ const Cart = () => {
                                                 <div className="text-right">
                                                     {state.length > 0 && (
                                                         <div className="total">
-                                                            <h2>{(total).toLocaleString('vi', {style: 'currency', currency: 'VND'})}</h2>
+                                                            <h2>{(total).toLocaleString('vi', { style: 'currency', currency: 'VND' })}</h2>
                                                         </div>
                                                     )}
                                                 </div>
@@ -115,7 +113,7 @@ const Cart = () => {
                                                     <div className="text-[#1435C3] font-bold ">
                                                         {state.length > 0 && (
                                                             <div className="total">
-                                                                <h2>{(total).toLocaleString('vi', {style: 'currency', currency: 'VND'})}</h2>
+                                                                <h2>{(total).toLocaleString('vi', { style: 'currency', currency: 'VND' })}</h2>
                                                             </div>
                                                         )}
                                                     </div>
@@ -123,13 +121,17 @@ const Cart = () => {
                                                 </div>
                                             </div>
                                             <div className="mt-7">
-                                                <button className='py-[0.4rem] px-[1rem] text-[#FFFFFF] bg-[#ff391e] w-full '>THANH TOÁN</button>
+                                                <Link className='w-full' to={'/payproduct'}>
+                                                    <button className='py-[0.4rem] px-[1rem] text-[#FFFFFF] bg-[#ff391e] w-full hover:opacity-[0.7] '>
+                                                        THANH TOÁN
+                                                    </button>
+                                                </Link>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <Link className='flex items-center gap-2 mt-6' to={'/'}>
+                            <Link className='flex items-center gap-2 mt-6 hover:opacity-[0.7] ' to={'/'}>
                                 <IoIosArrowRoundBack size={25} />
                                 <div className="text-[#6c757d]">Back to Shop</div>
                             </Link>

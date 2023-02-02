@@ -20,6 +20,7 @@ import EditCategory from "../admin/Category/EditCategory";
 import CreateProduct from "../admin/Product/CreateProduct";
 import EditProduct from "../admin/Product/EditProduct";
 import Cart from "../components/Cart";
+import PayProduct from "../components/PayProduct";
 
 const router = createBrowserRouter([
 
@@ -99,6 +100,10 @@ const router = createBrowserRouter([
     {
         path: "cart",
         element: <Cart />,
+    },
+    {
+        path: "payproduct",
+        element: <PayProduct />,
     },
 
 

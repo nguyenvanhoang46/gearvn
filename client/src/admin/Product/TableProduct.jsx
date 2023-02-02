@@ -13,25 +13,23 @@ const TableProduct = () => {
         const getAllProduct = async () => {
             const data = await getTableProductApi();
             setDataProduct(data.data);
-            console.log(data);
+            console.log("hoang", data);
         }
-        // const getAllCategory = async () => {
-        //     const data = await getTableCategoryApi();
-        //     setDataProduct(data.data);
-        //     console.log(data);
-        // }
         getAllProduct();
-        // getAllCategory();
     }, []);
 
     const handleDelete = async (id) => {
-        console.log(id);
-        const response = await deleteProductApi(id);
-        setDataProduct(
-            dataProduct.filter((post) => {
-                return post.id != id;
-            })
-        )
+        try {
+            console.log(id);
+            const response = await deleteProductApi(id);
+            console.log(response);
+            setDataProduct(
+                dataProduct.filter((post) => {
+                    return post.id != id;
+                }));
+        } catch (error) {
+            console.log(error.message);
+        }
     }
 
     return (
