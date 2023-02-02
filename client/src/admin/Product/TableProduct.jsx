@@ -81,23 +81,23 @@ const TableProduct = () => {
                                     </thead>
                                     <tbody>
                                         {dataProduct.map((item, index) => {
+                                            // console.log(item.images);
                                             return (
-                                                <tr className=''>
+                                                <tr key={index} className=''>
                                                     <td className='py-3 px-5 w-[10%] '>
-                                                        <img className='h-[100px] max-h-[100px]' src={item.images} alt="" />
+                                                        <img className='h-[100px] max-h-[100px]' src={item.images.length > 0 ? item.images[0].url : ""} alt="" />
                                                     </td>
                                                     <td className='py-3 px-5 w-[250px] '>{item.name}</td>
                                                     <td className='py-3 px-5 '>{item.price}</td>
                                                     <td className='py-3 px-5 '>{item.quantity}</td>
                                                     <td className='py-3 px-5 '>{item.salePrice}</td>
                                                     <td className='py-3 px-5 '>g</td>
-                                                    <td className='py-3 px-5 w-[300px] '>{item.content}</td>
-                                                    <td className='py-3 px-5 w-[200px] '>{item.description}</td>
+                                                    <td className='py-3 px-5 w-[300px]'>{item.content}</td>
+                                                    <td className='py-3 px-5 w-[200px]'>{item.description}</td>
                                                     <td className='py-3 px-5 gap-3 flex '>
                                                         <button>Sửa</button>
                                                         <button onClick={() => handleDelete(item.id)} >Xóa</button>
                                                     </td>
-
                                                 </tr>
                                             );
                                         })}
