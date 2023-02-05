@@ -25,10 +25,9 @@ public class ProductProfile : Profile
           .ForMember(d => d.Description, o => o.MapFrom(s => s.Description))
           .ForMember(d => d.Content, o => o.MapFrom(s => s.Content));
 
-        CreateMap<Product, UpdateProductDto>()
-          .ForMember(d => d.Id, o => o.MapFrom(s => s.Id))
+        CreateMap<UpdateProductDto, Product>()
           .ForMember(d => d.CategoryId,
-            o => o.MapFrom(s => s.Category!.Id))
+            o => o.MapFrom(s => s.CategoryId))
           .ForMember(d => d.SalePrice,
             o => o.MapFrom(s => s.SalePrice))
           .ForMember(d => d.Quantity, o => o.MapFrom(s => s.Quantity))
@@ -36,6 +35,7 @@ public class ProductProfile : Profile
           .ForMember(d => d.Name, o => o.MapFrom(s => s.Name))
           .ForMember(d => d.Description, o => o.MapFrom(s => s.Description))
           .ForMember(d => d.Content, o => o.MapFrom(s => s.Content))
-          .ReverseMap();
+          .ReverseMap()
+          .ForAllMembers(d => d.Condition(s => s != null));
     }
 }

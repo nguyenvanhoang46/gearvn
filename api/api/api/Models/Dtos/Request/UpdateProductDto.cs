@@ -15,6 +15,4 @@ public class UpdateProductDto
   public string Content { get; set; }
 
   public string? CategoryId { get; set; }
-
-  public string? Id { get; set; }
 }

@@ -54,7 +54,7 @@ const Cart = () => {
                                     <div className="border-b-[1px] ">
                                         {state.map((item, index) => {
                                             return (
-                                                <div className="grid grid-cols-5 text-center border-t-[1px] border-[#dee2e6] items-center">
+                                                <div key={item.id}  className="grid grid-cols-5 text-center border-t-[1px] border-[#dee2e6] items-center">
                                                     <div className="flex justify-center  ">
                                                         <img className=" h-[80px] max-h-[80px]" src="//product.hstatic.net/1000026716/product/hn093w_f885c53fcc5d4b82b3c55b52dd4ce038_large.png" />
                                                     </div>

@@ -48,7 +48,9 @@ public class ImageController : BaseController
 
           product.Images = _mapper.Map<List<ImageDto>, List<Image>>(productImage);
 
-          await _unitOfWork.SaveAsync();
+          _unitOfWork.ProductRepository.Update(product);
+
+           _unitOfWork.Save();
 
           return CustomResult(ResponseType.GetMessageFormCode(HttpStatusCode.OK), _mapper);
         }

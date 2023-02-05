@@ -14,6 +14,7 @@ const StyleIcon = {
 }
 const HeaderRight = () => {
   const { auth } = useContext(AuthContext);
+  console.log("auth",auth);
   let navigate = useNavigate();
 
   const Globalstate = useContext(Cartcontext);

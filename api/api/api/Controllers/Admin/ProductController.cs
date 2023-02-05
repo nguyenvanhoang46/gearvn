@@ -76,7 +76,7 @@ public class ProductController : BaseController
     {
         try
         {
-            Product? product = await _unitOfWork.ProductRepository.FindById(Id);
+            Product? product = await _unitOfWork.ProductRepository.FindById(Id, "Category");
 
             if (product == null)
                 return CustomResult(ResponseType.GetMessageFormCode(HttpStatusCode.NotFound), HttpStatusCode.NotFound);
@@ -102,9 +102,7 @@ public class ProductController : BaseController
                 Name = productDto.Name,
                 Description = productDto.Description,
                 Price = productDto.Price,
-                Category = productDto.CategoryId != String.Empty
-                ? await _unitOfWork.CategoryRepository.FindById(productDto.CategoryId!)
-                : null,
+                CategoryId = productDto.CategoryId,
                 SalePrice = productDto.SalePrice ?? 0,
                 Content = productDto.Content,
             };
@@ -131,11 +129,17 @@ public class ProductController : BaseController
             if (product == null)
                 return CustomResult(ResponseType.GetMessageFormCode(HttpStatusCode.NotFound), HttpStatusCode.NotFound);
 
-            _unitOfWork.ProductRepository.Update(_mapper.Map<UpdateProductDto, Product>(productDto));
+            product.Name = productDto.Name;
+            product.Price = productDto.Price;
+            product.Quantity = productDto.Quantity;
+            product.SalePrice = productDto.SalePrice ?? product.SalePrice;
+            product.Description = productDto.Description;
+            product.Content = productDto.Content;
+            product.CategoryId = productDto.CategoryId;
 
             await _unitOfWork.SaveAsync();
 
-            return CustomResult(ResponseType.GetMessageFormCode(HttpStatusCode.OK));
+            return CustomResult(ResponseType.GetMessageFormCode(HttpStatusCode.OK), product);
         }
         catch (Exception e)
         {

@@ -4,13 +4,17 @@ import request from "../../lib/request"
 
 export const getTableProductApi = () => request.get("/Admin/Product/GetProducts").then(({ data }) => data.data);
 
+export const getProductApi = (id) => request.get(`/Admin/Product/GetProduct/${id}`).then(({ data }) => data.data);
+
 export const createProductApi = (data) => request.post("/Admin/Product/SaveProduct", data).then(({data}) => data.data);
 
 export const deleteProductApi = (id) => request.delete(`/Admin/Product/DeleteProduct/${id}`).then(({ data }) => data.data);
-// export const deleteCtegoryApi = (id) => request.delete(`/Admin/Category/DeleteCategory/${id}`).then(({ data }) => data.data);
+
 export const getProduct = () => request.get("/Product/GetProducts").then(({data}) => data.data);
 
 export const ImageProduct = (formData) => request.post('/Admin/Image/UploadImage', formData).then(({data}) => data.data);
+
+export const updateProductApi = (id,data) => request.put(`/Admin/Product/UpdateProduct/${id}`, data).then(({data}) => data.data);
 
 // User
 

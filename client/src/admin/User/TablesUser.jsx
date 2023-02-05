@@ -18,7 +18,7 @@ const TablesUser = () => {
                 setDataUser(data.data);
                 console.log(data);
             } catch (error) {
-                console.log(error.message);
+                // console.log(error.message);
             }
         }
 

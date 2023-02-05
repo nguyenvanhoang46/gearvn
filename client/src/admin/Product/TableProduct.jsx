@@ -4,19 +4,36 @@ import NavbarTop from '../NavbarTop'
 import { Link } from "react-router-dom";
 import { useState, useEffect } from 'react'
 import { deleteProductApi, getTableCategoryApi, getTableProductApi } from '../../app/services/adminService'
+import Pagination from '../Pagination';
 
 const TableProduct = () => {
+
+    const [loading, setLoading] = useState(false);
     const [dataProduct, setDataProduct] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postsPerPage, setPostsPerPage] = useState(7);
 
     // console.log("da",dataProduct);
     useEffect(() => {
         const getAllProduct = async () => {
+            setLoading(true);
             const data = await getTableProductApi();
             setDataProduct(data.data);
+            setLoading(false);
             console.log("hoang", data);
         }
         getAllProduct();
     }, []);
+
+    if (loading && dataProduct.length === 0) {
+        return <h2>Loading...</h2>
+    }
+
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentProduct = dataProduct.slice(indexOfFirstPost, indexOfLastPost);
+    const howManyPages = Math.ceil(dataProduct.length / postsPerPage)
+
 
     const handleDelete = async (id) => {
         try {
@@ -49,7 +66,7 @@ const TableProduct = () => {
                             <div className="p-6 overflow-x-scroll px-0 pt-0 pb-2">
                                 <table className='w-full min-w-[640px] table-auto'>
                                     <thead>
-                                        <tr>
+                                        <tr className=' '>
                                             <th className='border-b border-blue-gray-50 py-3 px-5 text-left'>
                                                 <p className="block antialiased font-sans text-[11px] font-bold uppercase text-blue-gray-400">Image</p>
                                             </th>
@@ -80,10 +97,9 @@ const TableProduct = () => {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {dataProduct.map((item, index) => {
-                                            // console.log(item.images);
+                                        {currentProduct.map((item, index) => {
                                             return (
-                                                <tr key={index} className=''>
+                                                <tr key={index} className='border-b-[1px]'>
                                                     <td className='py-3 px-5 w-[10%] '>
                                                         <img className='h-[100px] max-h-[100px]' src={item.images.length > 0 ? item.images[0].url : ""} alt="" />
                                                     </td>
@@ -91,11 +107,11 @@ const TableProduct = () => {
                                                     <td className='py-3 px-5 '>{item.price}</td>
                                                     <td className='py-3 px-5 '>{item.quantity}</td>
                                                     <td className='py-3 px-5 '>{item.salePrice}</td>
-                                                    <td className='py-3 px-5 '>g</td>
+                                                    <td className='py-3 px-5 '>{item.category?.name}</td>
                                                     <td className='py-3 px-5 w-[300px]'>{item.content}</td>
                                                     <td className='py-3 px-5 w-[200px]'>{item.description}</td>
-                                                    <td className='py-3 px-5 gap-3 flex '>
-                                                        <button>Sửa</button>
+                                                    <td className='mt-[50px] gap-3 flex '>
+                                                        <Link to={`/editproduct/${item.id}`}>Sửa</Link>
                                                         <button onClick={() => handleDelete(item.id)} >Xóa</button>
                                                     </td>
                                                 </tr>
@@ -103,6 +119,9 @@ const TableProduct = () => {
                                         })}
                                     </tbody>
                                 </table>
+                                <div className="my-[50px]">
+                                    <Pagination pages={howManyPages} setCurrentPage={setCurrentPage} />
+                                </div>
                             </div>
                         </div>
                     </div>

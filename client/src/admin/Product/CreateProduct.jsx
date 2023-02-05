@@ -12,7 +12,7 @@ const CreateProduct = () => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [quantity, setQuantity] = useState("");
-  const [category, setCategory] = useState("");
+  const [categoryId, setCategoryId] = useState("");
   const [salePrice, setSalePrice] = useState("");
   const [description, setDescription] = useState("");
   const [content, setContent] = useState("");
@@ -20,24 +20,23 @@ const CreateProduct = () => {
 
 
   useEffect(() => {
-    const getAllProduct = async () => {
+    const getAllCategory = async () => {
       const data = await getTableCategoryApi();
       setData(data.data);
-
       console.log(data);
     }
-    getAllProduct();
+    getAllCategory();
   }, []);
 
   const handleCreateProduct = async (e) => {
     e.preventDefault();
     try {
-      const data = await createProductApi({name, price, quantity, category, salePrice, description, content, image });
+      const data = await createProductApi({ name, price, quantity, categoryId, salePrice, description, content, image });
       const formData = new FormData();
       formData.append('image', image);
       formData.append('id', data.id);
       await ImageProduct(formData);
-      console.log("dataproduct",data);
+      // console.log("dataproduct", data);
       navigate('/tableproduct');
     } catch (error) {
       console.log(error.message);
@@ -45,6 +44,7 @@ const CreateProduct = () => {
   }
 
   const handleImage = (e) => {
+    // console.log("file", e.target.files[0]);
     setImage(e.target.files[0]);
   }
   return (
@@ -92,7 +92,7 @@ const CreateProduct = () => {
                     <div className="flex gap-6 mt-7 items-center">
                       <label className='font-medium text-[14px] w-[10%] '>Category</label>
                       <div className='w-[60%]'>
-                        <select name="" id="" value={category} onChange={(e) => setCategory(e.target.value)} >
+                        <select name="" id="" value={categoryId} onChange={(e) => setCategoryId(e.target.value)} >
                           {data.map((item) => {
                             return (
                               <option value={item.id}>{item.name}</option>
@@ -124,7 +124,7 @@ const CreateProduct = () => {
                     </div>
                     <div className="pl-[180px] pb-6 pt-20 flex gap-4">
                       <button type="submit" className="middle none font-sans font-bold center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/40 active:opacity-[0.85] block ">Add Product</button>
-                      <Link to='/tableuser' type="submit" className="middle none font-sans font-bold center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-gradient-to-tr bg-[#EB5160] to-blue-400 text-white shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/40 active:opacity-[0.85] block ">Cancel</Link>
+                      <Link to='/tableproduct' type="submit" className="middle none font-sans font-bold center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-gradient-to-tr bg-[#EB5160] to-blue-400 text-white shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/40 active:opacity-[0.85] block ">Cancel</Link>
                     </div>
                   </div>
                 </form>
