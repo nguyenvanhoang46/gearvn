@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Category from '../catergory'
 import Header from '../Header'
 import { AuthContext } from '../../contexts/AuthProvider';
-import { useContext } from 'react';
+
 
 const PayProduct = () => {
     const { auth } = useContext(AuthContext);
@@ -19,13 +19,13 @@ const PayProduct = () => {
                             <div className="w-full mb-5">
                                 <div className="relative">
                                     <label className="absolute font-normal text-[#999999] text-[14px] px-[0.93333em] " for="billing_address_full_name">Họ và tên</label>
-                                    <input value={auth.fullName}  className="border-[1px] outline-[#338dbc] outline-[1px] border-[#d9d9d9] text-[15px] pt-[16px] pb-[3px] text-[#333333] rounded-[4px] pr-[2.8em] pl-[0.8em] w-full bg-white  "/>
+                                    <input value={auth.fullName} className="border-[1px] outline-[#338dbc] outline-[1px] border-[#d9d9d9] text-[15px] pt-[16px] pb-[3px] text-[#333333] rounded-[4px] pr-[2.8em] pl-[0.8em] w-full bg-white  " />
                                 </div>
                             </div>
                             <div className="w-full mb-5">
                                 <div className="relative">
                                     <label className="absolute font-normal text-[#999999] text-[14px] px-[0.93333em] " for="billing_address_full_name">Số điện thoại</label>
-                                    <input value={auth.phone}  className="border-[1px] outline-[#338dbc] border-[#d9d9d9] text-[15px] pt-[16px] pb-[3px] text-[#333333] rounded-[4px] pr-[2.8em] pl-[0.8em] w-full bg-white  " />
+                                    <input value={auth.phone} className="border-[1px] outline-[#338dbc] border-[#d9d9d9] text-[15px] pt-[16px] pb-[3px] text-[#333333] rounded-[4px] pr-[2.8em] pl-[0.8em] w-full bg-white  " />
                                 </div>
                             </div>
                             <div className="w-full mb-5">
@@ -37,7 +37,7 @@ const PayProduct = () => {
                             <div className="w-full mb-5">
                                 <div className="relative">
                                     <label className="absolute font-normal text-[#999999] text-[14px] px-[0.93333em] " for="billing_address_full_name">Địa chỉ</label>
-                                    <input   className="border-[1px] outline-[#338dbc] border-[#d9d9d9] text-[15px] pt-[16px] pb-[3px] text-[#333333] rounded-[4px] pr-[2.8em] pl-[0.8em] w-full bg-white  " />
+                                    <input className="border-[1px] outline-[#338dbc] border-[#d9d9d9] text-[15px] pt-[16px] pb-[3px] text-[#333333] rounded-[4px] pr-[2.8em] pl-[0.8em] w-full bg-white  " />
                                 </div>
                             </div>
                         </div>
