@@ -1,11 +1,52 @@
-import React, { useContext } from 'react'
+import React, { useState } from 'react'
 import Category from '../catergory'
 import Header from '../Header'
+import { BsFillCartFill } from 'react-icons/bs'
+import { AiOutlineLoading } from 'react-icons/ai'
 import { AuthContext } from '../../contexts/AuthProvider';
-
+import { Link, useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { Cartcontext } from '../../contexts/cart/Context';
+import { createOrderApi } from '../../app/services/orderService'
+import { number } from 'yup'
 
 const PayProduct = () => {
     const { auth } = useContext(AuthContext);
+
+    const navigate = useNavigate();
+
+    const [address, setAddress] = useState("");
+    const [fullName, setFullName] = useState();
+    const [phone, setPhone] = useState();
+    const [email, setEmail] = useState();
+
+    const Globalstate = useContext(Cartcontext);
+    const state = Globalstate.state;
+    console.log("da", state);
+    const total = state.reduce((total, item) => {
+        return total + item.price * item.quantity;
+    }, 0);
+
+    const handleOrder = async (e) => {
+        e.preventDefault();
+        try {
+            const orderItems = state.map((product) => {
+                return {
+                    productId: product.id,
+                    quantity: product.quantity
+                }
+            })
+            console.log("list", orderItems);
+            const response = await createOrderApi({ address, fullName, phone, email, userId: auth.id, orderItems });
+            console.log("ga", response)
+            if (response.statusCode !== 400) {
+                navigate("/")
+            }
+        } catch (error) {
+            console.log(error.message);
+        }
+    }
+
     return (
         <>
             <div className='bg-[#f1f0f1]'>
@@ -14,39 +55,79 @@ const PayProduct = () => {
             </div>
             <div className="bg-[#F8F8FC] h-[830px]">
                 <div className="container mx-auto">
-                    <div className="rounded-[1rem] gap-6 grid grid-cols-12">
-                        <div className="mt-[15px] col-span-8 rounded-[8px] py-[4vh] px-[5vh] bg-[#FFFFFF]  ">
-                            <div className="w-full mb-5">
-                                <div className="relative">
-                                    <label className="absolute font-normal text-[#999999] text-[14px] px-[0.93333em] " for="billing_address_full_name">Họ và tên</label>
-                                    <input value={auth.fullName} className="border-[1px] outline-[#338dbc] outline-[1px] border-[#d9d9d9] text-[15px] pt-[16px] pb-[3px] text-[#333333] rounded-[4px] pr-[2.8em] pl-[0.8em] w-full bg-white  " />
+                    <form onSubmit={handleOrder} action="">
+                        <div className="rounded-[1rem] gap-6 grid grid-cols-12">
+                            <div className="mt-[15px] col-span-8 rounded-[8px]">
+                                <h2 className='text-[18px]'>Thông tin thanh toán</h2>
+                                <div className="bg-[#FFFFFF] mt-4  py-[4vh] px-[5vh] ">
+                                    <div className="w-full mb-5">
+                                        <div className="relative">
+                                            <label className="absolute font-normal text-[#999999] text-[14px] px-[0.93333em] " for="billing_address_full_name">Họ và tên</label>
+                                            <input value={auth.fullName} className="border-[1px] outline-[#338dbc] outline-[1px] border-[#d9d9d9] text-[15px] pt-[16px] pb-[3px] text-[#333333] rounded-[4px] pr-[2.8em] pl-[0.8em] w-full bg-white  " />
+                                        </div>
+                                    </div>
+                                    <div className="w-full mb-5">
+                                        <div className="relative">
+                                            <label className="absolute font-normal text-[#999999] text-[14px] px-[0.93333em] " for="billing_address_full_name">Số điện thoại</label>
+                                            <input value={auth.phone} className="border-[1px] outline-[#338dbc] border-[#d9d9d9] text-[15px] pt-[16px] pb-[3px] text-[#333333] rounded-[4px] pr-[2.8em] pl-[0.8em] w-full bg-white  " />
+                                        </div>
+                                    </div>
+                                    <div className="w-full mb-5">
+                                        <div className="relative">
+                                            <label className="absolute font-normal text-[#999999] text-[14px] px-[0.93333em] " for="billing_address_full_name">Email</label>
+                                            <input value={auth.email} className="border-[1px] outline-[#338dbc] border-[#d9d9d9] text-[15px] pt-[16px] pb-[3px] text-[#333333] rounded-[4px] pr-[2.8em] pl-[0.8em] w-full bg-white  " />
+                                        </div>
+                                    </div>
+                                    <div className="w-full mb-5">
+                                        <div className="relative">
+                                            <label className="absolute font-normal text-[#999999] text-[14px] px-[0.93333em] " for="billing_address_full_name">Địa chỉ</label>
+                                            <input value={address} onChange={(e) => setAddress(e.target.value)} className="border-[1px] outline-[#338dbc] border-[#d9d9d9] text-[15px] pt-[16px] pb-[3px] text-[#333333] rounded-[4px] pr-[2.8em] pl-[0.8em] w-full bg-white  " />
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div className="w-full mb-5">
-                                <div className="relative">
-                                    <label className="absolute font-normal text-[#999999] text-[14px] px-[0.93333em] " for="billing_address_full_name">Số điện thoại</label>
-                                    <input value={auth.phone} className="border-[1px] outline-[#338dbc] border-[#d9d9d9] text-[15px] pt-[16px] pb-[3px] text-[#333333] rounded-[4px] pr-[2.8em] pl-[0.8em] w-full bg-white  " />
+                            <div className="col-span-4 mt-[15px]">
+                                <h2 className='text-[18px]'>Đơn hàng của bạn</h2>
+                                <div className="bg-[#FFFFFF] rounded-[8px] pt-[5px] pr-[20px] pb-[15px] pl-[20px] mt-3 ">
+                                    <div className=''>
+                                        <div className='mt-2 flex justify-between' >
+                                            <h4><b>Cart</b></h4>
+                                            <span className="flex items-center gap-1"><BsFillCartFill /><b>{state.length}</b></span>
+                                        </div>
+                                        <table className='w-full mt-3'>
+                                            <thead className=''>
+                                                <tr className='text-left mt-3'>
+                                                    <th className=''>Name</th>
+                                                    <th className='text-center'>Số lượng</th>
+                                                    <th className='text-right'>Giá</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {state.map((item, index) => {
+                                                    return (
+                                                        <tr className='text-left'>
+                                                            <td className=''>{item.name}</td>
+                                                            <td className='text-center'>{item.quantity}</td>
+                                                            <td className='text-right'>{(item.quantity * item.price).toLocaleString('vi', { style: 'currency', currency: 'VND' })}</td>
+                                                        </tr>
+                                                    )
+                                                })}
+                                            </tbody>
+                                        </table>
+                                        <hr className='mt-10' />
+                                        <p className='flex justify-between mt-5'>
+                                            Tổng
+                                            <span className=''><b>{(total).toLocaleString('vi', { style: 'currency', currency: 'VND' })}</b></span>
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="w-full mb-5">
-                                <div className="relative">
-                                    <label className="absolute font-normal text-[#999999] text-[14px] px-[0.93333em] " for="billing_address_full_name">Email</label>
-                                    <input value={auth.email} className="border-[1px] outline-[#338dbc] border-[#d9d9d9] text-[15px] pt-[16px] pb-[3px] text-[#333333] rounded-[4px] pr-[2.8em] pl-[0.8em] w-full bg-white  " />
-                                </div>
-                            </div>
-                            <div className="w-full mb-5">
-                                <div className="relative">
-                                    <label className="absolute font-normal text-[#999999] text-[14px] px-[0.93333em] " for="billing_address_full_name">Địa chỉ</label>
-                                    <input className="border-[1px] outline-[#338dbc] border-[#d9d9d9] text-[15px] pt-[16px] pb-[3px] text-[#333333] rounded-[4px] pr-[2.8em] pl-[0.8em] w-full bg-white  " />
+                                <div className="mt-7">
+                                    <button type='submit' className="py-[0.4rem] px-[1rem] text-[#FFFFFF] bg-[#ff391e] w-full hover:opacity-[0.7] uppercase ">Đặt hàng</button>
                                 </div>
                             </div>
                         </div>
-                        <div className="col-span-4 mt-[15px]">
-                            <div className="bg-[#FFFFFF] rounded-[8px] ">
-                                mai
-                            </div>
-                        </div>
-                    </div>
+                    </form>
+
                 </div>
             </div>
         </>

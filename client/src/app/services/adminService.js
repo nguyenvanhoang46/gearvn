@@ -2,19 +2,19 @@ import request from "../../lib/request"
 
 // Product
 
-export const getTableProductApi = () => request.get("/Admin/Product/GetProducts").then(({ data }) => data.data);
+export const getTableProductApi = () => request.get(`/Admin/Product/GetProducts`).then(({ data }) => data.data);
 
 export const getProductApi = (id) => request.get(`/Admin/Product/GetProduct/${id}`).then(({ data }) => data.data);
 
-export const createProductApi = (data) => request.post("/Admin/Product/SaveProduct", data).then(({data}) => data.data);
+export const createProductApi = (data) => request.post("/Admin/Product/SaveProduct", data).then(({ data }) => data.data);
 
 export const deleteProductApi = (id) => request.delete(`/Admin/Product/DeleteProduct/${id}`).then(({ data }) => data.data);
 
-export const getProduct = () => request.get("/Product/GetProducts").then(({data}) => data.data);
+export const getProduct = () => request.get("/Product/GetProducts").then(({ data }) => data.data);
 
-export const ImageProduct = (formData) => request.post('/Admin/Image/UploadImage', formData).then(({data}) => data.data);
+export const ImageProduct = (formData) => request.post('/Admin/Image/UploadImage', formData).then(({ data }) => data.data);
 
-export const updateProductApi = (id,data) => request.put(`/Admin/Product/UpdateProduct/${id}`, data).then(({data}) => data.data);
+export const updateProductApi = (id, data) => request.put(`/Admin/Product/UpdateProduct/${id}`, data).then(({ data }) => data.data);
 
 // User
 
@@ -39,3 +39,4 @@ export const createCategoryApi = (data) => request.post('/Admin/Category/SaveCat
 export const getCategoryApi = (id) => request.get(`/Admin/Category/GetCategory/${id}`).then(({ data }) => data.data);
 
 export const updateCategoryApi = (id, data) => request.put(`Admin/Category/UpdateCategory/${id}`, data).then((data) => data);
+

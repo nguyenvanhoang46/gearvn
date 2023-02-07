@@ -3,7 +3,8 @@ import Navbar from '../Navbar'
 import NavbarTop from '../NavbarTop'
 import { Link } from "react-router-dom";
 import { useState, useEffect } from 'react'
-import { deleteProductApi, getTableCategoryApi, getTableProductApi } from '../../app/services/adminService'
+import { AiOutlineLoading } from 'react-icons/ai'
+import { deleteProductApi, getTableCategoryApi, getTableProductApi, getTableProduct } from '../../app/services/adminService'
 import Pagination from '../Pagination';
 
 const TableProduct = () => {
@@ -13,20 +14,28 @@ const TableProduct = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage, setPostsPerPage] = useState(7);
 
-    // console.log("da",dataProduct);
     useEffect(() => {
         const getAllProduct = async () => {
-            setLoading(true);
-            const data = await getTableProductApi();
-            setDataProduct(data.data);
-            setLoading(false);
-            console.log("hoang", data);
+            try {
+                setLoading(true);
+                const dataP = await getTableProductApi();
+                setDataProduct(dataP.data);
+                console.log(dataP);
+                setLoading(false);
+            } catch (error) {
+                console.log(error.message);
+            }
         }
         getAllProduct();
     }, []);
 
+
     if (loading && dataProduct.length === 0) {
-        return <h2>Loading...</h2>
+        return <h2>
+            <svg class="animate-spin h-5 w-5 mr-3 ..." viewBox="0 0 24 24">
+                <AiOutlineLoading />
+            </svg>
+        </h2>
     }
 
     const indexOfLastPost = currentPage * postsPerPage;
@@ -97,7 +106,7 @@ const TableProduct = () => {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {currentProduct.map((item, index) => {
+                                        {dataProduct.map((item, index) => {
                                             return (
                                                 <tr key={index} className='border-b-[1px]'>
                                                     <td className='py-3 px-5 w-[10%] '>
@@ -120,7 +129,7 @@ const TableProduct = () => {
                                     </tbody>
                                 </table>
                                 <div className="my-[50px]">
-                                    <Pagination pages={howManyPages} setCurrentPage={setCurrentPage} />
+                                    {/* <Pagination pages={howManyPages} setCurrentPage={setCurrentPage} /> */}
                                 </div>
                             </div>
                         </div>
