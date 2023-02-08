@@ -19,6 +19,7 @@ const PayProduct = () => {
     const [fullName, setFullName] = useState();
     const [phone, setPhone] = useState();
     const [email, setEmail] = useState();
+    const [city, setCity] = useState("");
 
     const Globalstate = useContext(Cartcontext);
     const state = Globalstate.state;
@@ -36,12 +37,10 @@ const PayProduct = () => {
                     quantity: product.quantity
                 }
             })
-            console.log("list", orderItems);
-            const response = await createOrderApi({ address, fullName, phone, email, userId: auth.id, orderItems });
-            console.log("ga", response)
-            if (response.statusCode !== 400) {
-                navigate("/")
-            }
+            const response = await createOrderApi({ address, fullName, phone, email, city, userId: auth.id, orderItems });
+            localStorage.removeItem("cart", true);
+            navigate("/")
+            window.location.reload(false);
         } catch (error) {
             console.log(error.message);
         }
@@ -63,25 +62,31 @@ const PayProduct = () => {
                                     <div className="w-full mb-5">
                                         <div className="relative">
                                             <label className="absolute font-normal text-[#999999] text-[14px] px-[0.93333em] " for="billing_address_full_name">Họ và tên</label>
-                                            <input value={auth.fullName} className="border-[1px] outline-[#338dbc] outline-[1px] border-[#d9d9d9] text-[15px] pt-[16px] pb-[3px] text-[#333333] rounded-[4px] pr-[2.8em] pl-[0.8em] w-full bg-white  " />
+                                            <input value={auth.fullName} onChange={(e) => setFullName(e.target.value)} className="border-[1px] outline-[#338dbc] outline-[1px] border-[#d9d9d9] text-[15px] pt-[16px] pb-[3px] text-[#333333] rounded-[4px] pr-[2.8em] pl-[0.8em] w-full bg-white  " />
                                         </div>
                                     </div>
                                     <div className="w-full mb-5">
                                         <div className="relative">
                                             <label className="absolute font-normal text-[#999999] text-[14px] px-[0.93333em] " for="billing_address_full_name">Số điện thoại</label>
-                                            <input value={auth.phone} className="border-[1px] outline-[#338dbc] border-[#d9d9d9] text-[15px] pt-[16px] pb-[3px] text-[#333333] rounded-[4px] pr-[2.8em] pl-[0.8em] w-full bg-white  " />
+                                            <input value={auth.phone} onChange={(e) => setPhone(e.target.value)} className="border-[1px] outline-[#338dbc] border-[#d9d9d9] text-[15px] pt-[16px] pb-[3px] text-[#333333] rounded-[4px] pr-[2.8em] pl-[0.8em] w-full bg-white  " />
                                         </div>
                                     </div>
                                     <div className="w-full mb-5">
                                         <div className="relative">
                                             <label className="absolute font-normal text-[#999999] text-[14px] px-[0.93333em] " for="billing_address_full_name">Email</label>
-                                            <input value={auth.email} className="border-[1px] outline-[#338dbc] border-[#d9d9d9] text-[15px] pt-[16px] pb-[3px] text-[#333333] rounded-[4px] pr-[2.8em] pl-[0.8em] w-full bg-white  " />
+                                            <input value={auth.email} onChange={(e) => setEmail(e.target.value)} className="border-[1px] outline-[#338dbc] border-[#d9d9d9] text-[15px] pt-[16px] pb-[3px] text-[#333333] rounded-[4px] pr-[2.8em] pl-[0.8em] w-full bg-white  " />
                                         </div>
                                     </div>
                                     <div className="w-full mb-5">
                                         <div className="relative">
                                             <label className="absolute font-normal text-[#999999] text-[14px] px-[0.93333em] " for="billing_address_full_name">Địa chỉ</label>
                                             <input value={address} onChange={(e) => setAddress(e.target.value)} className="border-[1px] outline-[#338dbc] border-[#d9d9d9] text-[15px] pt-[16px] pb-[3px] text-[#333333] rounded-[4px] pr-[2.8em] pl-[0.8em] w-full bg-white  " />
+                                        </div>
+                                    </div>
+                                    <div className="w-full mb-5">
+                                        <div className="relative">
+                                            <label className="absolute font-normal text-[#999999] text-[14px] px-[0.93333em] " for="billing_address_full_name">Thành phố</label>
+                                            <input value={city} onChange={(e) => setCity(e.target.value)} className="border-[1px] outline-[#338dbc] border-[#d9d9d9] text-[15px] pt-[16px] pb-[3px] text-[#333333] rounded-[4px] pr-[2.8em] pl-[0.8em] w-full bg-white  " />
                                         </div>
                                     </div>
                                 </div>
@@ -105,7 +110,7 @@ const PayProduct = () => {
                                             <tbody>
                                                 {state.map((item, index) => {
                                                     return (
-                                                        <tr className='text-left'>
+                                                        <tr className='text-left '>
                                                             <td className=''>{item.name}</td>
                                                             <td className='text-center'>{item.quantity}</td>
                                                             <td className='text-right'>{(item.quantity * item.price).toLocaleString('vi', { style: 'currency', currency: 'VND' })}</td>

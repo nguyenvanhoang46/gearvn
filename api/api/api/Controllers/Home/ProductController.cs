@@ -16,102 +16,102 @@ namespace api.Controllers.Home;
 [Route("/api/[controller]")]
 public class ProductController : BaseController
 {
-  private readonly IUnitOfWork _unitOfWork;
-  private readonly IMapper _mapper;
-  private readonly IMetaService _metaService;
+    private readonly IUnitOfWork _unitOfWork;
+    private readonly IMapper _mapper;
+    private readonly IMetaService _metaService;
 
-  public ProductController(IUnitOfWork unitOfWork, IMapper mapper, IMetaService metaService)
-  {
-    _unitOfWork = unitOfWork;
-    _mapper = mapper;
-    _metaService = metaService;
-  }
-
-  [HttpGet(Routes.API_PRODUCT_GET_PRODUCTS)]
-  public async Task<IActionResult> GetProducts([FromQuery] PaginationFilter paginationFilter,
-    [FromQuery] SortingFilter sortingFilter, [FromQuery] SearchFilter searchFilter)
-  {
-    try
+    public ProductController(IUnitOfWork unitOfWork, IMapper mapper, IMetaService metaService)
     {
-      PaginationFilter pagination = new PaginationFilter(paginationFilter.PageNumber, paginationFilter.PageSize);
-      IEnumerable<Product> products = _unitOfWork.ProductRepository.Paginate(out var total,
-        paginationFilter: pagination,
-        orderByQueryString: sortingFilter.OrderBy,
-        predicate: x =>
-          x.Name.Contains(searchFilter.Search ?? "") || x.Description.Contains(searchFilter.Search ?? ""));
-
-      if (products.ToList().Count <= 0)
-        return CustomResult(ResponseType.GetMessageFormCode(HttpStatusCode.NotFound), products.ToList(),
-          HttpStatusCode.NotFound);
-
-      List<ProductDto> productDto = _mapper.Map<List<Product>, List<ProductDto>>(products.ToList());
-
-      string route = Request.Path.Value ?? throw new ArgumentNullException("Request.Path.Value");
-
-      var response = PaginationService.CreatePagedResponse(productDto, pagination,
-        total, _metaService, route!);
-
-      return CustomResult(ResponseType.GetMessageFormCode(HttpStatusCode.OK), response);
+        _unitOfWork = unitOfWork;
+        _mapper = mapper;
+        _metaService = metaService;
     }
-    catch (Exception e)
+
+    [HttpGet(Routes.API_PRODUCT_GET_PRODUCTS)]
+    public async Task<IActionResult> GetProducts([FromQuery] PaginationFilter paginationFilter,
+      [FromQuery] SortingFilter sortingFilter, [FromQuery] SearchFilter searchFilter)
     {
-      return CustomResult(ResponseType.GetMessageFormCode(HttpStatusCode.InternalServerError), e.Message,
-        HttpStatusCode.InternalServerError);
-    }
-  }
+        try
+        {
+            PaginationFilter pagination = new PaginationFilter(paginationFilter.PageNumber, paginationFilter.PageSize);
+            List<Product> products = _unitOfWork.ProductRepository.Paginate(out var total,
+              paginationFilter: pagination,
+              orderByQueryString: sortingFilter.OrderBy,
+              relations: "Category,Images",
+              predicate: x =>
+                x.Name.Contains(searchFilter.Search ?? "") || x.Description.Contains(searchFilter.Search ?? "")).ToList();
 
-  [ValidateStatusCodes]
-  [HttpGet(Routes.API_PRODUCT_GET_PRODUCTS_BY_CATEGORY)]
-  public async Task<IActionResult> GetProductsByCategory([FromQuery] PaginationFilter paginationFilter,
-    [FromQuery] SortingFilter sortingFilter, [FromRoute] string categoryId)
-  {
-    try
+            if (products.ToList().Count <= 0)
+                return CustomResult(ResponseType.GetMessageFormCode(HttpStatusCode.NotFound), HttpStatusCode.NotFound);
+
+            List<ProductDto> productDto = _mapper.Map<List<Product>, List<ProductDto>>(products.ToList());
+
+            string route = Request.Path.Value ?? throw new ArgumentNullException("Request.Path.Value");
+
+            var response = PaginationService.CreatePagedResponse(productDto, pagination,
+              total, _metaService, route!);
+
+            return CustomResult(ResponseType.GetMessageFormCode(HttpStatusCode.OK), response);
+        }
+        catch (Exception e)
+        {
+            return CustomResult(ResponseType.GetMessageFormCode(HttpStatusCode.InternalServerError), e.Message,
+              HttpStatusCode.InternalServerError);
+        }
+    }
+
+    [ValidateStatusCodes]
+    [HttpGet(Routes.API_PRODUCT_GET_PRODUCTS_BY_CATEGORY)]
+    public async Task<IActionResult> GetProductsByCategory([FromQuery] PaginationFilter paginationFilter,
+      [FromQuery] SortingFilter sortingFilter, [FromRoute] string categoryId)
     {
-      PaginationFilter pagination =
-        new PaginationFilter(paginationFilter.PageNumber, paginationFilter.PageSize);
-      IEnumerable<Product> products = _unitOfWork.ProductRepository.Paginate(out var total,
-        paginationFilter: pagination,
-        orderByQueryString: sortingFilter.OrderBy,
-        relations: "Category",
-        predicate: x => x.Category!.Id == categoryId);
+        try
+        {
+            PaginationFilter pagination =
+              new PaginationFilter(paginationFilter.PageNumber, paginationFilter.PageSize);
+            IEnumerable<Product> products = _unitOfWork.ProductRepository.Paginate(out var total,
+              paginationFilter: pagination,
+              orderByQueryString: sortingFilter.OrderBy,
+              relations: "Category",
+              predicate: x => x.Category!.Id == categoryId);
 
-      if (products.ToList().Count <= 0)
-        return CustomResult(ResponseType.GetMessageFormCode(HttpStatusCode.NotFound), HttpStatusCode.NotFound);
+            if (products.ToList().Count <= 0)
+                return CustomResult(ResponseType.GetMessageFormCode(HttpStatusCode.NotFound), HttpStatusCode.NotFound);
 
-      List<ProductDto> productDto = _mapper.Map<List<Product>, List<ProductDto>>(products.ToList());
+            List<ProductDto> productDto = _mapper.Map<List<Product>, List<ProductDto>>(products.ToList());
 
-      string route = Request.Path.Value ?? throw new ArgumentNullException("Request.Path.Value");
+            string route = Request.Path.Value ?? throw new ArgumentNullException("Request.Path.Value");
 
-      var response = PaginationService.CreatePagedResponse(productDto, pagination,
-        total, _metaService, route!);
+            var response = PaginationService.CreatePagedResponse(productDto, pagination,
+              total, _metaService, route!);
 
-      return CustomResult(ResponseType.GetMessageFormCode(HttpStatusCode.OK), response, HttpStatusCode.OK);
+            return CustomResult(ResponseType.GetMessageFormCode(HttpStatusCode.OK), response, HttpStatusCode.OK);
+        }
+        catch (Exception e)
+        {
+            return CustomResult(ResponseType.GetMessageFormCode(HttpStatusCode.InternalServerError), e.Message,
+              HttpStatusCode.InternalServerError);
+        }
     }
-    catch (Exception e)
+
+    [ValidateStatusCodes]
+    [HttpGet(Routes.API_PRODUCT_GET_PRODUCT_BY_ID)]
+    public async Task<IActionResult> GetProductDetails([FromRoute] string id)
     {
-      return CustomResult(ResponseType.GetMessageFormCode(HttpStatusCode.InternalServerError), e.Message,
-        HttpStatusCode.InternalServerError);
-    }
-  }
+        try
+        {
+            Product? product = await _unitOfWork.ProductRepository.FindById(id);
+            if (product == null)
+                return CustomResult(ResponseType.GetMessageFormCode(HttpStatusCode.NotFound), HttpStatusCode.NotFound);
 
-  [ValidateStatusCodes]
-  [HttpGet(Routes.API_PRODUCT_GET_PRODUCT_BY_ID)]
-  public async Task<IActionResult> GetProductDetails([FromRoute] string id)
-  {
-    try
-    {
-      Product? product = await _unitOfWork.ProductRepository.FindById(id);
-      if (product == null)
-        return CustomResult(ResponseType.GetMessageFormCode(HttpStatusCode.NotFound), HttpStatusCode.NotFound);
+            ProductDto productDto = _mapper.Map<Product, ProductDto>(product);
 
-      ProductDto productDto = _mapper.Map<Product, ProductDto>(product);
-
-      return CustomResult(ResponseType.GetMessageFormCode(HttpStatusCode.OK), productDto);
+            return CustomResult(ResponseType.GetMessageFormCode(HttpStatusCode.OK), productDto);
+        }
+        catch (Exception e)
+        {
+            return CustomResult(ResponseType.GetMessageFormCode(HttpStatusCode.InternalServerError), e.Message,
+              HttpStatusCode.InternalServerError);
+        }
     }
-    catch (Exception e)
-    {
-      return CustomResult(ResponseType.GetMessageFormCode(HttpStatusCode.InternalServerError), e.Message,
-        HttpStatusCode.InternalServerError);
-    }
-  }
 }

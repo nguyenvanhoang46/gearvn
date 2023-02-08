@@ -4,8 +4,10 @@ import NavbarTop from '../NavbarTop'
 import { Link } from "react-router-dom";
 import { useState, useEffect } from 'react'
 import { AiOutlineLoading } from 'react-icons/ai'
-import { deleteProductApi, getTableCategoryApi, getTableProductApi, getTableProduct } from '../../app/services/adminService'
+import { deleteProductApi, getTableProductApi } from '../../app/services/adminService'
 import Pagination from '../Pagination';
+import './Product.css';
+
 
 const TableProduct = () => {
 
@@ -31,11 +33,14 @@ const TableProduct = () => {
 
 
     if (loading && dataProduct.length === 0) {
-        return <h2>
-            <svg class="animate-spin h-5 w-5 mr-3 ..." viewBox="0 0 24 24">
-                <AiOutlineLoading />
-            </svg>
-        </h2>
+        return (
+            <div className='flex justify-center h-[800px] items-center'>
+                <svg class="animate-spin h-5 w-5 mr-3 ..." viewBox="0 0 24 24">
+                    <AiOutlineLoading />
+                    <span className="loader"></span>
+                </svg>
+            </div>
+        )
     }
 
     const indexOfLastPost = currentPage * postsPerPage;

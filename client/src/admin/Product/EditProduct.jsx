@@ -1,4 +1,3 @@
-import { faColonSign } from '@fortawesome/free-solid-svg-icons';
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { getProductApi, getTableCategoryApi, updateProductApi } from '../../app/services/adminService';
@@ -9,6 +8,7 @@ const EditProduct = () => {
   const { id } = useParams();
 
   const [data, setData] = useState([]);
+  
   const [image, setImage] = useState("");
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");

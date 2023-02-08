@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, NavLink } from 'react-router-dom';
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext, useParams } from 'react';
 import { getProduct } from '../../app/services/adminService';
 import { Cartcontext } from '../../contexts/cart/Context';
 
@@ -28,16 +28,16 @@ const ProductItem = ({ product }) => {
   return (
     <>
       {data.map((item, index) => {
-        // console.log(item.name);
+        console.log(item.name);
         item.quantity = 1;
         return (
-          <div key={item.id} className="group hover:border-[#F1DF8D] bg-[#FFF] border-[1px] shadow hover:shadow-none relative ">
+          <div key={index} className="group hover:border-[#F1DF8D] bg-[#FFF] border-[1px] shadow hover:shadow-none relative ">
             <div >
               <div className="h-[230px] w-full max-h-[363px] ">
-                <img className='w-full min-h-[211px] min-w-[196px] cursor-pointer' src='//product.hstatic.net/1000026716/product/hn093w_f885c53fcc5d4b82b3c55b52dd4ce038_large.png' alt="" />
+                <img className='w-full min-h-[211px] min-w-[196px] cursor-pointer' src={item.images.length > 0 ? item.images[0].url : ""} alt="" />
               </div>
               <div className="text-[14px] w-full top-[55%] py-[15px] px-[20px] text-[#fff] bg-opacity-80 bg-[#797565] hidden group-hover:block absolute z-10">
-                <Link to={"/productdetail"} className='mr-2 font-italic'><i>Click để xem chi tiết</i></Link>
+                <Link to={`/productdetail/${item.id}`} className='mr-2 font-italic'><i>Click để xem chi tiết</i></Link>
                 <button onClick={() => dispatch({ type: "ADD", payload: item })} className='py-[7px] px-[12px] bg-[#252525] hover:bg-[#0655A6] rounded' >Đặt hàng</button>
               </div>
             </div>

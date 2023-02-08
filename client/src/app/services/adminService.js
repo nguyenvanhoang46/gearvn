@@ -12,6 +12,8 @@ export const deleteProductApi = (id) => request.delete(`/Admin/Product/DeletePro
 
 export const getProduct = () => request.get("/Product/GetProducts").then(({ data }) => data.data);
 
+export const getProductId = (id) => request.get(`/Product/GetProduct/${id}`).then(({ data }) => data.data);
+
 export const ImageProduct = (formData) => request.post('/Admin/Image/UploadImage', formData).then(({ data }) => data.data);
 
 export const updateProductApi = (id, data) => request.put(`/Admin/Product/UpdateProduct/${id}`, data).then(({ data }) => data.data);
