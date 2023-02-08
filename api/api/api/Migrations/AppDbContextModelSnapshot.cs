@@ -44,83 +44,83 @@ namespace api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "13cdbb17-7050-4aba-89f1-38d4a5af8819",
-                            CreatedAt = new DateTime(2023, 2, 8, 8, 6, 34, 690, DateTimeKind.Utc).AddTicks(5649),
+                            Id = "a0d701b6-ce97-4fb5-bb7b-627546e72ce6",
+                            CreatedAt = new DateTime(2023, 2, 8, 15, 51, 16, 839, DateTimeKind.Utc).AddTicks(7371),
                             IsDeleted = false,
-                            Name = "Jena West",
-                            UpdatedAt = new DateTime(2023, 2, 8, 8, 6, 34, 690, DateTimeKind.Utc).AddTicks(5653)
+                            Name = "Roy Lang",
+                            UpdatedAt = new DateTime(2023, 2, 8, 15, 51, 16, 839, DateTimeKind.Utc).AddTicks(7374)
                         },
                         new
                         {
-                            Id = "3aed4bce-ec44-4a30-94ff-11f48740ac14",
-                            CreatedAt = new DateTime(2023, 2, 8, 8, 6, 34, 690, DateTimeKind.Utc).AddTicks(7197),
+                            Id = "fa8376b5-c742-44a2-a528-6ddf834f7ccb",
+                            CreatedAt = new DateTime(2023, 2, 8, 15, 51, 16, 840, DateTimeKind.Utc).AddTicks(5941),
                             IsDeleted = false,
-                            Name = "Giovanni Tracy Kirlin II",
-                            UpdatedAt = new DateTime(2023, 2, 8, 8, 6, 34, 690, DateTimeKind.Utc).AddTicks(7198)
+                            Name = "Orie Fay III",
+                            UpdatedAt = new DateTime(2023, 2, 8, 15, 51, 16, 840, DateTimeKind.Utc).AddTicks(5943)
                         },
                         new
                         {
-                            Id = "5be87de1-b3bf-4bac-9144-73bd36edf921",
-                            CreatedAt = new DateTime(2023, 2, 8, 8, 6, 34, 691, DateTimeKind.Utc).AddTicks(849),
+                            Id = "2a3304f0-3e41-4af3-b41c-780339ac8be7",
+                            CreatedAt = new DateTime(2023, 2, 8, 15, 51, 16, 840, DateTimeKind.Utc).AddTicks(8325),
                             IsDeleted = false,
-                            Name = "Justus Kraig Osinski I",
-                            UpdatedAt = new DateTime(2023, 2, 8, 8, 6, 34, 691, DateTimeKind.Utc).AddTicks(849)
+                            Name = "Milford Armstrong",
+                            UpdatedAt = new DateTime(2023, 2, 8, 15, 51, 16, 840, DateTimeKind.Utc).AddTicks(8325)
                         },
                         new
                         {
-                            Id = "c5e15828-b79d-4dc9-ae8d-26f41d8c68f5",
-                            CreatedAt = new DateTime(2023, 2, 8, 8, 6, 34, 691, DateTimeKind.Utc).AddTicks(3359),
+                            Id = "51739595-9189-47a8-9179-c4d79e625944",
+                            CreatedAt = new DateTime(2023, 2, 8, 15, 51, 16, 840, DateTimeKind.Utc).AddTicks(9913),
                             IsDeleted = false,
-                            Name = "Erin Schneider",
-                            UpdatedAt = new DateTime(2023, 2, 8, 8, 6, 34, 691, DateTimeKind.Utc).AddTicks(3359)
+                            Name = "Miller O'Hara I",
+                            UpdatedAt = new DateTime(2023, 2, 8, 15, 51, 16, 840, DateTimeKind.Utc).AddTicks(9914)
                         },
                         new
                         {
-                            Id = "1030b813-4d10-4539-96ea-8544907b7b29",
-                            CreatedAt = new DateTime(2023, 2, 8, 8, 6, 34, 691, DateTimeKind.Utc).AddTicks(4902),
+                            Id = "ee3ba930-9ecc-4d88-ac06-d982a8edb2bb",
+                            CreatedAt = new DateTime(2023, 2, 8, 15, 51, 16, 841, DateTimeKind.Utc).AddTicks(878),
                             IsDeleted = false,
-                            Name = "Turner Emmerich",
-                            UpdatedAt = new DateTime(2023, 2, 8, 8, 6, 34, 691, DateTimeKind.Utc).AddTicks(4902)
+                            Name = "Mrs. Brannon Fritsch",
+                            UpdatedAt = new DateTime(2023, 2, 8, 15, 51, 16, 841, DateTimeKind.Utc).AddTicks(879)
                         },
                         new
                         {
-                            Id = "066c1dff-f6cb-49b6-8d83-1a222dea650f",
-                            CreatedAt = new DateTime(2023, 2, 8, 8, 6, 34, 691, DateTimeKind.Utc).AddTicks(6282),
+                            Id = "940648ee-1e5e-4237-8509-eff2aa28dbf4",
+                            CreatedAt = new DateTime(2023, 2, 8, 15, 51, 16, 841, DateTimeKind.Utc).AddTicks(1791),
                             IsDeleted = false,
-                            Name = "Leonor Toy",
-                            UpdatedAt = new DateTime(2023, 2, 8, 8, 6, 34, 691, DateTimeKind.Utc).AddTicks(6283)
+                            Name = "Mario Borer",
+                            UpdatedAt = new DateTime(2023, 2, 8, 15, 51, 16, 841, DateTimeKind.Utc).AddTicks(1792)
                         },
                         new
                         {
-                            Id = "4150c5ba-10c3-40ec-bcb6-df540b968c51",
-                            CreatedAt = new DateTime(2023, 2, 8, 8, 6, 34, 691, DateTimeKind.Utc).AddTicks(7805),
+                            Id = "55a4e8e3-bc3f-4d5f-be8d-e4ed25528162",
+                            CreatedAt = new DateTime(2023, 2, 8, 15, 51, 16, 841, DateTimeKind.Utc).AddTicks(2654),
                             IsDeleted = false,
-                            Name = "Ms. Kenyatta Gislason",
-                            UpdatedAt = new DateTime(2023, 2, 8, 8, 6, 34, 691, DateTimeKind.Utc).AddTicks(7806)
+                            Name = "Mrs. Meagan Trevion Buckridge III",
+                            UpdatedAt = new DateTime(2023, 2, 8, 15, 51, 16, 841, DateTimeKind.Utc).AddTicks(2654)
                         },
                         new
                         {
-                            Id = "c699a308-a4a5-4fd4-89ce-be3a757bfcf7",
-                            CreatedAt = new DateTime(2023, 2, 8, 8, 6, 34, 691, DateTimeKind.Utc).AddTicks(9072),
+                            Id = "d1b62435-a345-4b4d-9f90-3b885dc72053",
+                            CreatedAt = new DateTime(2023, 2, 8, 15, 51, 16, 841, DateTimeKind.Utc).AddTicks(4322),
                             IsDeleted = false,
-                            Name = "Miss Alexys Alex Parisian",
-                            UpdatedAt = new DateTime(2023, 2, 8, 8, 6, 34, 691, DateTimeKind.Utc).AddTicks(9072)
+                            Name = "Mr. Dominic Murphy II",
+                            UpdatedAt = new DateTime(2023, 2, 8, 15, 51, 16, 841, DateTimeKind.Utc).AddTicks(4323)
                         },
                         new
                         {
-                            Id = "947f1398-d52e-4f1a-8e31-6d2fbf27a41c",
-                            CreatedAt = new DateTime(2023, 2, 8, 8, 6, 34, 692, DateTimeKind.Utc).AddTicks(1417),
+                            Id = "6a86801b-dd82-4780-9416-278678682c44",
+                            CreatedAt = new DateTime(2023, 2, 8, 15, 51, 16, 841, DateTimeKind.Utc).AddTicks(5228),
                             IsDeleted = false,
-                            Name = "Arden Friesen Jr.",
-                            UpdatedAt = new DateTime(2023, 2, 8, 8, 6, 34, 692, DateTimeKind.Utc).AddTicks(1418)
+                            Name = "Dr. Hazel Leo Mayer",
+                            UpdatedAt = new DateTime(2023, 2, 8, 15, 51, 16, 841, DateTimeKind.Utc).AddTicks(5228)
                         },
                         new
                         {
-                            Id = "f4e3da1d-44d4-421e-a449-baa6d56ee73e",
-                            CreatedAt = new DateTime(2023, 2, 8, 8, 6, 34, 692, DateTimeKind.Utc).AddTicks(2714),
+                            Id = "107a3a95-7de9-43a6-84d3-6492e2dde0a0",
+                            CreatedAt = new DateTime(2023, 2, 8, 15, 51, 16, 841, DateTimeKind.Utc).AddTicks(7797),
                             IsDeleted = false,
-                            Name = "Lue Glover",
-                            UpdatedAt = new DateTime(2023, 2, 8, 8, 6, 34, 692, DateTimeKind.Utc).AddTicks(2714)
+                            Name = "Marques Jones",
+                            UpdatedAt = new DateTime(2023, 2, 8, 15, 51, 16, 841, DateTimeKind.Utc).AddTicks(7797)
                         });
                 });
 
@@ -278,133 +278,133 @@ namespace api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "c34b76af-ed66-4cf4-9c4b-a4870759449d",
-                            Content = "Perferendis beatae nam cumque aut porro. Repellendus rerum sint exercitationem commodi qui suscipit non doloribus. Aut aut nihil velit non sit a. Quisquam harum praesentium provident sunt eos. Modi nesciunt tempore iste esse facere quas molestiae.",
-                            CreatedAt = new DateTime(2023, 2, 8, 8, 6, 34, 692, DateTimeKind.Utc).AddTicks(3978),
-                            Description = "Nostrum et voluptatibus iste rem.",
+                            Id = "d4d70b70-42a8-4746-86ce-15ab45c21c69",
+                            Content = "Qui eligendi accusamus molestias reiciendis qui. Unde eius dignissimos saepe ut distinctio. Sint occaecati qui tenetur.",
+                            CreatedAt = new DateTime(2023, 2, 8, 15, 51, 16, 841, DateTimeKind.Utc).AddTicks(8701),
+                            Description = "Est et numquam commodi quo illo.",
                             IsDeleted = false,
-                            Name = "Emerald Brakus II",
-                            Price = 860971L,
+                            Name = "Mrs. Genesis Reichel",
+                            Price = 616921L,
                             Quantity = 1,
                             SalePrice = 0L,
-                            UpdatedAt = new DateTime(2023, 2, 8, 8, 6, 34, 692, DateTimeKind.Utc).AddTicks(3979)
+                            UpdatedAt = new DateTime(2023, 2, 8, 15, 51, 16, 841, DateTimeKind.Utc).AddTicks(8701)
                         },
                         new
                         {
-                            Id = "e05702e1-86ba-4df6-9c37-225b82a5e868",
-                            Content = "Ut soluta harum id id fuga qui ea aliquid voluptatem. Maxime facere perspiciatis deleniti enim. Nihil voluptates ex vel sint. Id hic nisi quia ut sunt. Minus voluptatem consequatur magnam quos blanditiis quae. Hic quia quia laborum ex ab cumque non voluptatem.",
-                            CreatedAt = new DateTime(2023, 2, 8, 8, 6, 34, 692, DateTimeKind.Utc).AddTicks(9025),
-                            Description = "Ratione consequatur ipsum et aperiam.",
+                            Id = "1d30dfd8-c425-4eb2-b376-8a1d1807720e",
+                            Content = "Totam amet pariatur accusamus sunt dolores quia harum. Occaecati officiis dolores sint eligendi eos et officiis expedita. Quo laudantium iure quo nemo voluptatum nobis adipisci earum. Hic numquam quasi cum.",
+                            CreatedAt = new DateTime(2023, 2, 8, 15, 51, 16, 842, DateTimeKind.Utc).AddTicks(3654),
+                            Description = "Blanditiis exercitationem quidem tenetur quia dolores iusto.",
                             IsDeleted = false,
-                            Name = "Miss Roberto Schmidt",
-                            Price = 939093L,
+                            Name = "Miss Marianna Beer",
+                            Price = 727160L,
                             Quantity = 1,
                             SalePrice = 0L,
-                            UpdatedAt = new DateTime(2023, 2, 8, 8, 6, 34, 692, DateTimeKind.Utc).AddTicks(9025)
+                            UpdatedAt = new DateTime(2023, 2, 8, 15, 51, 16, 842, DateTimeKind.Utc).AddTicks(3655)
                         },
                         new
                         {
-                            Id = "fffa018f-e5b2-46ad-bec1-d06f0e9e0f37",
-                            Content = "Rerum harum sit molestiae non omnis debitis omnis eaque iste. Tempora aut provident inventore ut ut. Et quibusdam et exercitationem ut velit. Eum a iusto et vel possimus quia reprehenderit. Aliquid dignissimos nobis voluptas.",
-                            CreatedAt = new DateTime(2023, 2, 8, 8, 6, 34, 693, DateTimeKind.Utc).AddTicks(4978),
-                            Description = "Fugiat ut id eum omnis consequuntur ut.",
+                            Id = "7c2c0627-944d-415b-b2bd-3519f369643d",
+                            Content = "Saepe iure cupiditate et consectetur facere consequatur est est. Distinctio qui totam unde qui. Sunt earum maiores qui architecto minus.",
+                            CreatedAt = new DateTime(2023, 2, 8, 15, 51, 16, 842, DateTimeKind.Utc).AddTicks(9001),
+                            Description = "Magnam ut eius ipsum ducimus eum rem et reiciendis.",
                             IsDeleted = false,
-                            Name = "Oswald Fabian Stracke I",
-                            Price = 114070L,
+                            Name = "Ms. Wava Catherine Gutmann Sr.",
+                            Price = 565231L,
                             Quantity = 1,
                             SalePrice = 0L,
-                            UpdatedAt = new DateTime(2023, 2, 8, 8, 6, 34, 693, DateTimeKind.Utc).AddTicks(4979)
+                            UpdatedAt = new DateTime(2023, 2, 8, 15, 51, 16, 842, DateTimeKind.Utc).AddTicks(9001)
                         },
                         new
                         {
-                            Id = "4180835a-4151-4b9e-82d8-87c688310f59",
-                            Content = "Quo nam quo et incidunt qui hic. Fuga voluptates corporis dolor dolorem debitis. Similique assumenda quis placeat voluptatem ullam eveniet reprehenderit iure. Sed mollitia atque cumque qui ut ut. Aperiam odit est sit.",
-                            CreatedAt = new DateTime(2023, 2, 8, 8, 6, 34, 694, DateTimeKind.Utc).AddTicks(711),
-                            Description = "Et modi provident vel repellendus incidunt necessitatibus.",
+                            Id = "880e3ad1-0bd7-4ff3-b850-ecc2d0102529",
+                            Content = "Quam fuga beatae architecto quasi asperiores iste eveniet aut est. Quisquam quia ea dolores aut facere ab. Nulla et molestiae repellendus et. Fugit nobis voluptate magni omnis non vel magnam perferendis. Nostrum accusamus quae delectus omnis maiores.",
+                            CreatedAt = new DateTime(2023, 2, 8, 15, 51, 16, 843, DateTimeKind.Utc).AddTicks(4284),
+                            Description = "Soluta et fugit aut dolores ut corrupti consectetur ex deserunt.",
                             IsDeleted = false,
-                            Name = "Dr. Eliezer Torp Jr.",
-                            Price = 427588L,
+                            Name = "Humberto Dibbert",
+                            Price = 214942L,
                             Quantity = 1,
                             SalePrice = 0L,
-                            UpdatedAt = new DateTime(2023, 2, 8, 8, 6, 34, 694, DateTimeKind.Utc).AddTicks(711)
+                            UpdatedAt = new DateTime(2023, 2, 8, 15, 51, 16, 843, DateTimeKind.Utc).AddTicks(4284)
                         },
                         new
                         {
-                            Id = "afe8e109-1eca-4d1d-9d9c-c57350339b92",
-                            Content = "Et eveniet optio corrupti libero asperiores voluptatum voluptatem ea. Sed rerum aliquam debitis ea hic possimus. Magnam unde voluptas vel tempora voluptas voluptates quam tempore.",
-                            CreatedAt = new DateTime(2023, 2, 8, 8, 6, 34, 694, DateTimeKind.Utc).AddTicks(7068),
-                            Description = "Non perspiciatis inventore qui enim et quibusdam.",
+                            Id = "0fc51aff-8135-412b-9e69-11354cdb7566",
+                            Content = "Est eos id minus cum est iure et iusto. Et deleniti est ipsum quos nihil sunt consequatur tempore. Omnis sequi rerum porro ab.",
+                            CreatedAt = new DateTime(2023, 2, 8, 15, 51, 16, 843, DateTimeKind.Utc).AddTicks(7933),
+                            Description = "Ut alias et est omnis deserunt eveniet quae quis accusantium.",
                             IsDeleted = false,
-                            Name = "Prof. Maurice Runolfsdottir",
-                            Price = 751097L,
+                            Name = "Bernard Ryan",
+                            Price = 570847L,
                             Quantity = 1,
                             SalePrice = 0L,
-                            UpdatedAt = new DateTime(2023, 2, 8, 8, 6, 34, 694, DateTimeKind.Utc).AddTicks(7069)
+                            UpdatedAt = new DateTime(2023, 2, 8, 15, 51, 16, 843, DateTimeKind.Utc).AddTicks(7933)
                         },
                         new
                         {
-                            Id = "964a8a81-20f9-46fc-8107-d8f40e845b90",
-                            Content = "Eum perspiciatis modi error possimus officia consequatur. Vel magni reiciendis libero et ullam nisi. Numquam laboriosam beatae doloribus. Qui eum dolorem eveniet quod saepe.",
-                            CreatedAt = new DateTime(2023, 2, 8, 8, 6, 34, 695, DateTimeKind.Utc).AddTicks(1955),
-                            Description = "Est est provident excepturi quia hic dolores earum.",
+                            Id = "0ef87065-5abb-4fd2-8a11-7f3463566fab",
+                            Content = "Dolore repellat itaque sit et explicabo numquam quidem vel. Molestiae amet sunt optio aut sed molestias quis nam. Consequuntur cumque ducimus quos provident saepe nostrum est deserunt.",
+                            CreatedAt = new DateTime(2023, 2, 8, 15, 51, 16, 844, DateTimeKind.Utc).AddTicks(1932),
+                            Description = "Unde laudantium doloribus maiores quo temporibus omnis minus.",
                             IsDeleted = false,
-                            Name = "Dave Zboncak",
-                            Price = 992146L,
+                            Name = "Jerad Senger",
+                            Price = 908348L,
                             Quantity = 1,
                             SalePrice = 0L,
-                            UpdatedAt = new DateTime(2023, 2, 8, 8, 6, 34, 695, DateTimeKind.Utc).AddTicks(1959)
+                            UpdatedAt = new DateTime(2023, 2, 8, 15, 51, 16, 844, DateTimeKind.Utc).AddTicks(1932)
                         },
                         new
                         {
-                            Id = "0e8e15d2-3f49-402e-9516-bffdae3b649e",
-                            Content = "Eos enim consequuntur corporis ipsam omnis expedita nisi delectus sed. Aperiam necessitatibus vero omnis dolore id accusamus asperiores. Incidunt iste et ut autem et. Est natus saepe sapiente ullam ut dolores ratione dolorum ad. Ullam nobis necessitatibus quis laboriosam fugiat qui inventore.",
-                            CreatedAt = new DateTime(2023, 2, 8, 8, 6, 34, 695, DateTimeKind.Utc).AddTicks(6759),
-                            Description = "Amet fugit alias beatae culpa non quo.",
+                            Id = "88a60a5e-44b1-419c-aa34-25296f36dd03",
+                            Content = "Et sit est dolores optio. Ut cum corporis et rem deserunt deleniti illum voluptate laudantium. Recusandae deserunt ullam praesentium distinctio reprehenderit quis accusantium. Molestiae eius voluptas sit occaecati et in tenetur doloribus. Voluptas id quos sit omnis delectus.",
+                            CreatedAt = new DateTime(2023, 2, 8, 15, 51, 16, 844, DateTimeKind.Utc).AddTicks(5511),
+                            Description = "Ut omnis animi et.",
                             IsDeleted = false,
-                            Name = "Joey Stokes",
-                            Price = 615925L,
+                            Name = "Jody Lysanne Corkery PhD",
+                            Price = 428848L,
                             Quantity = 1,
                             SalePrice = 0L,
-                            UpdatedAt = new DateTime(2023, 2, 8, 8, 6, 34, 695, DateTimeKind.Utc).AddTicks(6760)
+                            UpdatedAt = new DateTime(2023, 2, 8, 15, 51, 16, 844, DateTimeKind.Utc).AddTicks(5511)
                         },
                         new
                         {
-                            Id = "ce7f19d7-23a2-4a9f-850a-3e615437777b",
-                            Content = "In optio sint dolorum omnis adipisci eos numquam nobis. Quia quisquam corporis minima rerum ipsa impedit explicabo aut amet. Nemo dolorem ratione et autem nihil. Fugit deserunt perspiciatis unde facilis.",
-                            CreatedAt = new DateTime(2023, 2, 8, 8, 6, 34, 696, DateTimeKind.Utc).AddTicks(2012),
-                            Description = "Mollitia repudiandae ut quo aut.",
+                            Id = "7a70a52d-cd8e-44c6-b245-13be0ecb3fe8",
+                            Content = "Repellat non eos beatae repellendus. Repellendus nihil ab et aliquam natus repellat quia. At pariatur excepturi nemo et. Illo repellendus dignissimos omnis. Commodi eum enim quam.",
+                            CreatedAt = new DateTime(2023, 2, 8, 15, 51, 16, 845, DateTimeKind.Utc).AddTicks(1638),
+                            Description = "Non et et vero tenetur voluptate odio.",
                             IsDeleted = false,
-                            Name = "Prof. Kianna Fern Boyle",
-                            Price = 695212L,
+                            Name = "Allene Thompson",
+                            Price = 220788L,
                             Quantity = 1,
                             SalePrice = 0L,
-                            UpdatedAt = new DateTime(2023, 2, 8, 8, 6, 34, 696, DateTimeKind.Utc).AddTicks(2013)
+                            UpdatedAt = new DateTime(2023, 2, 8, 15, 51, 16, 845, DateTimeKind.Utc).AddTicks(1639)
                         },
                         new
                         {
-                            Id = "3120c60c-aa52-40ab-8a54-f4fd93a81de8",
-                            Content = "Veniam magni vitae repudiandae ea non laboriosam consequatur inventore nobis. Nemo hic dignissimos pariatur. Fugit est odit at. Id quia qui officiis ut.",
-                            CreatedAt = new DateTime(2023, 2, 8, 8, 6, 34, 696, DateTimeKind.Utc).AddTicks(7547),
-                            Description = "Neque dolorem praesentium repellendus.",
+                            Id = "b914f56b-394a-44c1-b1fc-bf47026ff2c0",
+                            Content = "Pariatur illo magni molestiae sapiente cum aut. A expedita odit velit occaecati consectetur alias nulla alias. Quam est porro explicabo esse at voluptatem aut earum. Earum sint quibusdam quisquam qui illo maxime qui excepturi. Soluta voluptas voluptas aut itaque fugit magnam.",
+                            CreatedAt = new DateTime(2023, 2, 8, 15, 51, 16, 845, DateTimeKind.Utc).AddTicks(5917),
+                            Description = "Quia maxime vero ut aut modi.",
                             IsDeleted = false,
-                            Name = "Mr. Britney Little",
-                            Price = 103031L,
+                            Name = "Adolphus Huel",
+                            Price = 291365L,
                             Quantity = 1,
                             SalePrice = 0L,
-                            UpdatedAt = new DateTime(2023, 2, 8, 8, 6, 34, 696, DateTimeKind.Utc).AddTicks(7548)
+                            UpdatedAt = new DateTime(2023, 2, 8, 15, 51, 16, 845, DateTimeKind.Utc).AddTicks(5918)
                         },
                         new
                         {
-                            Id = "6d4ff129-5d22-4251-aac9-28cefc75dbfa",
-                            Content = "Consequatur aperiam atque magni magnam fugit. Repellendus quas et veritatis cupiditate velit sit non. Velit velit qui id earum. Possimus natus vel deleniti. Molestias nihil nostrum fugit sint. Sunt temporibus asperiores saepe dicta.",
-                            CreatedAt = new DateTime(2023, 2, 8, 8, 6, 34, 697, DateTimeKind.Utc).AddTicks(1054),
-                            Description = "Vitae est illo non a nam et.",
+                            Id = "d31bc077-d7de-4b78-ae67-76ad231b17c7",
+                            Content = "Quis eius ut modi quod deserunt fugit corporis porro. Quasi facere iure veritatis eius consectetur necessitatibus. Non quia et pariatur odit non necessitatibus. Occaecati vel voluptas magnam consequuntur.",
+                            CreatedAt = new DateTime(2023, 2, 8, 15, 51, 16, 846, DateTimeKind.Utc).AddTicks(1080),
+                            Description = "Cupiditate quam et quae qui est libero dignissimos.",
                             IsDeleted = false,
-                            Name = "Fausto Hauck",
-                            Price = 417888L,
+                            Name = "Walker Kathlyn Nitzsche I",
+                            Price = 916380L,
                             Quantity = 1,
                             SalePrice = 0L,
-                            UpdatedAt = new DateTime(2023, 2, 8, 8, 6, 34, 697, DateTimeKind.Utc).AddTicks(1055)
+                            UpdatedAt = new DateTime(2023, 2, 8, 15, 51, 16, 846, DateTimeKind.Utc).AddTicks(1081)
                         });
                 });
 
@@ -493,7 +493,7 @@ namespace api.Migrations
                         {
                             Id = "2dfb43f4-24d5-44a7-af3c-78196e881f23",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a3444d9e-0296-4bba-ba58-ab97862e60dc",
+                            ConcurrencyStamp = "f9b3a70d-d34f-40c2-be3b-c8829ef55f20",
                             Email = "admin@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -505,7 +505,7 @@ namespace api.Migrations
                             PasswordHash = "AAuIVXm1hor21nLBhSwPe59KTGKy2+Yvw6rJSey4WiFHXM6pa0VvOV7RtQ5qG59sRQ==",
                             PhoneNumberConfirmed = false,
                             RefreshTokenExpiryTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SecurityStamp = "5a5a7225-4270-419f-aee6-20edf10af073",
+                            SecurityStamp = "38f118fd-b7eb-43d5-93a7-e8f5aac33eef",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         },
@@ -513,7 +513,7 @@ namespace api.Migrations
                         {
                             Id = "75fa9827-0f5f-41db-a825-64d68d242d7e",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "8f8c13a0-a58e-47c5-bcb4-292d08eaaf0e",
+                            ConcurrencyStamp = "d119fc3c-0531-41fd-ba42-5ffff8139d88",
                             Email = "user@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "User",
@@ -525,7 +525,7 @@ namespace api.Migrations
                             PasswordHash = "AAuIVXm1hor21nLBhSwPe59KTGKy2+Yvw6rJSey4WiFHXM6pa0VvOV7RtQ5qG59sRQ==",
                             PhoneNumberConfirmed = false,
                             RefreshTokenExpiryTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SecurityStamp = "3de19989-8d93-40b8-b453-6a5733f87559",
+                            SecurityStamp = "aeceed83-b500-4312-80f7-9809dbcc93a4",
                             TwoFactorEnabled = false,
                             UserName = "User"
                         },
@@ -533,7 +533,7 @@ namespace api.Migrations
                         {
                             Id = "df31566d-5ccb-45dc-b1be-864d72133ca4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ce803c06-3765-4eb4-b86d-099558927c78",
+                            ConcurrencyStamp = "13e56d87-df9e-46e2-956b-0f5028d059b8",
                             Email = "guest@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Guest",
@@ -545,7 +545,7 @@ namespace api.Migrations
                             PasswordHash = "AAuIVXm1hor21nLBhSwPe59KTGKy2+Yvw6rJSey4WiFHXM6pa0VvOV7RtQ5qG59sRQ==",
                             PhoneNumberConfirmed = false,
                             RefreshTokenExpiryTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SecurityStamp = "80c418bd-56fd-4b85-88d0-00af1d3e0b7e",
+                            SecurityStamp = "d8882bed-4dcc-438c-9eb6-53674068464a",
                             TwoFactorEnabled = false,
                             UserName = "Guest"
                         });
@@ -715,7 +715,7 @@ namespace api.Migrations
                         new
                         {
                             Id = "cc3b4c20-7ab3-4daa-b777-0018ee8c615c",
-                            ConcurrencyStamp = "c2905d59-94d4-4d1c-a165-eeaad38a2f4e",
+                            ConcurrencyStamp = "7656d1f5-af1f-4289-84a2-77cf1d34f550",
                             Name = "Admin",
                             NormalizedName = "ADMIN",
                             IsDeleted = false
@@ -723,7 +723,7 @@ namespace api.Migrations
                         new
                         {
                             Id = "dddd1a59-3b57-45f6-96b5-91b3e269e87c",
-                            ConcurrencyStamp = "965a7bcf-8ed1-41cb-b420-9795074b6055",
+                            ConcurrencyStamp = "3d306e59-8786-45f5-bea2-b0cb01a7dda4",
                             Name = "User",
                             NormalizedName = "USER",
                             IsDeleted = false
@@ -731,7 +731,7 @@ namespace api.Migrations
                         new
                         {
                             Id = "b600478d-f98b-4a27-aa95-14563920d28f",
-                            ConcurrencyStamp = "0f48b9a0-6c21-4d7c-9313-5aa0377f59ab",
+                            ConcurrencyStamp = "6770b137-fe39-457c-9b1c-fd00e9025855",
                             Name = "Guest",
                             NormalizedName = "GUEST",
                             IsDeleted = false

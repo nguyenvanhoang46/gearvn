@@ -14,12 +14,12 @@ const StyleIcon = {
 }
 const HeaderRight = () => {
   const { auth } = useContext(AuthContext);
-  console.log("auth",auth);
+  // console.log("auth",auth);
   let navigate = useNavigate();
 
   const Globalstate = useContext(Cartcontext);
   const state = Globalstate.state;
-  console.log(Globalstate);
+  // console.log(Globalstate);
 
   const logout = () => {
     localStorage.removeItem("token", true)
