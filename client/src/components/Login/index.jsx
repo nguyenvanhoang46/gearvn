@@ -21,7 +21,7 @@ const schema = yup.object().shape({
 
 
 const Login = () => {
-  
+
   const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(schema),
   });
@@ -60,10 +60,10 @@ const Login = () => {
                 <span className='py-[10px] px-[15px] text-[14px]  text-[#555] bg-[#eee] border-[#ccc] rounded border-[1px] rounded-tr-[0px] rounded-br-[0px] border-r-0 border-t[0px] '>
                   <RiLockPasswordFill />
                 </span>
-                <input 
-                type={hiddenPassword ? "text" : "password"}
-                {...register("password")} 
-                className='w-[270px] py-[17px] px-[15px] text-[14px] text-[#555] border-[#ccc] rounded-tl-[0px] rounded-bl-[0px] focus:outline rounded border-[1px] h-[34px] focus:shadow focus:outline-[#66afe9]  ' placeholder='Password' />
+                <input
+                  type={hiddenPassword ? "text" : "password"}
+                  {...register("password")}
+                  className='w-[270px] py-[17px] px-[15px] text-[14px] text-[#555] border-[#ccc] rounded-tl-[0px] rounded-bl-[0px] focus:outline rounded border-[1px] h-[34px] focus:shadow focus:outline-[#66afe9]  ' placeholder='Password' />
                 <div className="text-[20px] absolute top-2 right-2 cursor-pointer">
                   {
                     !hiddenPassword ? <AiFillEyeInvisible onClick={() => setHiddenPassword(e => !e)} /> : < AiFillEye onClick={() => setHiddenPassword(e => !e)} />
@@ -81,11 +81,9 @@ const Login = () => {
             </div>
           </form>
         </div>
-
-
-        <div className="mt-10">
-          <Footer />
-        </div>
+      </div>
+      <div className="container mx-auto  mt-10">
+        <Footer />
       </div>
     </>
   )

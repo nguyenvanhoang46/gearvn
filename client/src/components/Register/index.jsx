@@ -34,7 +34,7 @@ const Register = () => {
   });
 
   const handleRegisrer = async (data) => {
-  
+
     // console.log(data);
     const response = await postRegisterApi(data);
     if (response.statusCode !== 400) {
@@ -145,9 +145,9 @@ const Register = () => {
 
           </form>
         </div>
-        <div className="mt-10">
-          <Footer />
-        </div>
+      </div>
+      <div className="container mx-auto  mt-10">
+        <Footer />
       </div>
     </>
   )

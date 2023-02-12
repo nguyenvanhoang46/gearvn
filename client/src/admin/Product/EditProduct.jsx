@@ -116,8 +116,8 @@ const EditProduct = () => {
                     </div>
                     <div className="flex gap-6 mt-7 items-center">
                       <label className='font-medium text-[14px] w-[10%] '>Category</label>
-                      <div className='w-[60%]'>
-                        <select name="" id="" value={category.id} onChange={(e) => setCategory(e.target.value)} >
+                      <div className='w-[60%] focus:bg-[#fff] focus:ring-offset-1 focus:ring-1 focus:outline   focus:outline-[#1b00ff] rounded-[.25rem] border-[1px] border-gray-200 '>
+                        <select className='outline-none pl-2 h-[37px] w-full  '  name="" id="" value={category.id} onChange={(e) => setCategory(e.target.value)} >
                           {
                             categories?.map((category, _) => {
                               if (category.id === category.id)

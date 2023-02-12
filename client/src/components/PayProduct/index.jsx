@@ -3,6 +3,7 @@ import Category from '../catergory'
 import Header from '../Header'
 import { BsFillCartFill } from 'react-icons/bs'
 import { AiOutlineLoading } from 'react-icons/ai'
+import { GrFormNext } from 'react-icons/gr'
 import { AuthContext } from '../../contexts/AuthProvider';
 import { Link, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
@@ -53,7 +54,17 @@ const PayProduct = () => {
                 <Category />
             </div>
             <div className="bg-[#F8F8FC] h-[830px]">
+
                 <div className="container mx-auto">
+                    <div className="pt-8 flex">
+                        <Link to={'/'} className='flex gap-1 items-center'>
+                            <div className="text-[13px] font-normal text-[#82869E] ">Trang chủ</div>
+                            <div className="">
+                                <GrFormNext size={18} className="text-[#82869E]" />
+                            </div>
+                        </Link>
+                        <div className='text-[13px] font-normal text-[#82869E] '>Giỏ hàng</div>
+                    </div>
                     <form onSubmit={handleOrder} action="">
                         <div className="rounded-[1rem] gap-6 grid grid-cols-12">
                             <div className="mt-[15px] col-span-8 rounded-[8px]">
@@ -101,19 +112,19 @@ const PayProduct = () => {
                                         </div>
                                         <table className='w-full mt-3'>
                                             <thead className=''>
-                                                <tr className='text-left mt-3'>
-                                                    <th className=''>Name</th>
-                                                    <th className='text-center'>Số lượng</th>
+                                                <tr className='text-left mt-3 border-b-[1px] '>
+                                                    <th className=''>Tên sản phẩm</th>
+                                                    <th className='pl-2'>Số lượng</th>
                                                     <th className='text-right'>Giá</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 {state.map((item, index) => {
                                                     return (
-                                                        <tr className='text-left '>
-                                                            <td className=''>{item.name}</td>
-                                                            <td className='text-center'>{item.quantity}</td>
-                                                            <td className='text-right'>{(item.quantity * item.price).toLocaleString('vi', { style: 'currency', currency: 'VND' })}</td>
+                                                        <tr className='text-left border-t-[1px]  '>
+                                                            <td className='text-[14px] w-[50%]  '>{item.name}</td>
+                                                            <td className='pl-9 text-[15px] '>{item.quantity}</td>
+                                                            <td className='text-right text-[15px]'>{(item.quantity * item.price).toLocaleString('vi', { style: 'currency', currency: 'VND' })}</td>
                                                         </tr>
                                                     )
                                                 })}

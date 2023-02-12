@@ -1,11 +1,29 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom'
 import { AiFillSetting } from 'react-icons/ai'
 import { MdNotifications } from 'react-icons/md'
 import { FaUserCircle } from 'react-icons/fa'
+import { AuthContext } from '../contexts/AuthProvider';
+import { BsBoxArrowInLeft } from 'react-icons/bs';
+import Button from '../components/Button';
 
-
+const StyleIcon = {
+    fontSize: "24px",
+}
 const NavbarTop = () => {
+
+    const { auth } = useContext(AuthContext);
+    console.log("auth", auth);
+    let navigate = useNavigate();
+
+    const logout = () => {
+        localStorage.removeItem("token", true)
+        localStorage.removeItem("refreshToken", true)
+        navigate("/login");
+        window.location.reload(false)
+    }
+
     return (
         <>
             <div className="flex flex-col-reverse justify-between gap-6 md:flex-row md:items-center">
@@ -24,10 +42,19 @@ const NavbarTop = () => {
                         </div>
                     </div>
                     <div className="middle none font-sans font-bold center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 rounded-lg text-blue-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30 hidden items-center gap-1 px-4 xl:flex">
-                        <Link to='/adminlogin' className='flex gap-2 items-center' >
-                            <FaUserCircle className='h-5 w-5 text-[#607D8B] ' />
-                            <span className='text-[#607D8B] uppercase'>Sign in</span>
-                        </Link>
+                        {auth === null ?
+                            <Link to='/adminlogin' className='flex gap-2 items-center' >
+                                <FaUserCircle className='h-5 w-5 text-[#607D8B] ' />
+                                <span className='text-[#607D8B] uppercase'>Sign in</span>
+                            </Link>
+                            :
+                            <div className="flex gap-4">
+                                <div className="flex gap-2 items-center text-[11px] mt-1 font-bold">{auth.fullName}</div>
+                                <button onClick={logout}>
+                                    <Button label="Đăng Xuất" icon={<BsBoxArrowInLeft style={StyleIcon} />} />
+                                </button>
+                            </div>
+                        }
                     </div>
                     <button className='middle none font-sans font-bold center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 rounded-lg text-blue-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30 hidden items-center gap-1 px-4 xl:flex'>
                         <AiFillSetting className='h-5 w-5 text-[#607D8B] ' />
@@ -37,7 +64,7 @@ const NavbarTop = () => {
                     </button>
                 </div>
             </div>
-        </>  
+        </>
     )
 }
 

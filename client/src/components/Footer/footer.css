@@ -1,0 +1,18 @@
+.payment {
+    cursor: pointer;
+    line-height: 1rem;
+    padding: 0.365rem 0.75rem 0px 0px;
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 13px;
+    color: rgb(51, 51, 51);
+    margin-top: 10px;
+}
+.payment .pay-chu {
+    margin-top: 5px;
+}
+.payment:hover .pay-chu {
+    color: #024dbc;
+}

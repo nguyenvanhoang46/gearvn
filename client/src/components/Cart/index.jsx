@@ -60,7 +60,7 @@ const Cart = () => {
                                                         <img className=" h-[80px] max-h-[80px]" src={item.images.length > 0 ? item.images[0].url : ""} />
                                                     </div>
                                                     <div className="">
-                                                        <div className=''>{item.name}</div>
+                                                        <div className='text-[13px] '>{item.name}</div>
                                                     </div>
                                                     <div className="flex gap-5 justify-center ">
                                                         <div className='cursor-pointer hover:text-[red] text-[18px] '

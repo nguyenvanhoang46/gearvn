@@ -36,13 +36,13 @@ const ProductItem = ({ product }) => {
               <div className="h-[230px] w-full max-h-[363px] ">
                 <img className='w-full min-h-[211px] min-w-[196px] cursor-pointer' src={item.images.length > 0 ? item.images[0].url : ""} alt="" />
               </div>
-              <div className="text-[14px] w-full top-[55%] py-[15px] px-[20px] text-[#fff] bg-opacity-80 bg-[#797565] hidden group-hover:block absolute z-10">
+              <div className="text-[14px] w-full top-[50%] py-[15px] px-[20px] text-[#fff] bg-opacity-80 bg-[#797565] hidden group-hover:block absolute z-10">
                 <Link to={`/productdetail/${item.id}`} className='mr-2 font-italic'><i>Click để xem chi tiết</i></Link>
                 <button onClick={() => dispatch({ type: "ADD", payload: item })} className='py-[7px] px-[12px] bg-[#252525] hover:bg-[#0655A6] rounded' >Đặt hàng</button>
               </div>
             </div>
             <div className="mt-5">
-              <h2 className='text-sm m-[10px] '>{item.name}</h2>
+              <h2 className='text-sm m-[10px] t-3 '>{item.name}</h2>
               <div className="pl-[10px] pb-[5px]  ">
                 <del className='text-[#888]'>{(item.salePrice).toLocaleString('vi', { style: 'currency', currency: 'VND' })}</del>
                 <br />
@@ -52,7 +52,7 @@ const ProductItem = ({ product }) => {
           </div>
         )
       })}
-      {/* <div>soluong{data.length}</div> */}
+     
     </>
   )
 }

@@ -3,7 +3,8 @@ import Navbar from '../Navbar'
 import NavbarTop from '../NavbarTop'
 import { Link } from "react-router-dom";
 import { useState, useEffect } from 'react'
-import { AiOutlineLoading } from 'react-icons/ai'
+import { AiOutlineLoading, AiFillEdit } from 'react-icons/ai'
+import { MdDelete } from 'react-icons/md';
 import { deleteProductApi, getTableProductApi } from '../../app/services/adminService'
 import Pagination from '../Pagination';
 import './Product.css';
@@ -124,9 +125,9 @@ const TableProduct = () => {
                                                     <td className='py-3 px-5 '>{item.category?.name}</td>
                                                     <td className='py-3 px-5 w-[300px]'>{item.content}</td>
                                                     <td className='py-3 px-5 w-[200px]'>{item.description}</td>
-                                                    <td className='mt-[50px] gap-3 flex '>
-                                                        <Link to={`/editproduct/${item.id}`}>Sửa</Link>
-                                                        <button onClick={() => handleDelete(item.id)} >Xóa</button>
+                                                    <td className='items-center h-[124px] gap-3 flex '>
+                                                        <Link to={`/editproduct/${item.id}`}><AiFillEdit className='text-[20px] ' /></Link>
+                                                        <button onClick={() => handleDelete(item.id)} > <MdDelete className='text-[20px]' /> </button>
                                                     </td>
                                                 </tr>
                                             );

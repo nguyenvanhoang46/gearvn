@@ -91,8 +91,8 @@ const CreateProduct = () => {
                     </div>
                     <div className="flex gap-6 mt-7 items-center">
                       <label className='font-medium text-[14px] w-[10%] '>Category</label>
-                      <div className='w-[60%]'>
-                        <select name="" id="" value={categoryId} onChange={(e) => setCategoryId(e.target.value)} >
+                      <div className='w-[60%] focus:bg-[#fff] focus:ring-offset-1 focus:ring-1 focus:outline   focus:outline-[#1b00ff] rounded-[.25rem] border-[1px] border-gray-200 '>
+                        <select className='outline-none h-[37px] w-full pl-2' name="" id="" value={categoryId} onChange={(e) => setCategoryId(e.target.value)} >
                           {data.map((item) => {
                             return (
                               <option value={item.id}>{item.name}</option>
@@ -117,7 +117,6 @@ const CreateProduct = () => {
                       <div className="flex gap-6 mt-4 items-center">
                         <label className='font-medium text-[14px] w-[10%] '>Chon File</label>
                         <div className='w-[60%]'>
-                          {/* <input value={image} onChange={(e) => setImage(e.target.value)} className='w-full text-[#495057] bg-[#fff] py-[0.375rem] focus:bg-[#fff] px-[0.75rem]  focus:ring-offset-1 focus:ring-1 focus:outline   focus:outline-[#1b00ff] rounded-[.25rem] border-[1px] border-gray-200 ' type="text" placeholder="Image" /> */}
                           <input type="file" onChange={handleImage} className='w-full text-[#495057] bg-[#fff] py-[0.375rem] focus:bg-[#fff] px-[0.75rem]  focus:ring-offset-1 focus:ring-1 focus:outline   focus:outline-[#1b00ff] rounded-[.25rem] border-[1px] border-gray-200 ' placeholder="Image" />
                         </div>
                       </div>

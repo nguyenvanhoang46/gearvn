@@ -1,7 +1,6 @@
 import React from 'react'
 import { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom'
-import { HiOutlineLogout } from 'react-icons/hi';
 import { BsFillCartFill, BsBoxArrowInLeft } from 'react-icons/bs';
 import { MdAccountCircle } from 'react-icons/md';
 import { FaPenSquare } from 'react-icons/fa';
@@ -14,7 +13,7 @@ const StyleIcon = {
 }
 const HeaderRight = () => {
   const { auth } = useContext(AuthContext);
-  // console.log("auth",auth);
+  console.log("auth",auth);
   let navigate = useNavigate();
 
   const Globalstate = useContext(Cartcontext);
@@ -50,7 +49,7 @@ const HeaderRight = () => {
             </button>
           </>
         }
-        <Link className='flex gap-2' to='/navbar'>
+        <Link className='flex gap-2' to='/tableproduct'>
           <img className='max-w-[24px] max-h-[25px] ' src="//theme.hstatic.net/1000026716/1000440777/14/ak4.png?v=30809" />
           <Button label="Khuyết mãi" />
         </Link>

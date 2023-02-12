@@ -1,0 +1,125 @@
+.tab-container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin: 100px auto 0;
+    border: 1px solid rgba(0, 0, 0, 0.274);
+    border-top-color: transparent;
+
+}
+
+.bloc-tabs {
+    display: flex;
+    border-bottom: 1px solid #ddd;
+}
+
+.bloc-tabs::before {
+    display: table;
+    content: " ";
+    border-bottom-color: transparent;
+}
+
+.bloc-tabs::after {
+    clear: both;
+    display: table;
+    content: " ";
+    border-bottom-color: transparent;
+}
+
+.tabs {
+    margin-bottom: -1px;
+    margin-right: 2px;
+    line-height: 1.42857143;
+    /* border: 1px solid transparent; */
+    border-radius: 4px 4px 0 0;
+    padding: 10px 15px;
+    border-radius: 4px 4px 0 0;
+    font-size: 14px;
+    color: #428bca;
+}
+
+
+
+.active-tabs {
+    /* background: white;
+    border-bottom: 1px solid transparent; */
+    color: #555;
+    cursor: default;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-bottom-color: transparent;
+}
+
+.active-tabs::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% + 2px);
+    height: 5px;
+    /* background: rgb(88, 147, 241); */
+}
+
+
+
+button {
+    border: none;
+
+}
+
+.content-tabs {
+    flex-grow: 1;
+}
+.content-tabs .tabs-td {
+    background-color: #f7f7f7 !important;
+    border-color: #eeeeee;
+    border-style: solid;
+    border-width: 1px;
+    box-sizing: border-box;
+    padding: 8px;
+    text-align: left;
+    vertical-align: top;
+    width: 225px;
+    border-width: 1px;
+    box-sizing: border-box;
+    width: 300px;
+}
+.content-tabs .tabs-td-right {
+    border-color: #eeeeee;
+    border-style: solid;
+    border-width: 1px;
+    box-sizing: border-box;
+    padding: 8px;
+    vertical-align: top;
+    width: 80%;
+}
+
+.content {
+    background: white;
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.content h2 {
+    padding: 0px 0 5px 0px;
+}
+
+.content hr {
+    width: 100px;
+    height: 2px;
+    background: #222;
+    margin-bottom: 5px;
+}
+
+.content p {
+    width: 100%;
+    height: 100%;
+}
+
+.active-content {
+    display: block;
+}
