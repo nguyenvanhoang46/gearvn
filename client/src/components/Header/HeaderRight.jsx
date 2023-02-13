@@ -12,19 +12,18 @@ const StyleIcon = {
   fontSize: "24px",
 }
 const HeaderRight = () => {
-  const { auth } = useContext(AuthContext);
-  console.log("auth",auth);
+  const { auth, clearAuth } = useContext(AuthContext);
+  console.log("auth", auth);
   let navigate = useNavigate();
 
   const Globalstate = useContext(Cartcontext);
   const state = Globalstate.state;
-  // console.log(Globalstate);
 
   const logout = () => {
     localStorage.removeItem("token", true)
     localStorage.removeItem("refreshToken", true)
+    clearAuth()
     navigate("/login");
-    window.location.reload(false)
   }
 
   return (

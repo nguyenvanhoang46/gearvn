@@ -5,9 +5,12 @@ import Header from '../Header'
 import Footer from '../Footer';
 import { getProductId } from '../../app/services/adminService';
 import "./Tabs.css";
+import { AuthContext } from '../../contexts/AuthProvider';
+import { useContext } from 'react';
+
 
 const ProductDetail = () => {
-
+    const { auth } = useContext(AuthContext);
     const { id } = useParams();
 
     const [data, setData] = useState(null);
@@ -24,23 +27,19 @@ const ProductDetail = () => {
         getAllProduct();
     }, []);
 
-    console.log(data, "da")
-
-
     return (
         <>
             <div className='bg-[#f1f0f1]'>
                 <Header />
                 <Category />
             </div>
-
             <div className="container mx-auto ">
                 <div className="grid grid-cols-2">
-                    <div className="">
-                        {/* <img src={data.images.length > 0 ? data.images[0].url : ""} alt="" /> */}
+                    <div className="mt-8">
+                        <img className='' src={data?.images.length > 0 ? data.images[0].url : ""} alt="" />
                     </div>
-                    <div className=''>
-                        <h1 className='py-20px text-[24px] m-0 font-medium  '>{data?.name}</h1>
+                    <div className='mt-5'>
+                        <h1 className='py-20px text-[24px] m-0 font-medium '>{data?.name}</h1>
                         <br />
                         <p><span className='text-[#ff0000] text-[17px] '><u><strong>Quà tặng:</strong></u></span></p>
                         <p className='mt-1'><span className='text-[15px] '><strong>🎁 Túi chống sốc GearVN&nbsp;14"</strong></span></p>
@@ -67,9 +66,9 @@ const ProductDetail = () => {
                         <hr className='my-[20px] ' />
                         <p className='text-[#ff0000] '><strong>Hỗ trợ trả góp MPOS (Thẻ tín dụng), HDSAISON <Link to={"/"}>(<span className='text-[#3498db]'>Xem chi tiết</span>)</Link>.</strong></p>
                         <div className="mt-4">
-                            <span className="text-[15px] mr-3 font-medium ">Giá Cũ:</span><span className="text-[#888] text-[20px] "><del>{data?.salePrice}</del></span>
+                            <span className="text-[15px] mr-3 font-medium ">Giá Cũ:</span><span className="text-[#888] text-[20px] "><del>{(data?.salePrice).toLocaleString('vi', { style: 'currency', currency: 'VND' })}</del></span>
                             <br />
-                            <span className="text-[15px] mr-2 font-medium ">Giá KM:</span><span className="text-[#e61010] text-[20px] font-bold ">{data?.price}</span>
+                            <span className="text-[15px] mr-2 font-medium ">Giá KM:</span><span className="text-[#e61010] text-[20px] font-bold ">{(data?.price).toLocaleString('vi', { style: 'currency', currency: 'VND' })}</span>
                         </div>
                         <div className='mt-3 '>
                             <Link to={"/"} className='bg-[#ed1f24] pt-[3px] pb-[7px] px-[30px] text-[24px] rounded font-bold text-[#fff] '>Đặt hàng</Link>

@@ -3,7 +3,6 @@
     flex-direction: column;
     position: relative;
     margin: 100px auto 0;
-    border: 1px solid rgba(0, 0, 0, 0.274);
     border-top-color: transparent;
 
 }
@@ -71,6 +70,9 @@ button {
 
 .content-tabs {
     flex-grow: 1;
+    border: 1px solid rgba(0, 0, 0, 0.274);
+    border-top: none    ;
+
 }
 .content-tabs .tabs-td {
     background-color: #f7f7f7 !important;

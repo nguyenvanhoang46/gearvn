@@ -11,8 +11,8 @@ import { postLoginApi } from '../../app/services/authService'
 import Category from '../catergory'
 import Footer from '../Footer'
 import Header from '../Header'
-
-
+import { AuthContext } from '../../contexts/AuthProvider';
+import { useContext } from 'react';
 
 const schema = yup.object().shape({
   email: yup.string("").required(),
@@ -21,6 +21,7 @@ const schema = yup.object().shape({
 
 
 const Login = () => {
+  const { auth, getMeForce } = useContext(AuthContext);
 
   const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(schema),
@@ -30,12 +31,16 @@ const Login = () => {
   const [errorsState, setErrorsState] = useState([])
 
   const handleLogin = async (data) => {
+
     const response = await postLoginApi(data);
+    console.log(response);
     localStorage.setItem("token", response.accessToken)
     localStorage.setItem("refreshToken", response.refreshToken)
+
+    await getMeForce()
     navigate("/");
-    window.location.reload(false)
   }
+
   return (
     <>
       <div className='bg-[#f1f0f1]'>

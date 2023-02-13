@@ -2,7 +2,7 @@ import request from "../../lib/request"
 
 // Product
 
-export const getTableProductApi = () => request.get(`/Admin/Product/GetProducts`).then(({ data }) => data.data);
+export const getTableProductApi = ({page, limit}) => request.get(`/Admin/Product/GetProducts?pageNumber=${page}&pageSize=${limit}`).then(({ data }) => data.data);
 
 export const getProductApi = (id) => request.get(`/Admin/Product/GetProduct/${id}`).then(({ data }) => data.data);
 
@@ -10,7 +10,7 @@ export const createProductApi = (data) => request.post("/Admin/Product/SaveProdu
 
 export const deleteProductApi = (id) => request.delete(`/Admin/Product/DeleteProduct/${id}`).then(({ data }) => data.data);
 
-export const getProduct = () => request.get("/Product/GetProducts").then(({ data }) => data.data);
+export const getProduct = ({page, limit}) => request.get(`/Product/GetProducts?pageNumber=${page}&pageSize=${limit}`).then(({ data }) => data.data);
 
 export const getProductId = (id) => request.get(`/Product/GetProduct/${id}`).then(({ data }) => data.data);
 

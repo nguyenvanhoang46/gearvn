@@ -6,13 +6,15 @@ import { GrFormNext } from 'react-icons/gr'
 import { IoIosArrowRoundBack } from 'react-icons/io'
 import { useContext } from 'react';
 import { Cartcontext } from '../../contexts/cart/Context';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthProvider';
 
 const Cart = () => {
-
+    const { auth } = useContext(AuthContext);
     const Globalstate = useContext(Cartcontext);
     const state = Globalstate.state;
-    console.log("ff",state)
+    let navigate = useNavigate();
+    console.log("ff", state)
     const dispatch = Globalstate.dispatch;
     const total = state.reduce((total, item) => {
         return total + item.price * item.quantity;
@@ -55,7 +57,7 @@ const Cart = () => {
                                     <div className="border-b-[1px] ">
                                         {state.map((item, index) => {
                                             return (
-                                                <div key={item.id}  className="grid grid-cols-5 text-center border-t-[1px] border-[#dee2e6] items-center">
+                                                <div key={item.id} className="grid grid-cols-5 text-center border-t-[1px] border-[#dee2e6] items-center">
                                                     <div className="flex justify-center  ">
                                                         <img className=" h-[80px] max-h-[80px]" src={item.images.length > 0 ? item.images[0].url : ""} />
                                                     </div>

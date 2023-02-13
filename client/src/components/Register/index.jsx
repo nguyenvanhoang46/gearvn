@@ -21,6 +21,7 @@ const schema = yup.object().shape({
   phoneNumber: yup.string().min(10).required("Số điện thoại phải có ít nhất 10 ký tự"),
   password: yup.string().min(4).max(20).required(),
   confirmPassword: yup.string().oneOf([yup.ref("password"), null]),
+  // role: yup.string(1),
 });
 
 const Register = () => {

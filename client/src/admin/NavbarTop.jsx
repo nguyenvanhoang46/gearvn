@@ -14,7 +14,6 @@ const StyleIcon = {
 const NavbarTop = () => {
 
     const { auth } = useContext(AuthContext);
-    console.log("auth", auth);
     let navigate = useNavigate();
 
     const logout = () => {

@@ -11,15 +11,25 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import router from './routes';
 import { Context } from './contexts/cart/Context';
+import {
+  QueryClient,
+  QueryClientProvider,
+} from 'react-query'
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+const queryClient = new QueryClient()
+
+
 root.render(
   <Provider store={store}>
-    <Context>
-      <AuthProvider>
-        <RouterProvider router={router} />
-      </AuthProvider>
-    </Context>
-
+    <QueryClientProvider client={queryClient}>
+      <Context>
+        <AuthProvider>
+          <RouterProvider router={router} />
+        </AuthProvider>
+      </Context>
+    </QueryClientProvider>
   </Provider>
 );
 

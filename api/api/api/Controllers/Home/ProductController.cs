@@ -100,7 +100,7 @@ public class ProductController : BaseController
     {
         try
         {
-            Product? product = await _unitOfWork.ProductRepository.FindById(id);
+            Product? product = await _unitOfWork.ProductRepository.FindById(id, "Images");
             if (product == null)
                 return CustomResult(ResponseType.GetMessageFormCode(HttpStatusCode.NotFound), HttpStatusCode.NotFound);
 
