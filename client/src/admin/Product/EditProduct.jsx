@@ -3,6 +3,8 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { getProductApi, getTableCategoryApi, updateProductApi } from '../../app/services/adminService';
 import Navbar from '../Navbar';
 import NavbarTop from '../NavbarTop';
+import { ToastContainer, toast } from 'react-toastify';
+
 const EditProduct = () => {
 
   const { id } = useParams();
@@ -67,6 +69,16 @@ const EditProduct = () => {
       console.log("req", request);
       const update = await updateProductApi(id, request);
       console.log("editpro", update);
+      toast.success(`Sửa sản phẩm thành công`, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+    });
       navigate('/tableproduct');
     } catch (error) {
       console.log(error.message);
@@ -83,7 +95,7 @@ const EditProduct = () => {
             <div className="mt-5"><NavbarTop /></div>
             <div className="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md mt-12 mb-8  gap-12">
               <div className="relative flex justify-between bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-blue-500/40 shadow-lg -mt-6  p-6">
-                <h6 className='block antialiased tracking-normal font-sans text-base font-semibold leading-relaxed text-white'>Add User</h6>
+                <h6 className='block antialiased tracking-normal font-sans text-base font-semibold leading-relaxed text-white'>Edit Product</h6>
               </div>
               <div className="p-6 overflow-x-scroll px-0 pt-0 pb-2">
                 <form onSubmit={handleEditProduct} >
@@ -151,7 +163,7 @@ const EditProduct = () => {
                       </div>
                     </div>
                     <div className="pl-[180px] pb-6 pt-20 flex gap-4">
-                      <button type="submit" className="middle none font-sans font-bold center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/40 active:opacity-[0.85] block ">Add Product</button>
+                      <button type="submit" className="middle none font-sans font-bold center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/40 active:opacity-[0.85] block ">Update Product</button>
                       <Link to='/tableproduct' type="submit" className="middle none font-sans font-bold center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-gradient-to-tr bg-[#EB5160] to-blue-400 text-white shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/40 active:opacity-[0.85] block ">Cancel</Link>
                     </div>
                   </div>

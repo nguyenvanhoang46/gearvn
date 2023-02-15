@@ -3,7 +3,7 @@ import Navbar from '../Navbar'
 import NavbarTop from '../NavbarTop'
 import { Link, useNavigate } from "react-router-dom";
 import { createUserApi } from '../../app/services/adminService';
-
+import { ToastContainer, toast } from 'react-toastify';
 const CreateUser = () => {
 
 
@@ -23,6 +23,16 @@ const CreateUser = () => {
       // localStorage.setItem("token", response.accessToken)
       // localStorage.setItem("refreshToken", response.refreshToken)
       console.log(response);
+      toast.success(`Tạo tài khoản thành công`, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+    });
       navigate('/tableuser');
     } catch (error) {
       console.log(error.message);

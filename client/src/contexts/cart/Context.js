@@ -1,11 +1,9 @@
-import { createContext, useEffect, useReducer } from "react";
-import { ToastContainer, toast } from 'react-toastify';
+import { createContext, useEffect, useReducer, useState } from "react";
 import 'react-toastify/dist/ReactToastify.css';
-
+import { toast } from 'react-toastify';
 export const Cartcontext = createContext();
 
 export const Context = (props) => {
-
     const reducer = (state, action) => {
         switch (action.type) {
             case 'LOAD_CART':
@@ -17,6 +15,16 @@ export const Context = (props) => {
                 } else {
                     const newCart = [...state, action.payload];
                     localStorage.setItem('cart', JSON.stringify(newCart))
+                    toast.success(`Đã thêm vào giỏ hàng`, {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                    });
                     return newCart;
                 }
             case 'INCREASE':
@@ -43,20 +51,23 @@ export const Context = (props) => {
                 const tempstate3 = state.filter((item) => item.id !== action.payload.id);
                 localStorage.setItem('cart', JSON.stringify(tempstate3))
                 return tempstate3
+            case 'PAY':
+                localStorage.removeItem('cart');
+                return []
             default:
                 return state;
         }
     }
 
     const [state, dispatch] = useReducer(reducer, []);
+    const [cart, setCart] = useState([]);
+
 
     useEffect(() => {
-        const cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : []
-        dispatch({type: 'LOAD_CART', payload: cart})
-
-        return () => {
-
-        }
+        window.addEventListener('storage', e => {
+            setCart(localStorage.getItem('cart') ?? [])
+            dispatch({ type: 'LOAD_CART', payload: cart })
+        })
     }, [])
 
     const info = { state, dispatch };

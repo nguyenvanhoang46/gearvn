@@ -4,7 +4,7 @@ import FooterB from './FooterB'
 const Footer = () => {
   return (
     <>
-      <div className=''>
+      <div className='container mx-auto '>
         <div className='flex bg-[url("https://theme.hstatic.net/1000026716/1000440777/14/bg-register.png")]  py-[9px] bg-[#dedede] bg-no-repeat gap-96'>
           <div className=''>
             <div className='text-[16px] ml-[70px] pt-[4px]'>Mua hàng online với nhiều ưu đãi hơn tại GEARVN</div>
@@ -17,7 +17,10 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <FooterB />
+      <div className="bg-[#f6f6f6] py-[20px] ">
+      <FooterB  />
+      </div>
+     
     </>
   )
 }

@@ -10,10 +10,13 @@ import { useContext } from 'react';
 import { Cartcontext } from '../../contexts/cart/Context';
 import { createOrderApi } from '../../app/services/orderService'
 import { number } from 'yup'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import swal from 'sweetalert';
 
 const PayProduct = () => {
-    const { auth } = useContext(AuthContext);
-
+    const { auth, clearAuth } = useContext(AuthContext);
+ 
     const navigate = useNavigate();
 
     const [address, setAddress] = useState("");
@@ -39,9 +42,12 @@ const PayProduct = () => {
                 }
             })
             const response = await createOrderApi({ address, fullName, phone, email, city, userId: auth.id, orderItems });
-            localStorage.removeItem("cart", true);
+            swal({
+                title: "Mua hàng thành công",
+                icon: "success",
+            });
+            Globalstate.dispatch({ type: 'PAY' })
             navigate("/")
-            window.location.reload(false);
         } catch (error) {
             console.log(error.message);
         }
@@ -57,18 +63,18 @@ const PayProduct = () => {
 
                 <div className="container mx-auto">
                     <div className="pt-8 flex">
-                        <Link to={'/'} className='flex gap-1 items-center'>
-                            <div className="text-[13px] font-normal text-[#82869E] ">Trang chủ</div>
+                        <Link to={'/cart'} className='flex gap-1 items-center'>
+                            <div className="text-[13px] font-normal text-[#82869E] text-[#338dbc] ">Giỏ hàng</div>
                             <div className="">
                                 <GrFormNext size={18} className="text-[#82869E]" />
                             </div>
                         </Link>
-                        <div className='text-[13px] font-normal text-[#82869E] '>Giỏ hàng</div>
+                        <div className='text-[13px] font-normal text-[#82869E] '>Thông tin giao hàng</div>
                     </div>
                     <form onSubmit={handleOrder} action="">
                         <div className="rounded-[1rem] gap-6 grid grid-cols-12">
                             <div className="mt-[15px] col-span-8 rounded-[8px]">
-                                <h2 className='text-[18px]'>Thông tin thanh toán</h2>
+                                <h2 className='text-[18px] font-medium'>Thông tin thanh toán</h2>
                                 <div className="bg-[#FFFFFF] mt-4  py-[4vh] px-[5vh] ">
                                     <div className="w-full mb-5">
                                         <div className="relative">
@@ -103,7 +109,7 @@ const PayProduct = () => {
                                 </div>
                             </div>
                             <div className="col-span-4 mt-[15px]">
-                                <h2 className='text-[18px]'>Đơn hàng của bạn</h2>
+                                <h2 className='text-[18px] font-medium'>Đơn hàng của bạn</h2>
                                 <div className="bg-[#FFFFFF] rounded-[8px] pt-[5px] pr-[20px] pb-[15px] pl-[20px] mt-3 ">
                                     <div className=''>
                                         <div className='mt-2 flex justify-between' >

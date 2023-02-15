@@ -12,7 +12,7 @@ import "./footer.css";
 const FooterB = () => {
     return (
 
-        <footer className=' mt-10'>
+        <footer className='container mx-auto  '>
             <div className="grid grid-cols-5">
                 <div className="">
                     <ul className="">
@@ -54,7 +54,7 @@ const FooterB = () => {
                         <li><div className='text-[13px] pt-[0.365rem] pr-[0.75rem] text-[#333333] '> Gọi mua hàng <a className='text-[#0D6EFD] ' href="">18006867</a> </div></li>
                         <li><a className='text-[13px] pt-[0.365rem] pr-[0.75rem] text-[#333333] hover:text-[#024dbc] flex items-center gap-1' href=""><AiFillFacebook className='text-[#485992] text-[17px] ' /> Gearvn Việt Nam</a></li>
                         <li><a className='text-[13px] pt-[0.365rem] pr-[0.75rem] text-[#333333] hover:text-[#024dbc] flex items-center gap-1' href=""><BsYoutube className='text-[#cf2200] text-[17px] ' /> Gearvn Media</a></li>
-                        <li><a className='text-[13px] pt-[0.365rem] pr-[0.75rem] text-[#333333] hover:text-[#024dbc] flex items-center gap-1' href=""><HiUserGroup className='text-[#00AFF7] text-[17px]  ' /> Gearvn Media</a></li>
+                        <li><a className='text-[13px] pt-[0.365rem] pr-[0.75rem] text-[#333333] hover:text-[#024dbc] flex items-center gap-1' href=""><HiUserGroup className='text-[#00AFF7] text-[17px]  ' /> Gearvn Hội</a></li>
                     </ul>
                 </div>
                 <div className="">
@@ -102,7 +102,6 @@ const FooterB = () => {
                     <img className='mt-3' src="https://shopfront-cdn.tekoapis.com/static/vnpay_banks.png" alt="" />
                 </div>
             </div>
-
         </footer>
     )
 }

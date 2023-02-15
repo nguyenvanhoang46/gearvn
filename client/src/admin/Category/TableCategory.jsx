@@ -4,7 +4,8 @@ import NavbarTop from '../NavbarTop'
 import { Link } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import { deleteCategoryApi, getTableCategoryApi } from '../../app/services/adminService';
-
+import { AiOutlineLoading, AiFillEdit } from 'react-icons/ai'
+import { MdDelete } from 'react-icons/md';
 const TableCategory = () => {
 
   const [dataCategory, setDataCategory] = useState([]);
@@ -46,7 +47,7 @@ const TableCategory = () => {
             <div className="mt-5"><NavbarTop /></div>
             <div className="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md mt-12 mb-8  gap-12">
               <div className="relative flex justify-between bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-blue-500/40 shadow-lg -mt-6  p-6">
-                <h6 className='block antialiased tracking-normal font-sans text-base font-semibold leading-relaxed text-white'>User</h6>
+                <h6 className='block antialiased tracking-normal font-sans text-base font-semibold leading-relaxed text-white'>Category</h6>
                 <Link to='/addcategory' className='block antialiased tracking-normal font-sans text-base font-semibold leading-relaxed text-white'>Add Category</Link>
               </div>
               <div className="p-6 overflow-x-scroll px-0 pt-0 pb-2">
@@ -67,8 +68,8 @@ const TableCategory = () => {
                         <tr key={index}>
                           <td className='py-3 px-5'>{item.name}</td>
                           <td className='py-3 px-5 flex gap-3'>
-                            <Link to={`/editcategory/${item.id}`}>Sửa</Link>
-                            <button onClick={() => handleDelete(item.id)}>Xóa</button>
+                            <Link to={`/editcategory/${item.id}`}><AiFillEdit className='text-[20px] ' /></Link>
+                            <button onClick={() => handleDelete(item.id)}><MdDelete className='text-[20px]' /></button>
                           </td>
                         </tr>
                       );

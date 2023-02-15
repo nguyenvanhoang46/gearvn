@@ -43,6 +43,16 @@ const Login = () => {
 
   return (
     <>
+      <div className='fixed left-0 top-[190px] z-[9999] w-[1650px] '>
+        <div>
+          <div className='absolute left-[115px] '>
+            <img className='w-[150px] ' src="//theme.hstatic.net/1000026716/1000440777/14/stk-bn-left.png?v=31049" />
+          </div>
+          <div className='absolute right-[-140px] '>
+            <img className='w-[150px] ' src="//theme.hstatic.net/1000026716/1000440777/14/stk-bn-right.png?v=31049" />
+          </div>
+        </div>
+      </div>
       <div className='bg-[#f1f0f1]'>
         <Header />
         <Category />
@@ -87,8 +97,13 @@ const Login = () => {
           </form>
         </div>
       </div>
-      <div className="container mx-auto  mt-10">
+      <div className="mt-[210px]">
         <Footer />
+      </div>
+      <div className='fixed right-[30px] bottom-[11px] '>
+        <a target={"_blank"} href='https://www.facebook.com/your.firstname.lastname'>
+          <img src="https://omnisales.worldfone.vn/portal/upload/livechat/logo/1664779722_G-bot-Finall-09--2-.png" />
+        </a>
       </div>
     </>
   )

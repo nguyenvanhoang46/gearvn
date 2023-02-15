@@ -4,7 +4,7 @@ import NavbarTop from '../NavbarTop'
 import { Link } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import { deleteUserApi, getTableUserApi } from '../../app/services/adminService';
-
+import { ToastContainer, toast } from 'react-toastify';
 const TablesUser = () => {
 
     const [dataUser, setDataUser] = useState([]);

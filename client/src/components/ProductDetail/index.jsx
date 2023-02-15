@@ -66,12 +66,12 @@ const ProductDetail = () => {
                         <hr className='my-[20px] ' />
                         <p className='text-[#ff0000] '><strong>Hỗ trợ trả góp MPOS (Thẻ tín dụng), HDSAISON <Link to={"/"}>(<span className='text-[#3498db]'>Xem chi tiết</span>)</Link>.</strong></p>
                         <div className="mt-4">
-                            <span className="text-[15px] mr-3 font-medium ">Giá Cũ:</span><span className="text-[#888] text-[20px] "><del>{(data?.salePrice).toLocaleString('vi', { style: 'currency', currency: 'VND' })}</del></span>
+                            <span className="text-[15px] mr-3 font-medium ">Giá Cũ:</span><span className="text-[#888] text-[20px] "><del>{data?.salePrice.toLocaleString('vi', { style: 'currency', currency: 'VND' })}</del></span>
                             <br />
-                            <span className="text-[15px] mr-2 font-medium ">Giá KM:</span><span className="text-[#e61010] text-[20px] font-bold ">{(data?.price).toLocaleString('vi', { style: 'currency', currency: 'VND' })}</span>
+                            <span className="text-[15px] mr-2 font-medium ">Giá KM:</span><span className="text-[#e61010] text-[20px] font-bold ">{data?.price.toLocaleString('vi', { style: 'currency', currency: 'VND' })}</span>
                         </div>
                         <div className='mt-3 '>
-                            <Link to={"/"} className='bg-[#ed1f24] pt-[3px] pb-[7px] px-[30px] text-[24px] rounded font-bold text-[#fff] '>Đặt hàng</Link>
+                            <Link to={""} className='bg-[#ed1f24] pt-[3px] pb-[7px] px-[30px] text-[24px] rounded font-bold text-[#fff] '>Đặt hàng</Link>
                         </div>
                     </div>
                 </div>

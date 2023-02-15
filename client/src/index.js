@@ -15,6 +15,7 @@ import {
   QueryClient,
   QueryClientProvider,
 } from 'react-query'
+import { ToastContainer, toast } from 'react-toastify';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -25,6 +26,7 @@ root.render(
   <Provider store={store}>
     <QueryClientProvider client={queryClient}>
       <Context>
+        <ToastContainer />
         <AuthProvider>
           <RouterProvider router={router} />
         </AuthProvider>

@@ -14,7 +14,7 @@ const Cart = () => {
     const Globalstate = useContext(Cartcontext);
     const state = Globalstate.state;
     let navigate = useNavigate();
-    console.log("ff", state)
+    // console.log("ff", state)
     const dispatch = Globalstate.dispatch;
     const total = state.reduce((total, item) => {
         return total + item.price * item.quantity;

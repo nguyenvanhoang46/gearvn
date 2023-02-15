@@ -4,6 +4,8 @@ import Navbar from '../Navbar'
 import NavbarTop from '../NavbarTop'
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { createProductApi, ImageProduct, getCategoryP, getTableCategoryApi, getTableProductApi } from '../../app/services/adminService';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const CreateProduct = () => {
 
@@ -28,6 +30,7 @@ const CreateProduct = () => {
     getAllCategory();
   }, []);
 
+
   const handleCreateProduct = async (e) => {
     e.preventDefault();
     try {
@@ -36,8 +39,18 @@ const CreateProduct = () => {
       formData.append('image', image);
       formData.append('id', data.id);
       await ImageProduct(formData);
-      // console.log("dataproduct", data);
+      toast.success(`Thêm sản phẩm thành công`, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+    });
       navigate('/tableproduct');
+
     } catch (error) {
       console.log(error.message);
     }
@@ -58,7 +71,7 @@ const CreateProduct = () => {
             <div className="mt-5"><NavbarTop /></div>
             <div className="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md mt-12 mb-8  gap-12">
               <div className="relative flex justify-between bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-blue-500/40 shadow-lg -mt-6  p-6">
-                <h6 className='block antialiased tracking-normal font-sans text-base font-semibold leading-relaxed text-white'>Add User</h6>
+                <h6 className='block antialiased tracking-normal font-sans text-base font-semibold leading-relaxed text-white'>Add Product</h6>
               </div>
               <div className="p-6 overflow-x-scroll px-0 pt-0 pb-2">
                 <form onSubmit={handleCreateProduct} >

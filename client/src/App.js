@@ -15,7 +15,7 @@ import { AuthContext } from './contexts/AuthProvider';
 
 function App() {
   const { auth } = useContext(AuthContext);
-  
+
   return (
     <>
       <>
@@ -45,7 +45,7 @@ function App() {
         <div className='container mx-auto'>
           <Content />
         </div>
-        <div className='container mx-auto mt-20'>
+        <div className=''>
           <Footer />
         </div>
         <div className='fixed right-[30px] bottom-[11px] '>

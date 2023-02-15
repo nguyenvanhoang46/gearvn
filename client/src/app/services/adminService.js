@@ -2,7 +2,7 @@ import request from "../../lib/request"
 
 // Product
 
-export const getTableProductApi = ({page, limit}) => request.get(`/Admin/Product/GetProducts?pageNumber=${page}&pageSize=${limit}`).then(({ data }) => data.data);
+export const getTableProductApi = ({page, limit}) => request.get(`/Admin/Product/GetProducts?pageNumber=${page}&pageSize=${limit}&orderBy=-createdAt`).then(({ data }) => data.data);
 
 export const getProductApi = (id) => request.get(`/Admin/Product/GetProduct/${id}`).then(({ data }) => data.data);
 

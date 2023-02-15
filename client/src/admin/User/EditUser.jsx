@@ -5,7 +5,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import { getUserApi, updateUserApi } from '../../app/services/adminService';
 import axios from 'axios';
-
+import { ToastContainer, toast } from 'react-toastify';
 const EditUser = () => {
 	const [username, setUserName] = useState("");
 	const [firstName, setFirstName] = useState("");
@@ -52,6 +52,16 @@ const EditUser = () => {
 			console.log(request)
 			const edit = await updateUserApi(id, request);
 			console.log(edit);
+			toast.success(`Sửa tài khoản thành công`, {
+				position: "top-right",
+				autoClose: 5000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: true,
+				progress: undefined,
+				theme: "light",
+			});
 			navigate('/tableuser');
 		} catch (error) {
 			console.log(error.message);
@@ -112,7 +122,7 @@ const EditUser = () => {
 												<input value={password} onChange={(e) => setPassword(e.target.value)} className='w-full text-[#495057] bg-[#fff] py-[0.375rem] focus:bg-[#fff] px-[0.75rem]  focus:ring-offset-1 focus:ring-1 focus:outline   focus:outline-[#1b00ff] rounded-[.25rem] border-[1px] border-gray-200 ' type="password" placeholder="Password" />
 											</div>
 										</div> */}
-										<div className="flex gap-6 mt-7 items-center">
+										<div className="flex gap-6 mt-7 items-center hidden">
 											<label className='font-medium text-[14px] w-[10%] '>Role</label>
 											<div className='w-[60%]'>
 												<input value={role} onChange={(e) => setRole(e.target.value)} className='w-full text-[#495057] bg-[#fff] py-[0.375rem] focus:bg-[#fff] px-[0.75rem]  focus:ring-offset-1 focus:ring-1 focus:outline   focus:outline-[#1b00ff] rounded-[.25rem] border-[1px] border-gray-200 ' type="text" placeholder="" />
