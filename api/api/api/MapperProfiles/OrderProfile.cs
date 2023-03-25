@@ -10,6 +10,10 @@ public class OrderProfile : Profile
   {
     CreateMap<Order, OrderDto>()
       .ForMember(i => i.OrderDate, opt => opt.MapFrom(i => i.CreatedAt))
-      .ForMember(i => i.User, otp => otp.MapFrom(i => i.User.UserName));
+      .ForMember(d => d.User,
+				o => o.MapFrom(
+					(order, dto, dest, ctx) => ctx.Mapper.Map<UserDto>(order.User)
+				)
+			);
   }
 }
