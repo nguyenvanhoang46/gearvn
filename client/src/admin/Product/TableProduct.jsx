@@ -23,8 +23,6 @@ const TableProduct = () => {
     const { data, isLoading } = useQuery(['GET_PRODUCT_ADMIN_API', page, limit], () => getTableProductApi({ page, limit }))
     let [searchParams, setSearchParams] = useSearchParams();
 
-
-
     const handleDelete = async (id) => {
         try {
             console.log(id);

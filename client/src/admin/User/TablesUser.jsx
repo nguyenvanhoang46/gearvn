@@ -8,7 +8,6 @@ import { ToastContainer, toast } from 'react-toastify';
 const TablesUser = () => {
 
     const [dataUser, setDataUser] = useState([]);
-
     // const { id } = useParams();
     // const navigate = useNavigate();
     useEffect(() => {

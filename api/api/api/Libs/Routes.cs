@@ -25,4 +25,6 @@ public static class Routes
   public const string API_ADMIN_GET_CATEGORY_BY_ID = "GetCategory/{id}";
   public const string API_ADMIN_UPDATE_CATEGORY = "UpdateCategory/{id}";
   public const string API_ADMIN_DELETE_CATEGORY = "DeleteCategory/{id}";
+  
+  public const string API_ADMIN_ORDER_GET_ORDERS = "GetOrders";
 }

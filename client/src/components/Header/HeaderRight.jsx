@@ -3,6 +3,7 @@ import { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom'
 import { BsFillCartFill, BsBoxArrowInLeft } from 'react-icons/bs';
 import { MdAccountCircle } from 'react-icons/md';
+import { BiUserCircle } from 'react-icons/bi';
 import { FaPenSquare } from 'react-icons/fa';
 import Button from '../Button';
 import { AuthContext } from '../../contexts/AuthProvider';
@@ -40,8 +41,40 @@ const HeaderRight = () => {
           </>
           :
           <>
-            <Link >
-              <div className="flex gap-2 items-center text-[11px] mt-1 font-bold">{auth.fullName}</div>
+            <Link className='group'>
+              <div className=" flex gap-2 items-center text-[11px] mt-1 font-bold">
+                {auth.fullName}
+              </div>
+              <ul className='hidden w-[180px] shadow-md rounded absolute  group-hover:block z-50 bg-white p-3'>
+                <div className=" flex gap-2 items-center text-[11px] mt-1 font-bold">
+                  <BiUserCircle className='text-[26px]' />
+                  {auth.fullName}
+                </div>
+                <li className='py-[7px]'>
+                  <Link to='/profile' className='text-[12px] flex items-center gap-2'>
+                    <BiUserCircle className='text-[16px]' />
+                    Thông tin tài khoản
+                  </Link>
+                </li>
+                <li className='py-[7px]'>
+                  <Link to='/profile' className='text-[12px] flex items-center gap-2'>
+                    <BiUserCircle className='text-[16px]' />
+                    Quản lý đơn hàng
+                  </Link>
+                </li>
+                <li className='py-[7px]'>
+                  <Link to='/profile' className='text-[12px] flex items-center gap-2'>
+                    <BiUserCircle className='text-[16px]' />
+                    Quản lý đơn hàng
+                  </Link>
+                </li>
+                <li className='py-[7px]'>
+                  <Link to='/profile' className='text-[12px] flex items-center gap-2'>
+                    <BiUserCircle className='text-[16px]' />
+                    Quản lý đơn hàng
+                  </Link>
+                </li>
+              </ul>
             </Link>
             <button onClick={logout}>
               <Button label="Đăng Xuất" icon={<BsBoxArrowInLeft style={StyleIcon} />} />

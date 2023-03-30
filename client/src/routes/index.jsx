@@ -21,6 +21,8 @@ import CreateProduct from "../admin/Product/CreateProduct";
 import EditProduct from "../admin/Product/EditProduct";
 import Cart from "../components/Cart";
 import PayProduct from "../components/PayProduct";
+import Order from "../admin/Order";
+import Profile from "../components/Profile";
 
 const router = createBrowserRouter([
 
@@ -104,6 +106,14 @@ const router = createBrowserRouter([
     {
         path: "payproduct",
         element: <PayProduct />,
+    },
+    {
+        path: "order",
+        element: <Order />,
+    },
+    {
+        path: "profile",
+        element: <Profile />,
     },
 
 
