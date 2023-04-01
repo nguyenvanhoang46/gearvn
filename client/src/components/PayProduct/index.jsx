@@ -16,7 +16,7 @@ import swal from 'sweetalert';
 
 const PayProduct = () => {
     const { auth, clearAuth } = useContext(AuthContext);
- 
+
     const navigate = useNavigate();
 
     const [address, setAddress] = useState("");
@@ -104,6 +104,21 @@ const PayProduct = () => {
                                         <div className="relative">
                                             <label className="absolute font-normal text-[#999999] text-[14px] px-[0.93333em] " for="billing_address_full_name">Thành phố</label>
                                             <input value={city} onChange={(e) => setCity(e.target.value)} className="border-[1px] outline-[#338dbc] border-[#d9d9d9] text-[15px] pt-[16px] pb-[3px] text-[#333333] rounded-[4px] pr-[2.8em] pl-[0.8em] w-full bg-white  " />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="bg-[#FFFFFF] mt-4  py-[2vh] px-[3vh]">
+                                    <h3 className='text-[18px] font-semibold'>Phương thức thanh toán</h3>
+                                    <p className='text-[13px] text-[#82869e]'>Thông tin thanh toán của bạn sẽ luôn được bảo mật</p>
+                                    <div className="flex gap-3 px-[14px] py-[20px] ">
+                                        <div className="border-[1px] relative border-[#1435c3] rounded px-[1.25rem] py-[0.5rem] w-full ">
+                                            <h3 className='font-bold text-[15px]'>Thanh toán VNPAY-QR</h3>
+                                            <p className='text-[13px] text-[#82869e] font-medium mt-2'>Thanh toán qua Internet Banking, Visa, Master, JCB, VNPAY-QR </p>
+                                            {/* <div className="absolute border-[#1435c3] top-[-1px] right-0 w-[0px] h-[0px] "></div> */}
+                                        </div>
+                                        <div className="border-[1px] border-[#1435c3] rounded px-[1.25rem] py-[0.5rem] w-full ">
+                                            <h3 className='font-bold text-[15px]'>Thanh toán khi nhận hàng</h3>
+                                            <p className='text-[13px] text-[#82869e] font-medium mt-2'>Là phương thức khách hàng nhận hàng mới trả tiền. Áp dụng với tất cả các đơn hàng trên toàn quốc</p>
                                         </div>
                                     </div>
                                 </div>
